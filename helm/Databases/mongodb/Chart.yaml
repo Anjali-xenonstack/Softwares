@@ -1,0 +1,11 @@
+name: mongodb
+version: 3.7.1
+appVersion: 3.7.1
+description: NoSQL document-oriented database that stores JSON-like documents with dynamic schemas, simplifying the integration of data in content-driven applications.
+keywords:
+- mongodb
+home: https://mongodb.org
+sources:
+- https://github.com
+maintainers:
+- name: Xenon

@@ -1,0 +1,12 @@
+<pre>
+
+Your Jupyter Notebook is deployed successfully.
+Persistent storage is attached.
+You can create your notebooks & files inside work directory.
+
+
+Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://{{.httpjnHost}}:{{.httpjn}}">https://{{.httpjnHost}}:{{.httpjn}}</a>
+
+Password - xtendlabs
+
+</pre>

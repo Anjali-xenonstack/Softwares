@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "bigdata.fullname" . }}-hue
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bigdata.name" . }}-hue
+    spec:
+      containers:
+        - name: hue
+          image: {{ .Values.hue.image }} #19
+          imagePullPolicy: "IfNotPresent"
+          # command: [ "/bin/bash", "-c", "--" ]
+          # args: [ "while true; do sleep 30; done;" ]
+          ports:
+            - containerPort: 8888
+              name: http
+          env:
+          - name: HDFS_HIVE_IP
+            value: {{ template "bigdata.fullname" . }}-hive-server
+          - name: HDFS_IP
+            value: {{ template "bigdata.fullname" . }}-hdfs-nn-0.{{ template "bigdata.fullname" . }}-hdfs-nn # {{ template "bigdata.fullname" . }}-hdfs-nn
+          - name: HDFS_YARN_IP
+            value: {{ template "bigdata.fullname" . }}-yarn-rm
+          - name: HDFS_SQOOP_IP
+            value: {{ .Release.Name }}-sqoop
+          - name: HDFS_ZOO_IP
+            value: {{ .Release.Name }}-zookeeper
+          - name: HDFS_HBASE_IP
+            value: {{ template "bigdata.fullname" . }}-hbase-thrift
+          - name: HDFS_OOZIE_IP
+            value: {{ .Release.Name }}-oozie
+          - name: DB_HOST
+            value: {{ template "bigdata.fullname" . }}-psql-service # {{ template "bigdata.fullname" . }}-mysql
+          - name: DB_PORT
+            value: "5432"
+          - name: AWS_ACCESS_KEY
+            value: AKIAJSF6WNT5Y4IANLXA # AKIAI62Z2Y32HVFPXNMQ
+          - name: AWS_SECRET_KEY
+            value: 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 #NJgm9cz9YgkEMwzgufUMkNMlzTj+JybEoX0k+VPm
+          - name: AWS_REGION
+            value: us-west-2
+          # resources:
+          #   requests:
+          #     memory: "300Mi"
+          #     cpu: "200m"
+          #   limits:
+          #     memory: "300Mi"
+          #     cpu: "200m"
+          readinessProbe:
+            exec:
+              command:
+              - nc # ['nc', '-vz', '{{ template "bigdata.fullname" . }}-hdfs-nn-0.{{ template "bigdata.fullname" . }}-hdfs-nn', '9000']
+              - -vz
+              - {{ template "bigdata.fullname" . }}-psql-service
+              - "5432"
+            initialDelaySeconds: 5
+            failureThreshold: 3
+            periodSeconds: 30
+            timeoutSeconds: 2

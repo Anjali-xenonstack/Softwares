@@ -1,0 +1,6 @@
+rstudio:
+  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/jupyternotebook:rv2 #rocker/rstudio:3.4.3
+  resources:
+    limits:
+      memory: "4096Mi"
+      cpu: "2000m"

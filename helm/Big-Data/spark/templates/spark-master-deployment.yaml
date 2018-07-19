@@ -1,0 +1,67 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "spark.fullname" . }}
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
+spec:
+  replicas: {{ default 1 .Values.Master.Replicas }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
+  template:
+    metadata:
+      labels:
+        heritage: {{ .Release.Service | quote }}
+        release: {{ .Release.Name | quote }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
+    spec:
+      containers:
+        - name: {{ template "spark.fullname" . }}
+          image: "{{ .Values.Master.Image }}"
+          command: ["/spark-master"]
+          ports:
+            - containerPort: 7077
+            - containerPort: 8080
+            - containerPort: 18080
+            - containerPort: 4040
+            - containerPort: 6066
+          resources:
+            requests:
+              cpu: "{{ .Values.Master.Cpu }}"
+              memory: "{{ .Values.Master.Memory }}"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "spark.fullname" . }}
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
+spec:
+  ports:
+    - name: spark
+      port: 7077
+    - name: http
+      port: 8080
+    - name: livy
+      port: 8998
+    - name: history
+      port: 18080
+    - name: historyui
+      port: 4040
+    - name: rest
+      port: 6066
+  type: LoadBalancer
+  selector:
+    component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"

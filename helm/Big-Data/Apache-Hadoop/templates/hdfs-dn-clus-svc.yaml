@@ -1,0 +1,23 @@
+# A headless service to create DNS records
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "bigdata.fullname" . }}-hdfs-dn-dnn
+  labels:
+    app: {{ template "bigdata.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: hdfs-dn
+spec:
+  ports:
+  - name: dfs
+    port: 9000
+    protocol: TCP
+  - name: dnhdfs
+    port: 50075
+  type: LoadBalancer
+  selector:
+    app: {{ template "bigdata.name" . }}
+    release: {{ .Release.Name }}
+    component: hdfs-dn

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "hdp.fullname" . }}-hive-metastore-postgresql
+  labels:
+    app: {{ template "hdp.name" . }}-hive-metastore-postgresql
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  clusterIP: None
+  ports:
+  - name: headless
+    port: 55555
+    targetPort: 0
+  selector:
+    app: {{ template "hdp.name" . }}-hive-metastore-postgresql
+    release: {{ .Release.Name }}
+status:
+  loadBalancer: {}

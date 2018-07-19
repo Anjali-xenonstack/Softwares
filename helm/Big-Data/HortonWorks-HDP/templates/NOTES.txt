@@ -1,0 +1,86 @@
+<pre>
+
+HortonWorks Hadoop HDP-2.6.4 Deployment Details :::
+
+You have successfully launched following components under this  :
+
+• HortonWorks Apache Hadoop ( HDFS NameNode & DataNode + YARN NodeManager & ResourceManager)
+• HortonWorks Apache HBase Master , ThriftServer & RegionServer
+• HortonWorks Apache Hive
+• Cloudera Hue
+• HortonWorks Apache ZooKeeper
+• HortonWorks Apache Oozie
+• HortonWorks Apache Pig
+• HortonWorks Apache Sqoop
+
+Disclaimer : Some components of Apache Hadoop Stack will take some time to initiate for the first time
+
+Visit on following URL addresses to use various HortonWorks Hadoop HDP services (It might take a couple of seconds for all services to attain Running state .. Please wait) :
+
+• Hadoop HDFS NameNode : <a style="text-decoration:none;" target="_blank" href="https://{{.webhdfsHost}}:{{.webhdfs}}">https://{{.webhdfsHost}}:{{.webhdfs}}</a>
+
+• Hadoop YARN ResourceManager : <a style="text-decoration:none;" target="_blank" href="https://{{.yarnwebHost}}:{{.yarnweb}}">https://{{.yarnwebHost}}:{{.yarnweb}}</a>
+
+• HBASE Master Dashboard : <a style="text-decoration:none;" target="_blank" href="https://{{.hbasemasteruiHost}}:{{.hbasemasterui}}">https://{{.hbasemasteruiHost}}:{{.hbasemasterui}}</a>
+
+• HBASE ThriftServer UI : <a style="text-decoration:none;" target="_blank" href="https://{{.thriftinfoHost}}:{{.thriftinfo}}">https://{{.thriftinfoHost}}:{{.thriftinfo}}</a>
+
+• HBASE RegionServer UI : <a style="text-decoration:none;" target="_blank" href="https://{{.hbaseregionuiHost}}:{{.hbaseregionui}}">https://{{.hbaseregionuiHost}}:{{.hbaseregionui}}</a>
+
+• You can connect to Hive server in 3 ways :
+
+1.A) By Going into the xtendlabs console - Copy the below line & Enter into the xtendlabs console using portal's Dashboard & Run :
+
+   hive -u jdbc:hive2://localhost:10000/default
+
+1.B) If you use beeline client , Then Copy the below line & Enter into the xtendlabs console using portal's Dashboard & Run :
+
+   beeline -u jdbc:hive2://localhost:10000/default
+
+2.A) If you want to connect remotely to this Hive server using hive client, Enter following command in your terminal :
+
+   hive -u jdbc:hive2://{{.hiveserverHost}}:{{.hiveserver}}/default
+
+2.B) If you want to connect remotely to this Hive server using beeline client, Enter following command in your terminal :
+
+   beeline -u jdbc:hive2://{{.hiveserverHost}}:{{.hiveserver}}/default
+
+3) Using Hive Shell from Hue Dashboard - Login to Hue & you can run commands remotely to the Hive server from Hue dashboard
+
+Note : Oozie will take some time to share it's library into HDFS , Please wait for some time for sharelib to be completed successfully & then open Oozie web console
+
+• Oozie WebUI : <a style="text-decoration:none;" target="_blank" href="https://{{.httpoozieHost}}:{{.httpoozie}}/oozie">https://{{.httpoozieHost}}:{{.httpoozie}}/oozie</a>
+
+• You can also check Oozie deployment by going into Oozie console from Xtendlabs dashboard & running :
+
+  # oozie admin -oozie https://{{.httpoozieHost}}:{{.httpoozie}}/oozie -status
+
+- If output to above command results in :
+  System mode: NORMAL
+  Means Oozie server & client have been successfully deployed
+
+• Hortonworks HDP supports only Sqoop client & not Sqoop server
+• To acces Sqoop client deployment , Go into Console of Sqoop & Run
+
+  sqoop version | grep 'Sqoop [0-9].*'
+
+• If it results in : Running Sqoop version: 1.4.6.2.6.3.0-235
+  It means Sqoop client is setup
+
+• Further , to use it , Your can Go into console from Dashboard
+
+
+• To run Pig , Go into Console of Sqoop & Run
+
+  pig
+
+  It will connect to Hadoop HDFS(which has persistent storage attached) & open a Grunt shell
+
+• Hue , particularly will take 3-4 minutes (Only for the first time setup), since Hue syncs all tables & runs migration for all it's components to External MySQL DB .
+  Once Hue finishes migration, Users will be able to open Hue instantly anytime later on.
+
+• Access Hue UI at : <a style="text-decoration:none;" target="_blank" href="https://{{.httphueHost}}:{{.httphue}}">https://{{.httphueHost}}:{{.httphue}}</a>
+
+  Provide UserName : root
+          Password : root
+</pre>

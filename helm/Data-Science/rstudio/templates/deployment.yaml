@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-rstudio
+  labels:
+    app: {{ template "rstudio.name" . }}-rstudio
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "rstudio.name" . }}-rstudio
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: rstudio
+          image: {{ .Values.rstudio.image }}
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 8787
+              name: http
+          env:
+          - name: USER
+            value: "admin" # "{{or .USER "xenon"}}" # xenon # "{{or .USER "xenon"}}"
+          - name: PASSWORD
+            value: "admin" # "{{or .PASSWORD "stack"}}" # stack # "{{or .PASSWORD "stack"}}"

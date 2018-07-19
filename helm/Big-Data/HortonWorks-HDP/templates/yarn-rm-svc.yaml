@@ -1,0 +1,26 @@
+# A headless service to create DNS records
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "hdp.fullname" . }}-yarn-rm
+  labels:
+    app: {{ template "hdp.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: yarn-rm
+spec:
+  ports:
+  - port: 8088
+    name: web
+  - port: 8030
+    name: rmhiveee
+  - port: 8031
+    name: rmhivee
+  - port: 8032
+    name: rmhive
+  type: NodePort
+  selector:
+    app: {{ template "hdp.name" . }}
+    release: {{ .Release.Name }}
+    component: yarn-rm

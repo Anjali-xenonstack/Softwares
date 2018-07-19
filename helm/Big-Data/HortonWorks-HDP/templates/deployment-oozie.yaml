@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-oozie
+  labels:
+    app: {{ template "hdp.name" . }}-oozie
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "hdp.name" . }}-oozie
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: oozie
+          image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/hdp:ooziev1.3 #1.2
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 11000
+              name: httpoozie
+            - containerPort: 11001
+              name: back
+          env:
+            - name: HDFS
+              value: hdfs://{{ template "hdp.fullname" . }}-hdfs-nn:9000/
+            - name: HDFSSVC
+              value: {{ template "hdp.fullname" . }}-hdfs-nn

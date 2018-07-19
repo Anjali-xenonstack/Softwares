@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-sqoop
+  labels:
+    app: {{ template "bigdata.name" . }}-sqoop
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+       app: {{ template "bigdata.name" . }}-sqoop
+       release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: sqoop
+        image: {{ .Values.sqoop.image }}
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 12000
+        - containerPort: 9000
+        env:
+        - name: HDFS_IP
+          value: {{ template "bigdata.fullname" . }}-hdfs-nn
+        # resources:
+        #   requests:
+        #     memory: "200Mi"
+        #     cpu: "100m"
+        #   limits:
+        #     memory: "200Mi"
+        #     cpu: "100m"

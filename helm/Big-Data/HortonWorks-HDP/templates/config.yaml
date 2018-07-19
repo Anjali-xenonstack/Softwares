@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  HBASE_CONF_hbase_cluster_distributed: "true"
+  HBASE_CONF_hbase_master: {{ template "hdp.fullname" . }}-hbase-master:16000
+  HBASE_CONF_hbase_master_hostname: {{ template "hdp.fullname" . }}-hbase-master # hbase-master
+  HBASE_CONF_hbase_master_info_port: "16010"
+  HBASE_CONF_hbase_master_port: "16000"
+  HBASE_CONF_hbase_regionserver_info_port: "16030"
+  HBASE_CONF_hbase_regionserver_port: "16020"
+  HBASE_CONF_hbase_rootdir: hdfs://{{ template "hdp.fullname" . }}-hdfs-nn-0.{{ template "hdp.fullname" . }}-hdfs-nn:9000/hbase
+  HBASE_CONF_hbase_zookeeper_quorum: {{ .Release.Name }}-zookeeper
+  HBASE_MANAGES_ZK: "false"
+  HBASE_CONF_hbase_thrift_support_proxyuser: "true"
+  HBASE_CONF_hbase_regionserver_thrift_http: "true"
+kind: ConfigMap
+metadata:
+  name: {{ template "hdp.fullname" . }}-hbase-master-hbase-distributed-local-env

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "bigdata.fullname" . }}-psql-service
+  labels:
+    app: {{ template "bigdata.name" . }}-psql-service
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: NodePort
+  ports:
+  - name: psql
+    port: 5432
+  selector:
+    app: {{ template "bigdata.name" . }}-hive-metastore-postgresql
+    release: {{ .Release.Name }}

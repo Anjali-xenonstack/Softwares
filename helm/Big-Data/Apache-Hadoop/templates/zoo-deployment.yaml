@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-zookeeper
+  labels:
+    app: {{ template "bigdata.name" . }}-zookeeper
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bigdata.name" . }}-zookeeper
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: zookeeper
+        image: {{ .Values.zookeeper.image }}
+        imagePullPolicy: "IfNotPresent"
+        ports:
+          - containerPort: 2181
+            name: http
+        volumeMounts:
+        - name: zoodata
+          mountPath: /data
+        # - name: zoologs
+        #   mountPath: /datalog
+      volumes:
+      - name: zoodata
+        persistentVolumeClaim:
+          claimName: {{ template "bigdata.fullname" . }}-zoodata
+      # - name: zoologs
+      #   persistentVolumeClaim:
+      #     claimName: {{ template "bigdata.fullname" . }}-zoologs
+      restartPolicy: Always

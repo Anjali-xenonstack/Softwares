@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-zookeeper
+  labels:
+    app: {{ template "hdp.name" . }}-zookeeper
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: NodePort
+  ports:
+  - port: 2181
+    name: http
+  selector:
+    app: {{ template "hdp.name" . }}-zookeeper
+    release: {{ .Release.Name }}

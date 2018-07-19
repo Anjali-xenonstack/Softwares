@@ -1,0 +1,6 @@
+[
+{"var": "hdfs.dataNode.replicas", "name": "Number_Of_HDFS_Data_Nodes", "type": "number", "min":1, "max":5, "desc": "Please Enter number of HDFS  DataNodes (Upto 5)"},
+{"var": "yarn.nodeManager.replicas", "name": "Number_Of_YARN_Node_Managers", "type": "number", "min":1, "max":5, "desc": "Please Enter number of YARN Node Managers (Upto 5)"},
+{"var": "persistence.nameNode.size", "name": "NameNode_Storage_Size", "type": "option", "options":["3Gi", "5Gi", "8Gi", "10Gi", "15Gi", "20Gi", "25Gi"], "desc": "Please select Storage Size for NameNode as per your requirements"},
+{"var": "persistence.dataNode.size", "name": "DataNode_Storage_Size", "type": "option", "options":["3Gi", "5Gi", "8Gi", "10Gi", "12Gi", "15Gi", "20Gi"], "desc": "Please select Storage Size for each of your DataNode as per your requirements"}
+]

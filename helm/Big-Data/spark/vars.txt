@@ -1,0 +1,3 @@
+[
+{"var": "Worker.Replicas", "name": "Number_Of_Spark_Worker_Nodes", "type": "number", "min":1, "max":5, "desc": "Please Enter number of Spark Worker Nodes (Upto 5)"}
+]

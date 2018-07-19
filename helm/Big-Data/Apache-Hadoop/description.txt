@@ -1,0 +1,54 @@
+<pre>
+
+🡒 Apache Hadoop Big Data Stack Components :
+
+• Apache Hadoop ( HDFS NameNode & DataNode + YARN NodeManager & ResourceManager)
+• Apache HBase Master , ThriftServer & RegionServer
+• Apache Hive
+• Cloudera Hue
+• Apache ZooKeeper
+• Apache Oozie
+• Apache Pig
+• Apache Sqoop
+• Apache Flume
+
+Disclaimer : Some components of Apache Hadoop Stack will take some time to initiate for the first time
+Hue , particularly will take 3-4 minutes (Only for the first time setup), since Hue syncs all tables & runs migration for all it's
+components to External MySQL DB .
+Once Hue finishes migration, Users will be able to open Hue instantly anytime later on.
+
+Apache Hadoop 2.7.3 will be deployed with persistent storage for
+🡒 HDFS NameNode,Datanode
+🡒 ZooKeeper
+🡒 MySQL, which acts as an external database for Hue
+🡒 Postgres for storing Hive Metastore
+
+► As an Individual plan user , You will receive following :
+
+2 DataNodes
+2 YARN NodeManager nodes
+
+Memory for NameNode :  1 GB
+Memory for each DataNode :  1 GB
+
+Storage size for HDFS NameNode : 5 GB
+Storage size for HDFS DataNode : 8 GB
+
+Storage size for Hue MySQL : 5 GB
+Storage size for HDFS DataNode : 8 GB
+Storage size for ZooKeeper data & logs : 1 GB each
+
+► As an Enterprise plan user , You can customize the configuration as per your needs . You can select upto 4 DataNodes & 5 YARN NodeManager Nodes ,
+Above this you can send an email to us at support@xtendlabs.com , and we will revert back to you with an quotation
+
+➤ You can select custom number of nodes as per your requirement as an Enterprise user
+
+➤ You can type Number_Of_HDFS_Data_Nodes & Number_Of_YARN_Node_Managers
+
+Memory for each DataNode :  2 GB
+
+Storage size for HDFS NameNode : Dynamic (As per your need)
+Storage size for each HDFS DataNode : Dynamic (As per your need)
+Storage size for ZooKeeper data & logs : 3 GB each
+
+</pre>

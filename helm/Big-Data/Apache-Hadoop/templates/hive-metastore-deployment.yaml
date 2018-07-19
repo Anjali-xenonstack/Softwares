@@ -1,0 +1,164 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "bigdata.fullname" . }}-hive-metastore
+  labels:
+    app: {{ template "bigdata.name" . }}-hive-metastore
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "bigdata.name" . }}-hive-metastore
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - args:
+        - /opt/hive/bin/hive
+        - --service
+        - metastore
+        ports:
+        - containerPort: 9083
+        env:
+        - name: CORE_CONF_fs_defaultFS
+          valueFrom:
+            configMapKeyRef:
+              key: CORE_CONF_fs_defaultFS
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: CORE_CONF_hadoop_http_staticuser_user
+          valueFrom:
+            configMapKeyRef:
+              key: CORE_CONF_hadoop_http_staticuser_user
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: CORE_CONF_hadoop_proxyuser_hue_groups
+          valueFrom:
+            configMapKeyRef:
+              key: CORE_CONF_hadoop_proxyuser_hue_groups
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: CORE_CONF_hadoop_proxyuser_hue_hosts
+          valueFrom:
+            configMapKeyRef:
+              key: CORE_CONF_hadoop_proxyuser_hue_hosts
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HDFS_CONF_dfs_permissions_enabled
+          valueFrom:
+            configMapKeyRef:
+              key: HDFS_CONF_dfs_permissions_enabled
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HDFS_CONF_dfs_webhdfs_enabled
+          valueFrom:
+            configMapKeyRef:
+              key: HDFS_CONF_dfs_webhdfs_enabled
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HIVE_SITE_CONF_datanucleus_autoCreateSchema
+          valueFrom:
+            configMapKeyRef:
+              key: HIVE_SITE_CONF_datanucleus_autoCreateSchema
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HIVE_SITE_CONF_hive_metastore_uris
+          valueFrom:
+            configMapKeyRef:
+              key: HIVE_SITE_CONF_hive_metastore_uris
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName
+          valueFrom:
+            configMapKeyRef:
+              key: HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword
+          valueFrom:
+            configMapKeyRef:
+              key: HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HIVE_SITE_CONF_javax_jdo_option_ConnectionURL
+          valueFrom:
+            configMapKeyRef:
+              key: HIVE_SITE_CONF_javax_jdo_option_ConnectionURL
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName
+          valueFrom:
+            configMapKeyRef:
+              key: HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_log___aggregation___enable
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_log___aggregation___enable
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_log_server_url
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_log_server_url
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_nodemanager_remote___app___log___dir
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_nodemanager_remote___app___log___dir
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_address
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_address
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_fs_state___store_uri
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_fs_state___store_uri
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_hostname
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_hostname
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_recovery_enabled
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_recovery_enabled
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_resource__tracker_address
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_resource__tracker_address
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_scheduler_address
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_scheduler_address
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_store_class
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_store_class
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_resourcemanager_system___metrics___publisher_enabled
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_resourcemanager_system___metrics___publisher_enabled
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_timeline___service_enabled
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_timeline___service_enabled
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_timeline___service_generic___application___history_enabled
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_timeline___service_generic___application___history_enabled
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        - name: YARN_CONF_yarn_timeline___service_hostname
+          valueFrom:
+            configMapKeyRef:
+              key: YARN_CONF_yarn_timeline___service_hostname
+              name: {{ template "bigdata.fullname" . }}-hive-metastore-hadoop-hive-env
+        image: {{ .Values.hive.image }} # bde2020/hive:2.3.2-postgresql-metastore
+        name: hive-metastore
+        resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-sqoop
+  labels:
+    app: {{ template "hdp.name" . }}-sqoop
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+       app: {{ template "hdp.name" . }}-sqoop
+       release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: sqoop
+        image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/hdp:sqoopv1.2 #1.1
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 12000
+        - containerPort: 9000
+        env:
+        - name: HDFS_IP
+          value: {{ template "hdp.fullname" . }}-hdfs-nn

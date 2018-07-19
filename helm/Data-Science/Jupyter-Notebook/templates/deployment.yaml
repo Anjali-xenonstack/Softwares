@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-jupyter
+  labels:
+    app: {{ template "jupyter.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "jupyter.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: jupyter
+          image: {{ .Values.jupyter.image }}
+          imagePullPolicy: "Always" #"IfNotPresent"
+          ports:
+            - containerPort: 8888
+              name: http
+          env:
+          - name: jupyter_password
+            value: {{ .Values.jupyter.password }}
+          # - name: NB_UID
+          #   value: "1000"
+          # - name: NB_GID
+          #   value: "100"
+          # - name: GRANT_SUDO
+          #   value: "yes"
+          volumeMounts:
+            - mountPath: /home/jovyan/work #/home/jovyan/work
+              name: data-jupyter
+      securityContext:
+        fsGroup: 1000
+      volumes:
+        - name: data-jupyter
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-jupyter

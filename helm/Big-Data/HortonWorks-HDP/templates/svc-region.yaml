@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "hdp.fullname" . }}-hbase-region
+  labels:
+    app: {{ template "hdp.name" . }}-hbase-region
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: LoadBalancer
+  ports:
+  - name: hbaseregionui
+    port: 16030
+    targetPort: 16030
+  - name: "16020"
+    port: 16020
+    targetPort: 16020
+  selector:
+    app: {{ template "hdp.name" . }}-hbase-region
+    release: {{ .Release.Name }}
+status:
+  loadBalancer: {}

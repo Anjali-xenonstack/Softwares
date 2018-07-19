@@ -1,0 +1,3 @@
+[
+{"var": "persistence.size", "name": "Storage_Size_For_MySQL", "type": "option", "options":["3Gi", "5Gi", "8Gi", "10Gi", "12Gi", "15Gi", "20Gi", "25Gi"], "desc": "Please select Storage Size for MySQL as per your requirements"}
+]

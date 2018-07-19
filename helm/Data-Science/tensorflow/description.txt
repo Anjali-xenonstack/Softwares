@@ -1,0 +1,5 @@
+<pre>
+
+🡒 Tensorflow will be installed with JupyterNotebook in backend (Python 2)
+
+</pre>

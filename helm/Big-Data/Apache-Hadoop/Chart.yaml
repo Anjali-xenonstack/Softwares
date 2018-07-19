@@ -1,0 +1,10 @@
+apiVersion: v1
+description: Full Big Data Stack
+name: apachehadoop
+version: 2.7.3
+appVersion: 2.7.3
+home: https://google.com
+sources:
+- https://google.com
+maintainers:
+- name: XenonStack

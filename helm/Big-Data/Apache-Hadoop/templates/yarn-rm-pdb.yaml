@@ -1,0 +1,17 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "bigdata.fullname" . }}-yarn-rm
+  labels:
+    app: {{ template "bigdata.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: yarn-rm
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "bigdata.name" . }}
+      release: {{ .Release.Name }}
+      component: yarn-rm
+  minAvailable: {{ .Values.yarn.resourceManager.pdbMinAvailable }}
