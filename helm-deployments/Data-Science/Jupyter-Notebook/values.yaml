@@ -1,10 +1,6 @@
 jupyter:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/jupyternotebook:v8 #4 #8 #1 # #4 #1
-  password: "xtendlabs"
-  resources:
-    limits:
-      memory: "4096Mi"
-      cpu: "2000m"
+  image: 801204773696.dkr.ecr.ap-south-1.amazonaws.com/sl/jupyternotebook:v11
+  password: "stacklabs"
 persistence:
   enabled: true
   ## A manually managed Persistent Volume and Claim
@@ -19,6 +15,6 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: gp2
+  storageClass: slowest
   accessMode: ReadWriteOnce
   size: 5Gi

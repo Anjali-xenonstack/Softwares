@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-jupyter-notebook
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: jupyter-notebook-{{ .Release.Name }}.stacklabs.co
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ .Release.Name }}-jupyter
+          servicePort: httpjn

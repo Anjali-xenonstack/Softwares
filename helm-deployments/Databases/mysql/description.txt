@@ -1,8 +1,0 @@
-<pre>
-
-🡒 In Individual plan , MySQL will be deployed with 5 GB persistent storage
-
-🡒 You can select custom storage size as per your database needs & deploy MySQL in
-High Availability mode when you opt our Enterprise plan . You can enter the storage size for the database
-
-</pre>
