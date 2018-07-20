@@ -19,6 +19,8 @@ spec:
         release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 0
+      nodeSelector:
+        kops.k8s.io/instancegroup: nodes
       containers:
         - name: jupyter
           image: {{ .Values.jupyter.image }}
