@@ -5,7 +5,7 @@ Persistent storage is attached.
 You can create your notebooks & files inside work directory.
 
 
-Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://jupyter-notebook-{{ .Name }}.softwares.xtendlabs.com">https://jupyter-notebook-{{ .Name }}.stacklabs.co</a>
+Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://jupyter-notebook-{{ .Name }}.stacklabs.co">https://jupyter-notebook-{{ .Name }}.stacklabs.co</a>
 
 Password - stacklabs
 
