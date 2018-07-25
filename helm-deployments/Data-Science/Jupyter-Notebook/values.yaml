@@ -1,29 +1,20 @@
 jupyter:
-  image: 801204773696.dkr.ecr.ap-south-1.amazonaws.com/sl/jupyternotebook
-  imageTag: v1
-  imagePullPolicy: "IfNotPresent"
+  image: 801204773696.dkr.ecr.ap-south-1.amazonaws.com/sl/jupyternotebook:v11
   password: "stacklabs"
 persistence:
   enabled: true
-  storageClass: gluster
+  ## A manually managed Persistent Volume and Claim
+  ## Requires persistence.enabled: true
+  ## If defined, PVC must be created manually before volume will be bound
+  # existingClaim:
+
+  ## mongodb data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  storageClass: gp2
   accessMode: ReadWriteOnce
   size: 5Gi
-securityContext:
-  fsgroup: 1000
-nodeSelector: {}
-
-ingress:
-  domainName: stacklabs.co
-
-service:
-  type: ClusterIP
-  port: "8888"
-  # nodePort: 32000
-
-resources:
-  limits:
-    memory: "1Gi"
-    cpu: "500Mi"
-  requests:
-    memory: "200Mi"
-    cpu: "100Mi"
