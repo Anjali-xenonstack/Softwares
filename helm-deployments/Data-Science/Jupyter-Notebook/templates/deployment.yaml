@@ -18,30 +18,27 @@ spec:
         app: {{ template "jupyter.name" . }}
         release: {{ .Release.Name }}
     spec:
-      terminationGracePeriodSeconds: 0
+      {{- if .Values.nodeSelector }}
       nodeSelector:
-        kops.k8s.io/instancegroup: nodes
+{{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
       containers:
         - name: jupyter
-          image: {{ .Values.jupyter.image }}
-          imagePullPolicy: "Always" #"IfNotPresent"
+          image: {{ .Values.jupyter.image }}:{{ .Values.jupyter.imageTag }}
+          imagePullPolicy: {{ .Values.jupyter.imagePullPolicy }}
           ports:
-            - containerPort: 8888
-              name: http
+            - containerPort: {{ .Values.service.port}}
+              name: jupyterport
           env:
           - name: jupyter_password
             value: {{ .Values.jupyter.password }}
-          # - name: NB_UID
-          #   value: "1000"
-          # - name: NB_GID
-          #   value: "100"
-          # - name: GRANT_SUDO
-          #   value: "yes"
+          resources:
+{{ toYaml .Values.resources | indent 10 }}
           volumeMounts:
-            - mountPath: /home/jovyan/work #/home/jovyan/work
+            - mountPath: /home/jovyan/work
               name: data-jupyter
       securityContext:
-        fsGroup: 1000
+        fsGroup: {{ .Values.securityContext.fsgroup }}
       volumes:
         - name: data-jupyter
           persistentVolumeClaim:

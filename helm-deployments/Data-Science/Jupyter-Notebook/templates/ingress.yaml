@@ -7,10 +7,10 @@ metadata:
     traefik.frontend.rule.type: PathPrefixStrip
 spec:
   rules:
-  - host: jupyter-notebook-{{ .Release.Name }}.stacklabs.co
+  - host: jupyter-{{ .Release.Name }}.{{ .Values.ingress.domainName}}
     http:
       paths:
       - path: /
         backend:
           serviceName: {{ .Release.Name }}-jupyter
-          servicePort: httpjn
+          servicePort: {{ .Values.service.port}}
