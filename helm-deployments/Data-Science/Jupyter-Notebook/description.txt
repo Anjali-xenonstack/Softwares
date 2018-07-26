@@ -1,5 +1,5 @@
 <pre>
 
-🡒 JupyterNotebook will be installed in our cloud labs , with 5 GB persistent storage , which will keep all your notebooks always available.
+* JupyterNotebook will be installed in our cloud labs , with 5 GB persistent storage , which will keep all your notebooks always available.
 
 </pre>
