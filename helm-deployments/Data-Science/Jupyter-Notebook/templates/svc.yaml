@@ -8,10 +8,11 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   ports:
-  - port: 8888
-    name: httpjn
+  - name: jupyterport
+    port: {{ .Values.service.port }}
+    targetPort: jupyterport
   selector:
     app: {{ template "jupyter.name" . }}
     release: {{ .Release.Name }}
