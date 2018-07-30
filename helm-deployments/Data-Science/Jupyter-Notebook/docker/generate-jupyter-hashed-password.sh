@@ -1,6 +1,8 @@
 
 #!/bin/bash
 
+git clone https://github.com/xmavrck/jupyter-lessons.git /home/jovyan/work/stacklabs
+
 jpassword="$JUPYTERPWD"
 salt=$(openssl rand -hex 6)
 hashed_passw=$(echo -n "$jpassword$salt" | openssl dgst -sha1 | sed 's/^.* //')

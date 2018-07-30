@@ -5,8 +5,9 @@ Persistent storage is attached.
 You can create your notebooks & Make sure to keep your files inside work directory only.
 
 
-Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://jupyter-{{ .Release.Name }}.{{ .Values.ingress.domainName}}">https://jupyter-{{ .Release.Name }}.{{ .Values.ingress.domainName}}</a>
+Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://jupyter-{{ .Name }}.stacklabs.co">https://jupyter-{{ .Name }}.stacklabs.co</a>
 
-Password - {{ .Values.password}}
+
+Password - stacklabs
 
 </pre>

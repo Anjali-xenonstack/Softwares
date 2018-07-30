@@ -21,7 +21,6 @@ RUN echo 'jovyan ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 RUN apt-get install python-pip -y
 USER jovyan
 
-RUN git clone https://github.com/xmavrck/jupyter-lessons.git /home/jovyan/work/stacklabs
 
 #RUN sudo pip2 install --upgrade pip && \
 #    sudo python2 -m pip install ipykernel && \

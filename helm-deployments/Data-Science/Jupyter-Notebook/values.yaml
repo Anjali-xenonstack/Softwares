@@ -1,6 +1,6 @@
 jupyter:
   image: 801204773696.dkr.ecr.ap-south-1.amazonaws.com/sl/jupyternotebook
-  imageTag: v1.1
+  imageTag: v1.2
   imagePullPolicy: "IfNotPresent"
 
 password: "stacklabs"
