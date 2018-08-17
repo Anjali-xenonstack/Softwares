@@ -9,10 +9,11 @@ persistence:
   enabled: true
   storageClass: gp2
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 1Gi
 securityContext:
   fsgroup: 1000
-nodeSelector: {}
+nodeSelector:
+  kops.k8s.io/instancegroup: nodes
 
 service:
   type: ClusterIP
@@ -24,7 +25,7 @@ resources:
     cpu: "300m"
   requests:
     memory: "400Mi"
-    cpu: "220m"
+    cpu: "200m"
 
 ingress:
    enabled: true
