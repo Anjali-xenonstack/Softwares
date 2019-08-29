@@ -17,7 +17,7 @@ spec:
     name: web2
   - port: 8042
     name: yarnnm
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: {{ template "hdp.name" . }}
     release: {{ .Release.Name }}

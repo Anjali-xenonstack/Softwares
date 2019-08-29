@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hue
-          image: {{ .Values.hue.image }} #19
+          image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/apachehue:v18 #13
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 8888
@@ -39,19 +39,8 @@ spec:
           - name: DB_PORT
             value: "3306"
           - name: AWS_ACCESS_KEY
-            value: AKIAJSF6WNT5Y4IANLXA # AKIAI62Z2Y32HVFPXNMQ
+            value: AKIAI62Z2Y32HVFPXNMQ
           - name: AWS_SECRET_KEY
-            value: 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 #NJgm9cz9YgkEMwzgufUMkNMlzTj+JybEoX0k+VPm
+            value: NJgm9cz9YgkEMwzgufUMkNMlzTj+JybEoX0k+VPm
           - name: AWS_REGION
             value: us-west-2
-          readinessProbe:
-            exec:
-              command:
-              - nc
-              - -vz
-              - {{ template "hdp.fullname" . }}-mysql
-              - "3306"
-            initialDelaySeconds: 2
-            failureThreshold: 3
-            periodSeconds: 40
-            timeoutSeconds: 2

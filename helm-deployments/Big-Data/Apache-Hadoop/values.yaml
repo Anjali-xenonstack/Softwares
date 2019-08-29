@@ -1,42 +1,49 @@
 hbaseregion:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark:hbaseregionv2.2 #bde2020/hbase-regionserver:1.0.0-hbase1.2.6
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:hbaseregionv2.2 #bde2020/hbase-regionserver:1.0.0-hbase1.2.6
   replicas: 1
   resources:
     requests:
-      memory: "400Mi"
-      cpu: "300m"
+      memory: "256Mi"
+      cpu: "10m"
     limits:
-      memory: "400Mi"
-      cpu: "300m"
-
-hue:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/apachehue:v37 #32 #29 #1 #6 #1 #5 #1 1 #3 #2 #1
+      memory: "2048Mi"
+      cpu: "1000m"
 
 hive:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark:hivev2.2
-  imagepsql: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark:hivepsqlv2.3 #2.2
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:hivev2.2
+  imagepsql: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:hivepsqlv2.2
 
 zookeeper:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark:zoov2.2 #zookeeper
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:zoov2.2 #zookeeper
 
 source:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/flume:sourcev2.2 # 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/flume:source # dr.xenon.work/testing/flume:source
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/flume:sourcev2.2 # 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/flume:source # dr.xenon.work/testing/flume:source
 
 sink:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/flume:sinkv2.2 # 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/flume:sink # dr.xenon.work/testing/flume:sink
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/flume:sinkv2.2 # 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/flume:sink # dr.xenon.work/testing/flume:sink
+
+flume:
+  resources:
+    limits:
+      memory: "4096Mi"
+      cpu: "2000m"
 
 oozie:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/jupyternotebook:ooziev6
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/jupyternotebook:ooziev6
 
 sqoop:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/flume:sqoopv2.2
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/flume:sqoopv2.2
+  resources:
+    limits:
+      memory: "4096Mi"
+      cpu: "2000m"
 
 pig:
-  image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/flume:pigv2.2 # 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/flume:pig
+  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/flume:pigv2.2 # 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/flume:pig
 
 # The base hadoop image to use for all components.
 # See this repo for image build details: https://github.com/Comcast/kube-yarn/tree/master/image
-image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark:hadoopv2.2 #danisla/hadoop:2.7.3
+image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:hadoopv2.2 #danisla/hadoop:2.7.3
 imagePullPolicy: IfNotPresent
 
 # The version of the hadoop libraries being used in the image.
@@ -51,55 +58,55 @@ hdfs:
 
     resources:
       requests:
-        memory: "500Mi"
-        cpu: "300m"
+        memory: "256Mi"
+        cpu: "10m"
       limits:
-        memory: "500Mi"
-        cpu: "300m"
+        memory: "2048Mi"
+        cpu: "1000m"
 
   dataNode:
-    replicas: 2
+    replicas: 1
 
     pdbMinAvailable: 1
 
     resources:
       requests:
-        memory: "400Mi"
-        cpu: "200m"
+        memory: "256Mi"
+        cpu: "10m"
       limits:
-        memory: "400Mi"
-        cpu: "200m"
+        memory: "2048Mi"
+        cpu: "1000m"
 
 yarn:
   resourceManager:
     pdbMinAvailable: 1
 
-    # resources:
-    #   requests:
-    #     memory: "500Mi"
-    #     cpu: "300m"
-    #   limits:
-    #     memory: "500Mi"
-    #     cpu: "300m"
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "10m"
+      limits:
+        memory: "2048Mi"
+        cpu: "2000m"
 
   nodeManager:
     pdbMinAvailable: 1
 
     # The number of YARN NodeManager instances.
-    replicas: 2 #2
+    replicas: 2
 
     # Create statefulsets in parallel (K8S 1.7+)
     parallelCreate: false
 
     # CPU and memory resources allocated to each node manager pod.
     # This should be tuned to fit your workload.
-    # resources:
-    #   requests:
-    #     memory: "400Mi" #"2048Mi"
-    #     cpu: "200m" #"1000m"
-    #   limits:
-    #     memory: "400Mi" #"2048Mi"
-    #     cpu: "200m" #"1000m"
+    resources:
+      requests:
+        memory: "2048Mi"
+        cpu: "1000m"
+      limits:
+        memory: "2048Mi"
+        cpu: "1000m"
 
 persistence:
   nameNode:
@@ -114,13 +121,13 @@ persistence:
     accessMode: ReadWriteOnce
     size: 8Gi
 
-# imagedb: "801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark"
-# imageTagdb: "mysqlv3.1" #2.8 #2.2  # "v2.7"   "5.7.14"
+imagedb: "190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark"
+imageTagdb: "mysqlv2.2" #"5.7.14"
 
 ## Specify password for root user
 ##
 ## Default: random 10 character string
-# mysqlRootPassword: root
+mysqlRootPassword: root
 
 ## Create a database user
 ##
@@ -133,7 +140,12 @@ persistence:
 
 ## Create a database
 ##
-# mysqlDatabase: hue
+mysqlDatabase: hue
+
+## Specify an imagePullPolicy (Required)
+## It's recommended to change this to 'Always' if the image tag is 'latest'
+## ref: http://kubernetes.io/docs/user-guide/images/#updating-images
+##
 
 livenessProbe:
   initialDelaySeconds: 30
@@ -173,3 +185,18 @@ resources:
   requests:
     memory: 256Mi
     cpu: 100m
+
+# Custom mysql configuration files used to override default mysql settings
+configurationFiles:
+#  mysql.cnf: |-
+#    [mysqld]
+#    skip-name-resolve
+
+
+## Configure the service
+## ref: http://kubernetes.io/docs/user-guide/services/
+service:
+  ## Specify a service type
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
+  type: NodePort
+  port: 3306

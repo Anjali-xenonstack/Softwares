@@ -28,9 +28,6 @@ spec:
         env:
           - name: PGDATA
             value: /var/lib/postgresql/data/pgdata
-        ports:
-          - containerPort: 5432
-            name: psql
         volumeMounts:
         - name: hivedata
           mountPath: /var/lib/postgresql/data

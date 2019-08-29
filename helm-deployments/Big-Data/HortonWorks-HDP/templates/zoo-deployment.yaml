@@ -8,6 +8,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
   replicas: 1
   template:
     metadata:
@@ -15,9 +18,10 @@ spec:
         app: {{ template "hdp.name" . }}-zookeeper
         release: {{ .Release.Name }}
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: zookeeper
-        image: {{ .Values.zookeeper.image }} #1.1
+        image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/hdp:zoov1.2 #1.1
         imagePullPolicy: "IfNotPresent"
         ports:
           - containerPort: 2181
@@ -25,13 +29,13 @@ spec:
         volumeMounts:
         - name: zoodata
           mountPath: /var/lib/zookeeper
-      #   - name: zoologs
-      #     mountPath: /var/log/zookeeper
+        - name: zoologs
+          mountPath: /var/log/zookeeper
       volumes:
       - name: zoodata
         persistentVolumeClaim:
           claimName: {{ template "hdp.fullname" . }}-zoodata
-      # - name: zoologs
-      #   persistentVolumeClaim:
-      #     claimName: {{ template "hdp.fullname" . }}-zoologs
+      - name: zoologs
+        persistentVolumeClaim:
+          claimName: {{ template "hdp.fullname" . }}-zoologs
       restartPolicy: Always

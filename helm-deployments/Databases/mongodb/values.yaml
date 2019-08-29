@@ -1,7 +1,7 @@
 ## Bitnami MongoDB image version
 ## ref: https://hub.docker.com/r/bitnami/mongodb/tags/
 ##
-image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark:mongov2.2   #bitnami/mongodb:3.7.1-r0
+image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:mongov2.2   #bitnami/mongodb:3.7.1-r0
 
 ## Specify a imagePullPolicy
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
@@ -22,7 +22,7 @@ mongodbRootPassword: root
 # mongodbDatabase:
 
 ## Kubernetes service type
-serviceType: LoadBalancer
+serviceType: NodePort
 
 ## Enable persistence using Persistent Volume Claims
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
@@ -41,7 +41,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: gp2
+  storageClass: default
   accessMode: ReadWriteOnce
   size: 5Gi
 

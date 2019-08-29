@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
         - name: hbasemaster
-          image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/hdp:hbasemasterv1.2 #1.1
+          image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/hdp:hbasemasterv1.2 #1.1
           imagePullPolicy: "IfNotPresent"
           env:
           - name: HBASE_CONF_hbase_cluster_distributed

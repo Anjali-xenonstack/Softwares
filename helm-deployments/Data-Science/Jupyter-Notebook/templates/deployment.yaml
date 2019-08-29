@@ -22,24 +22,16 @@ spec:
       containers:
         - name: jupyter
           image: {{ .Values.jupyter.image }}
-          imagePullPolicy: "Always" #"IfNotPresent"
+          imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 8888
               name: http
           env:
           - name: jupyter_password
             value: {{ .Values.jupyter.password }}
-          # - name: NB_UID
-          #   value: "1000"
-          # - name: NB_GID
-          #   value: "100"
-          # - name: GRANT_SUDO
-          #   value: "yes"
           volumeMounts:
-            - mountPath: /home/jovyan/work #/home/jovyan/work
+            - mountPath: /home/jovyan/work
               name: data-jupyter
-      securityContext:
-        fsGroup: 1000
       volumes:
         - name: data-jupyter
           persistentVolumeClaim:

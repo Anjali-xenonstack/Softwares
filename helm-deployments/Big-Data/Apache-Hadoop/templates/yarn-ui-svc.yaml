@@ -13,7 +13,7 @@ spec:
   ports:
   - port: 8088
     name: yarnweb
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: {{ template "bigdata.name" . }}
     component: yarn-rm

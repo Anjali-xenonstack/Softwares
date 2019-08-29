@@ -9,8 +9,6 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     component: hdfs-nn
-    # service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-    # service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
 spec:
   ports:
   - name: dfs
@@ -18,13 +16,7 @@ spec:
     protocol: TCP
   - name: webhdfs
     port: 50070
-  # - name: webhdfs
-  #   targetPort: 50070
-  #   port: 80
-  # - name: webhdfs
-  #   targetPort: 50070
-  #   port: 443
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: {{ template "bigdata.name" . }}
     release: {{ .Release.Name }}

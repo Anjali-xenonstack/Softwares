@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ template "hdp.fullname" . }}-hue
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 8888
     name: httphue

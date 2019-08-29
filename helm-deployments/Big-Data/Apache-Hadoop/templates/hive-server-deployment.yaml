@@ -157,13 +157,6 @@ spec:
         ports:
         - containerPort: 10000
         - containerPort: 10002
-        # resources:
-        #   requests:
-        #     memory: "300Mi"
-        #     cpu: "150m"
-        #   limits:
-        #     memory: "300Mi"
-        #     cpu: "150m"
         livenessProbe:
           exec:
             command:

@@ -1,6 +1,6 @@
 <pre>
 
-TensorFlow : <a style="text-decoration:none;" target="blank" href="https://{{.httprHost}}:{{.httpr}}">https://{{.httprHost}}:{{.httpr}}</a>
+TensorFlow : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.httpr}}">http://{{.IP}}:{{.httpr}}</a>
 
 Password: xtendlabs
 

@@ -33,10 +33,3 @@ spec:
               value: hdfs://{{ template "bigdata.fullname" . }}-hdfs-nn:9000/
             - name: HDFSSVC
               value: {{ template "bigdata.fullname" . }}-hdfs-nn
-          # resources:
-          #   requests:
-          #     memory: "200Mi"
-          #     cpu: "100m"
-          #   limits:
-          #     memory: "200Mi"
-          #     cpu: "100m"

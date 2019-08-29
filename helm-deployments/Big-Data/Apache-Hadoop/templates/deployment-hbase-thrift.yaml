@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
         - name: hbasemaster
-          image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark:hbasethriftv2
+          image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:hbasethriftv2
           imagePullPolicy: "IfNotPresent"
           env:
           - name: HBASE_CONF_hbase_cluster_distributed
@@ -108,12 +108,5 @@ spec:
           - containerPort: 16000
           - containerPort: 9090
           - containerPort: 9095
-          # resources:
-          #   requests:
-          #     memory: "400Mi"
-          #     cpu: "200m"
-          #   limits:
-          #     memory: "400Mi"
-          #     cpu: "200m"
       restartPolicy: Always
 status: {}

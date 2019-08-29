@@ -21,7 +21,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
         - name: oozie
-          image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/hdp:ooziev1.3 #1.2
+          image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/hdp:ooziev1.3 #1.2
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 11000

@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
         - name: hbaseregionserver
-          image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/hdp:hbaseregionv1.1 #1.0
+          image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/hdp:hbaseregionv1.1 #1.0
           imagePullPolicy: "IfNotPresent"
           env:
           - name: HBASE_CONF_hbase_cluster_distributed

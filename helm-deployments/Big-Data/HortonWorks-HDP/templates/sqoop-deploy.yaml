@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: sqoop
-        image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/hdp:sqoopv1.2 #1.1
+        image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/hdp:sqoopv1.2 #1.1
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 12000

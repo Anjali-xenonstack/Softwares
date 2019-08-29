@@ -1,7 +1,7 @@
 ## mysql image version
 ## ref: https://hub.docker.com/r/library/mysql/tags/
 ##
-image: "801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/spark"
+image: "190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark"
 imageTag: "mysqlv2.2"
 
 
@@ -53,7 +53,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: gp2
+  storageClass: default
   accessMode: ReadWriteOnce
   size: 5Gi
 
@@ -77,5 +77,5 @@ configurationFiles:
 service:
   ## Specify a service type
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
-  type: LoadBalancer
+  type: NodePort
   port: 3306

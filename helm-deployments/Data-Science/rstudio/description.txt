@@ -1,5 +1,0 @@
-<pre>
-
-🡒 RStudio will be installed in our cloud labs , which you can access in browser & practice with R programming language
-
-</pre>

@@ -16,7 +16,7 @@ spec:
     protocol: TCP
   - name: webhdfs
     port: 50070
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: {{ template "hdp.name" . }}
     release: {{ .Release.Name }}

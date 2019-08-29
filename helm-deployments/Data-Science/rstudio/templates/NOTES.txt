@@ -1,6 +1,8 @@
 <pre>
 
-RStudio : <a style="text-decoration:none;" target="blank" href="https://{{.httprHost}}:{{.httpr}}">https://{{.httprHost}}:{{.httpr}}</a>
+
+RStudio : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.httpr}}">http://{{.IP}}:{{.httpr}}</a>
+
 
 UserName: admin
 Password: admin

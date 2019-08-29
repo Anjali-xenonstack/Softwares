@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: postgresql
-        image: 801204773696.dkr.ecr.ap-southeast-1.amazonaws.com/sl/hdp:hivepsqlv1.5 #1.4
+        image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/hdp:hivepsqlv1.5 #1.4
         imagePullPolicy: "IfNotPresent"
         resources: {}
         env:

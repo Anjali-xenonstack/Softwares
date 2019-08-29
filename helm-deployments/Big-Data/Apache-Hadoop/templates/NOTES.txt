@@ -14,42 +14,38 @@ You have successfully launched following components under this  :
 • Apache Sqoop
 • Apache Flume
 
-Disclaimer : Some components of Apache Hadoop Stack will take some time to initiate for the first time
-
 
 Visit on following URL addresses to use various big data services (It might take a couple of seconds for all services to attain Running state .. Please wait) :
 
-• Hadoop HDFS NameNode : <a style="text-decoration:none;" target="_blank" href="https://{{.webhdfsHost}}:{{.webhdfs}}">https://{{.webhdfsHost}}:{{.webhdfs}}</a>
+• Hadoop HDFS NameNode : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.webhdfs}}">http://{{.IP}}:{{.webhdfs}}</a>
 
-• Hadoop YARN ResourceManager : <a style="text-decoration:none;" target="_blank" href="https://{{.yarnwebHost}}:{{.yarnweb}}">https://{{.yarnwebHost}}:{{.yarnweb}}</a>
+• Hadoop HDFS DataNode : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.dnhdfs}}">http://{{.IP}}:{{.dnhdfs}}</a>
 
-• HBASE Master Dashboard : <a style="text-decoration:none;" target="_blank" href="https://{{.hbasemasteruiHost}}:{{.hbasemasterui}}">https://{{.hbasemasteruiHost}}:{{.hbasemasterui}}</a>
+• Hadoop YARN ResourceManager : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.yarnweb}}">http://{{.IP}}:{{.yarnweb}}</a>
 
-• HBASE ThriftServer UI : <a style="text-decoration:none;" target="_blank" href="https://{{.thriftinfoHost}}:{{.thriftinfo}}">https://{{.thriftinfoHost}}:{{.thriftinfo}}</a>
+• Hadoop YARN NodeManager : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.yarnnm}}">http://{{.IP}}:{{.yarnnm}}</a>
 
-• HBASE RegionServer UI : <a style="text-decoration:none;" target="_blank" href="https://{{.hbaseregionuiHost}}:{{.hbaseregionui}}">https://{{.hbaseregionuiHost}}:{{.hbaseregionui}}</a>
+• HBASE Master Dashboard : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.hbasemasterui}}">http://{{.IP}}:{{.hbasemasterui}}</a>
+
+• HBASE ThriftServer UI : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.thriftinfo}}">http://{{.IP}}:{{.thriftinfo}}</a>
+
+• HBASE RegionServer UI : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.hbaseregionui}}">http://{{.IP}}:{{.hbaseregionui}}</a>
 
 • You can connect to Hive server in 3 ways :
 
-1.A) By Going into the xtendlabs console - Copy the below line & Enter into the xtendlabs console using portal's Dashboard & Run :
-
-   hive -u jdbc:hive2://localhost:10000/default
-
-1.B) If you use beeline client , Then Copy the below line & Enter into the xtendlabs console using portal's Dashboard & Run :
+1) By Going into the pod - Copy the below line & Enter into the pod using Console in Dashboard & Run :
 
    beeline -u jdbc:hive2://localhost:10000/default
 
-2.A) If you want to connect remotely to this Hive server using hive client, Enter following command in your terminal :
+2) If you already have a beeline client & you want to connect remotely, Run from your terminal :
 
-  hive -u jdbc:hive2://{{.hiveserverHost}}:{{.hiveserver}}/default
-
-2.B) If you want to connect remotely to this Hive server using beeline client, Enter following command in your terminal :
-
-  beeline -u jdbc:hive2://{{.hiveserverHost}}:{{.hiveserver}}/default
+   beeline -u jdbc:hive2:// {{.IP}}:{{.hiveserver}}/default
 
 3) Using Hive Shell from Hue Dashboard - Login to Hue & you can run commands remotely to the Hive server from Hue dashboard
 
-• Oozie WebUI : <a style="text-decoration:none;" target="_blank" href="https://{{.httpoozieHost}}:{{.httpoozie}}">https://{{.httpoozieHost}}:{{.httpoozie}}</a>
+
+• Oozie WebUI : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.httpoozie}}">http://{{.IP}}:{{.httpoozie}}</a>
+
 
 • To run Sqoop , Go into Console of Sqoop & Run
 
@@ -58,15 +54,14 @@ Visit on following URL addresses to use various big data services (It might take
   It will open a shell & you can run commands from inside the shell
 
 OR To access Sqoop from your program (Scala,Java or any other language) or from any other tool :
-Note that Sqoop cannot be opened directly in the browser . You can enter it's address in source code to connect to Sqoop
-Enter following in your source code to connect to Sqoop : {{.datasqoopHost}}:{{.datasqoop}}
+Enter following to connect to Sqoop : http://{{.IP}}:{{.datasqoop}}
 
 
 • To check connectivity to Flume : Run following command from any terminal from anywhere :
 
 curl -X POST \
     -H 'Content-Type: application/json; charset=UTF-8' \
-    -d '[{"headers":{"header.key":"header.value"}, "body":"hello world"}]' https://{{.flumehttpHost}}:{{.flumehttp}}
+    -d '[{"headers":{"header.key":"header.value"}, "body":"hello world"}]' http://{{.IP}}:{{.flumehttp}}
 
 If it prints Ok a couple of times , means Flume is configured properly ✔
 
@@ -79,10 +74,7 @@ Further , to use it , Your can Go into console from Dashboard
 
   It will connect to Hadoop HDFS(which has persistent storage attached) & open a Grunt shell
 
-• Hue , particularly will take 3-4 minutes (Only for the first time setup), since Hue syncs all tables & runs migration for all it's components to External MySQL DB .
-  Once Hue finishes migration, Users will be able to open Hue instantly anytime later on.
-
-• Access Hue UI at : <a style="text-decoration:none;" target="_blank" href="https://{{.httphueHost}}:{{.httphue}}">https://{{.httphueHost}}:{{.httphue}}</a>
+• Access Hue UI at : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.httphue}}">http://{{.IP}}:{{.httphue}}</a>
 
   Provide UserName : root
           Password : root

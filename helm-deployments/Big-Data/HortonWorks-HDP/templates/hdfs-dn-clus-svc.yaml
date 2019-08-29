@@ -16,7 +16,7 @@ spec:
     protocol: TCP
   - name: dnhdfs
     port: 50075
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: {{ template "hdp.name" . }}
     release: {{ .Release.Name }}

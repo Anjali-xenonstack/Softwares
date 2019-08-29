@@ -1,7 +1,0 @@
-<pre>
-
-🡒 In Individual plan , Spark will be deployed with 1 Master node & 2 Worked nodes.
-
-🡒 You can select custom number of Spark Worker nodes as per your requirements in Enterprise plan.
-
-</pre>

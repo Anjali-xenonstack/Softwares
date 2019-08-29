@@ -59,8 +59,8 @@ spec:
            - "/bin/bash"
            - "/tmp/hadoop-config/bootstrap.sh"
            - "-d"
-#         resources:
-# {{ toYaml .Values.yarn.resourceManager.resources | indent 10 }}
+        resources:
+{{ toYaml .Values.yarn.resourceManager.resources | indent 10 }}
         readinessProbe:
           httpGet:
             path: /ws/v1/cluster/info

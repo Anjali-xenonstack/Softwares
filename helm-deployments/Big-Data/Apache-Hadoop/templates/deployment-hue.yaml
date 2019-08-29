@@ -14,10 +14,8 @@ spec:
     spec:
       containers:
         - name: hue
-          image: {{ .Values.hue.image }} #19
+          image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/apachehue:v18 #13
           imagePullPolicy: "IfNotPresent"
-          # command: [ "/bin/bash", "-c", "--" ]
-          # args: [ "while true; do sleep 30; done;" ]
           ports:
             - containerPort: 8888
               name: http
@@ -37,30 +35,12 @@ spec:
           - name: HDFS_OOZIE_IP
             value: {{ .Release.Name }}-oozie
           - name: DB_HOST
-            value: {{ template "bigdata.fullname" . }}-psql-service # {{ template "bigdata.fullname" . }}-mysql
+            value: {{ template "bigdata.fullname" . }}-mysql
           - name: DB_PORT
-            value: "5432"
+            value: "3306"
           - name: AWS_ACCESS_KEY
-            value: AKIAJSF6WNT5Y4IANLXA # AKIAI62Z2Y32HVFPXNMQ
+            value: AKIAI62Z2Y32HVFPXNMQ
           - name: AWS_SECRET_KEY
-            value: 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 #NJgm9cz9YgkEMwzgufUMkNMlzTj+JybEoX0k+VPm
+            value: NJgm9cz9YgkEMwzgufUMkNMlzTj+JybEoX0k+VPm
           - name: AWS_REGION
             value: us-west-2
-          # resources:
-          #   requests:
-          #     memory: "300Mi"
-          #     cpu: "200m"
-          #   limits:
-          #     memory: "300Mi"
-          #     cpu: "200m"
-          readinessProbe:
-            exec:
-              command:
-              - nc # ['nc', '-vz', '{{ template "bigdata.fullname" . }}-hdfs-nn-0.{{ template "bigdata.fullname" . }}-hdfs-nn', '9000']
-              - -vz
-              - {{ template "bigdata.fullname" . }}-psql-service
-              - "5432"
-            initialDelaySeconds: 5
-            failureThreshold: 3
-            periodSeconds: 30
-            timeoutSeconds: 2

@@ -2,13 +2,13 @@
 
 Hi there,
 
-Your Apache Spark has been succesfully launched.
+Your Apache Spark has been succesfully launched with 1 Master Node & 2 Worker Nodes
 
-Open Spark Master UI : <a style="text-decoration:none;" target="_blank" href="http://{{.httpHost}}:{{.http}}">http://{{.httpHost}}:{{.http}}</a>
+Open Spark Master UI : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.master}}">http://{{.IP}}:{{.http}}</a>
 
-Connect to Spark REST from you code :  {{.restHost}}:{{.rest}}
-Connect to Spark Master from your code : {{.sparkHost}}:{{.spark}}
+Connect to Spark REST  :  {{.IP}}:{{.rest}}
+Connect to Spark Master : {{.IP}}:{{.spark}}
 
-Open Spark Worker : <a style="text-decoration:none;" target="_blank" href="http://{{.uiHost}}:{{.ui}}">http://{{.uiHost}}:{{.ui}}</a>
+Open Spark Worker : <a style="text-decoration:none;" target="blank" href="http://{{.IP}}:{{.worker}}">http://{{.IP}}:{{.ui}}</a>
 
 </pre>
