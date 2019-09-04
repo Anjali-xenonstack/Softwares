@@ -5,7 +5,7 @@
 
 Master:
   Name: master
-  Image: "190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:sparkv1.1" #1.0
+  Image: "dr.xenon.team/sl_softwares/spark:sparkv1.1" #1.0
   Replicas: 1
   Component: "spark-master"
   Cpu: "100m"
@@ -16,7 +16,7 @@ Master:
 
 Worker:
   Name: worker
-  Image: "190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/spark:sparkworkerv1.1" #1.0
+  Image: "dr.xenon.team/sl_softwares/spark:sparkworkerv1.1" #1.0
   Replicas: 2
   Component: "spark-worker"
   Cpu: "100m"

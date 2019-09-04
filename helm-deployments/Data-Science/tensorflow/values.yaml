@@ -1,6 +1,0 @@
-tensorflow:
-  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/jupyternotebook:tfv2 #gcr.io/tensorflow/tensorflow
-  resources:
-    limits:
-      memory: "4096Mi"
-      cpu: "2000m"

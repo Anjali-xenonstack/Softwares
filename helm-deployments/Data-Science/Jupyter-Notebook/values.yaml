@@ -1,5 +1,5 @@
 jupyter:
-  image: 190742198407.dkr.ecr.us-west-2.amazonaws.com/xl/jupyternotebook:v2 #1
+  image: dr.xenon.team/sl_softwares/jupyternotebook:v2 #1
   password: "xtendlabs"
   resources:
     limits:
@@ -19,6 +19,6 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: default
+  storageClass: block2
   accessMode: ReadWriteOnce
   size: 5Gi
