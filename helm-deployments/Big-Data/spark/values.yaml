@@ -17,7 +17,7 @@ Master:
 Worker:
   Name: worker
   Image: "dr.xenon.team/sl_softwares/spark:sparkworkerv1.1" #1.0
-  Replicas: 2
+  Replicas: 1
   Component: "spark-worker"
   Cpu: "100m"
   Memory: "512Mi"
