@@ -1,0 +1,5 @@
+<pre>
+
+🡒 Spark will be installed in our cloud labs with 1 master and worker node.
+
+</pre>

@@ -32,6 +32,14 @@ spec:
           volumeMounts:
             - mountPath: /home/jovyan/work
               name: data-jupyter
+          resources:
+{{ toYaml .Values.jupyter.resources | indent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8888
+            initialDelaySeconds: 25
+            timeoutSeconds: 1
       volumes:
         - name: data-jupyter
           persistentVolumeClaim:
