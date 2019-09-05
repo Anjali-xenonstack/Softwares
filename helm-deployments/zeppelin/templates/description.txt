@@ -1,5 +1,0 @@
-<pre>
-
-Zeppelin will be installed in our cloud labs , with persistent storage, which will keep all your notebooks always available.
-
-</pre>
