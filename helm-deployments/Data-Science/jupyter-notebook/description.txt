@@ -4,3 +4,6 @@ equations, visualizations and narrative text. Uses include: data cleaning and tr
 statistical modeling, data visualization, machine learning, and much more.
 
 JupyterNotebook will be installed in our cloud labs , with 5 GB persistent storage , which will keep all your notebooks always available.
+
+Password to access Jupyter-Notebook
+Password - xenonstack#123

@@ -5,4 +5,4 @@ Apache Zeppelin interpreter concept allows any language/data-processing-backend 
 into Zeppelin. Currently Apache Zeppelin supports many interpreters such as Apache Spark,
 Python, JDBC, Markdown and Shell.
 
-Zeppelin will be installed in our cloud labs , with persistent storage, which will keep all your notebooks always available.
+Zeppelin will be installed in our cloud labs , with 5 GB persistent storage, which will keep all your notebooks always available.

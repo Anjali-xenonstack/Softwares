@@ -1,4 +1,4 @@
-<pre>
+
 Apache Spark is a unified analytics engine for large-scale data processing.
 
 Apache Spark has become one of the key cluster-computing frameworks in the world.

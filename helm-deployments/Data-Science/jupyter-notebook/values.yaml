@@ -1,6 +1,6 @@
 jupyter:
   image: dr.xenon.team/sl_softwares/jupyternotebook:v2 #1
-  password: "xtendlabs"
+  password: "xenonstack#123"
   resources:
     limits:
       memory: "4096Mi"
