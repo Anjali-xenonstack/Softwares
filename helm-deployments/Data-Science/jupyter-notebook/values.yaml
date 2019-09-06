@@ -25,3 +25,12 @@ persistence:
   storageClass: block2
   accessMode: ReadWriteOnce
   size: 5Gi
+
+ingress:
+   enabled: true
+   annotations:
+     kubernetes.io/ingress.class: traefik
+     traefik.frontend.rule.type: PathPrefixStrip
+   domainName: xenon.work
+
+   tls: []

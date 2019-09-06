@@ -23,17 +23,13 @@ persistence:
   size: 5Gi
 
 ingress:
-  enabled: false
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.frontend.rule.type: PathPrefixStrip
-    # kubernetes.io/tls-acme: "true"
-    # nginx.ingress.kubernetes.io/auth-secret: zeppelin-tls-secret
-  # path: /
-  # hosts:
-  #   - zeppelin.xenon.work
-  domainName: stacklabs.co
-  tls: []
+   enabled: true
+   annotations:
+     kubernetes.io/ingress.class: traefik
+     traefik.frontend.rule.type: PathPrefixStrip
+   domainName: xenon.work
+
+   tls: []
     # - secretName: zeppelin-tls-secret
     #   hosts: zeppelin.local
 
