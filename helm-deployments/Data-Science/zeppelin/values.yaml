@@ -1,13 +1,11 @@
 zeppelin:
   image: dylanmei/zeppelin:0.7.2
   resources:
-  limits:
-    memory: "1024Mi"
-    cpu: "500m"
   requests:
-    memory: "800Mi"
-    cpu: "350m"
-
+    memory: "512Mi"
+    cpu: "100m"
+  initialDelaySeconds: 20
+  timeoutSeconds: 1
 hadoop:
   useConfigMap: false
   configMapName: hadoop-hadoop  #name of hadoop configMap

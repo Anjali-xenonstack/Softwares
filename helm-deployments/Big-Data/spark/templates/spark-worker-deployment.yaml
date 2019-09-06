@@ -32,6 +32,13 @@ spec:
             requests:
               cpu: "{{ .Values.Worker.Cpu }}"
               memory: "{{ .Values.Worker.Memory }}"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: {{ .Values.Worker.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.Worker.timeoutSeconds }}
+
           env:
           - name: SPARK_DAEMON_MEMORY
             value: {{ default "1g" .Values.Worker.DaemonMemory | quote }}

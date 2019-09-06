@@ -10,6 +10,8 @@ Master:
   Component: "spark-master"
   Cpu: "100m"
   Memory: "512Mi"
+  initialDelaySeconds: 25
+  timeoutSeconds: 1
   # Set Master JVM memory. Default 1g
   # DaemonMemory: 1g
   ServiceType: NodePort # LoadBalancer
@@ -21,6 +23,9 @@ Worker:
   Component: "spark-worker"
   Cpu: "100m"
   Memory: "512Mi"
+  initialDelaySeconds: 30
+  timeoutSeconds: 1
+
   # Set Worker JVM memory. Default 1g
   # DaemonMemory: 1g
   # Set how much total memory workers have to give executors

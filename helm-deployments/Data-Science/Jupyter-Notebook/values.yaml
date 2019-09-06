@@ -5,6 +5,9 @@ jupyter:
     limits:
       memory: "4096Mi"
       cpu: "2000m"
+  initialDelaySeconds: 25
+  timeoutSeconds: 1
+
 persistence:
   enabled: true
   ## A manually managed Persistent Volume and Claim

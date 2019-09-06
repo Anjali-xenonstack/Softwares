@@ -51,8 +51,8 @@ spec:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 20
-            timeoutSeconds: 1
+            initialDelaySeconds: {{ .Values.zeppelin.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.zeppelin.timeoutSeconds }}
 {{- if .Values.hadoop.useConfigMap }}
       volumes:
         - name: hadoop-config

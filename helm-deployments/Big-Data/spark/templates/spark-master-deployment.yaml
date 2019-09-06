@@ -36,6 +36,13 @@ spec:
             requests:
               cpu: "{{ .Values.Master.Cpu }}"
               memory: "{{ .Values.Master.Memory }}"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: {{ .Values.Master.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.Master.timeoutSeconds }}
+
 
 ---
 

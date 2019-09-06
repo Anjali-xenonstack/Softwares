@@ -38,8 +38,8 @@ spec:
             httpGet:
               path: /
               port: 8888
-            initialDelaySeconds: 25
-            timeoutSeconds: 1
+            initialDelaySeconds: {{ .Values.jupyter.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.jupyter.timeoutSeconds }}
       volumes:
         - name: data-jupyter
           persistentVolumeClaim:
