@@ -3,7 +3,7 @@ jupyter:
   password: "xenonstack#123"
   resources:
     limits:
-      memory: "1024Mi"
+      memory: "512Mi"
       cpu: "100m"
   initialDelaySeconds: 25
   timeoutSeconds: 1
