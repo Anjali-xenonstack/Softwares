@@ -16,14 +16,7 @@ Master:
   # DaemonMemory: 1g
   ServiceType: NodePort # LoadBalancer
 
-#   ingress:
-#      enabled: true
-#      annotations:
-#       kubernetes.io/ingress.class: traefik
-#       traefik.frontend.rule.type: PathPrefixStrip
-#      domainName: xenon.work
 
-     tls: []
 Worker:
   Name: worker
   Image: "dr.xenon.team/sl_softwares/spark:sparkworkerv1.1" #1.0
@@ -38,11 +31,12 @@ Worker:
   # DaemonMemory: 1g
   # Set how much total memory workers have to give executors
   # ExecutorMemory: 1g
-#   ingress:
-#      enabled: true
-#      annotations:
-#       kubernetes.io/ingress.class: traefik
-#       traefik.frontend.rule.type: PathPrefixStrip
-#      domainName: xenon.work
 
-#      tls: []
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+  domainName: xenon.work
+
+  tls: []
