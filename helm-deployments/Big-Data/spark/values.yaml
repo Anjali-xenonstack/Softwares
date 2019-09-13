@@ -14,7 +14,7 @@ Master:
   timeoutSeconds: 1
   # Set Master JVM memory. Default 1g
   # DaemonMemory: 1g
-  ServiceType: NodePort # LoadBalancer
+  ServiceType: ClusterIP # LoadBalancer
 
 
 Worker:
