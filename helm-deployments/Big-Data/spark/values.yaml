@@ -37,6 +37,6 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.frontend.rule.type: PathPrefixStrip
-  domainName: xenon.work
+  domainName: xenon.team
 
   tls: []
