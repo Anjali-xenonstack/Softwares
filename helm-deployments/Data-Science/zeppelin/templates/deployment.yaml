@@ -17,6 +17,7 @@ spec:
       labels:
         app: {{ template "zeppelin.name" . }}
         release: {{ .Release.Name }}
+        type: softwares
     spec:
       terminationGracePeriodSeconds: 0
       containers:

@@ -21,6 +21,7 @@ spec:
         release: {{ .Release.Name | quote }}
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
+        type: softwares
     spec:
       containers:
         - name: {{ template "spark.fullname" . }}
