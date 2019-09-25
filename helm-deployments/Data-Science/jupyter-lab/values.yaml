@@ -1,11 +1,11 @@
 jupyter:
-  image: dr.xenon.team/sl_softwares/jupyternotebook:v2 #1
-  password: "xenonstack#123"
+  image:  dr.xenon.team/nexahub/jupyterlab:v4 #1
+  password: "akira"
   resources:
     limits:
-      memory: "512Mi"
-      cpu: "100m"
-  initialDelaySeconds: 25
+      memory: "2000Mi"
+      cpu: "1500m"
+  initialDelaySeconds: 15
   timeoutSeconds: 1
 
 persistence:

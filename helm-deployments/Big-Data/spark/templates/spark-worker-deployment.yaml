@@ -7,6 +7,7 @@ metadata:
     release: {{ .Release.Name | quote }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
+    type: softwares
 spec:
   replicas: {{ default 1 .Values.Worker.Replicas }}
   strategy:
@@ -21,6 +22,7 @@ spec:
         release: {{ .Release.Name | quote }}
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
+        type: softwares
     spec:
       containers:
         - name: {{ template "spark.fullname" . }}-worker

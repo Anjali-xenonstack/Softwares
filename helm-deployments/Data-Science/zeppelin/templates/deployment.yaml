@@ -7,6 +7,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    type: softwares
 spec:
   strategy:
     rollingUpdate:
@@ -17,6 +18,7 @@ spec:
       labels:
         app: {{ template "zeppelin.name" . }}
         release: {{ .Release.Name }}
+        type: softwares
     spec:
       terminationGracePeriodSeconds: 0
       containers:

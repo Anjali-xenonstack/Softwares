@@ -6,6 +6,6 @@ Persistent storage is attached.
 
 Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a>
 
-Password - xenonstack#123
+Password - akira
 
 </pre>
