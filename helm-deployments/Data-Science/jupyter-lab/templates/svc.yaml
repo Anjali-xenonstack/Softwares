@@ -8,11 +8,10 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
   - name: jupyterport
-    port: {{ .Values.service.port }}
-    targetPort: jupyterport
+    port: 8000
   selector:
     app: {{ template "jupyter.name" . }}
     release: {{ .Release.Name }}
