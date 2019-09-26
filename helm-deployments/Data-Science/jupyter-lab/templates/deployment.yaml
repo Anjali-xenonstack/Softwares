@@ -29,7 +29,7 @@ spec:
           image: {{ .Values.jupyter.image }}
           imagePullPolicy: "IfNotPresent"
           ports:
-            - containerPort: {{ .Values.service.port}}
+            - containerPort: 8888
               name: jupyterport
           env:
           - name: jupyter_password
