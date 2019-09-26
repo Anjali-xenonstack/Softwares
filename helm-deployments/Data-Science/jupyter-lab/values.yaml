@@ -1,5 +1,5 @@
 jupyter:
-  image:  dr.xenon.team/nexahub/jupyterlab:v4 #1
+  image:  dr.xenon.team/nexahub/jupyterlab:v6 #1
   password: "akira"
   resources:
     limits:
