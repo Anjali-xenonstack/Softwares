@@ -1,0 +1,9 @@
+apiVersion: v1
+description: tbd
+name: spark
+version: 1.0.0
+appVersion: 0.0.1
+home: https://zeppelin.apache.org/
+maintainers:
+- name: harpreet
+  email: harpreet@xenonstack.com
