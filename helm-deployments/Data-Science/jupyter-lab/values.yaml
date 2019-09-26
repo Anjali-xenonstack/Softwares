@@ -22,7 +22,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: block2
+  storageClass: gp2
   accessMode: ReadWriteOnce
   size: 5Gi
 
@@ -31,6 +31,6 @@ ingress:
    annotations:
      kubernetes.io/ingress.class: traefik
      traefik.frontend.rule.type: PathPrefixStrip
-   domainName: xenon.team
+   domainName: neuron-labs.stpi.in
 
    tls: []
