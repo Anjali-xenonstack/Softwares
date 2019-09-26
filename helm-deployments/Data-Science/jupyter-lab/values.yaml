@@ -1,0 +1,36 @@
+jupyter:
+  image:  dr.xenon.team/nexahub/jupyterlab:v4 #1
+  password: "akira"
+  resources:
+    limits:
+      memory: "2000Mi"
+      cpu: "1500m"
+  initialDelaySeconds: 15
+  timeoutSeconds: 1
+
+persistence:
+  enabled: true
+  ## A manually managed Persistent Volume and Claim
+  ## Requires persistence.enabled: true
+  ## If defined, PVC must be created manually before volume will be bound
+  # existingClaim:
+
+  ## mongodb data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  storageClass: block2
+  accessMode: ReadWriteOnce
+  size: 5Gi
+
+ingress:
+   enabled: true
+   annotations:
+     kubernetes.io/ingress.class: traefik
+     traefik.frontend.rule.type: PathPrefixStrip
+   domainName: xenon.team
+
+   tls: []

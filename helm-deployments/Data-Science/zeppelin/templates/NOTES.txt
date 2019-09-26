@@ -1,0 +1,10 @@
+<pre>
+
+Your Zeppelin is deployed successfully.
+Persistent storage is attached.
+
+
+Access Zeppelin at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a>
+
+
+</pre>

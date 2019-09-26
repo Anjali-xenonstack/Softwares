@@ -1,0 +1,36 @@
+zeppelin:
+  image: dylanmei/zeppelin:0.7.2
+  resources:
+  requests:
+    memory: "512Mi"
+    cpu: "100m"
+  initialDelaySeconds: 20
+  timeoutSeconds: 1
+hadoop:
+  useConfigMap: false
+  configMapName: hadoop-hadoop  #name of hadoop configMap
+  configPath: /usr/hadoop-2.7.3/etc/hadoop  #path where hadoop config is mounted
+
+spark:
+  driverMemory: 1g
+  executorMemory: 1g
+  numExecutors: 2
+
+persistence:
+  enabled: false           #enable true if you want pvc
+  storageClass: "-"
+  accessMode: ReadWriteOnce
+  size: 5Gi
+
+ingress:
+   enabled: true
+   annotations:
+     kubernetes.io/ingress.class: traefik
+     traefik.frontend.rule.type: PathPrefixStrip
+   domainName: xenon.team
+
+   tls: []
+    # - secretName: zeppelin-tls-secret
+    #   hosts: zeppelin.local
+
+nodeSelector: {}

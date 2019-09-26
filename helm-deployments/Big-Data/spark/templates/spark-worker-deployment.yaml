@@ -1,0 +1,69 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "spark.fullname" . }}-worker
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
+    type: softwares
+spec:
+  replicas: {{ default 1 .Values.Worker.Replicas }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
+  template:
+    metadata:
+      labels:
+        heritage: {{ .Release.Service | quote }}
+        release: {{ .Release.Name | quote }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
+        type: softwares
+    spec:
+      containers:
+        - name: {{ template "spark.fullname" . }}-worker
+          image: "{{ .Values.Worker.Image }}"
+          command: ["/spark-worker"]
+          ports:
+            - containerPort: 8081
+          resources:
+            requests:
+              cpu: "{{ .Values.Worker.Cpu }}"
+              memory: "{{ .Values.Worker.Memory }}"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: {{ .Values.Worker.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.Worker.timeoutSeconds }}
+
+          env:
+          - name: SPARK_DAEMON_MEMORY
+            value: {{ default "1g" .Values.Worker.DaemonMemory | quote }}
+          - name: SPARK_WORKER_MEMORY
+            value: {{ default "1g" .Values.Worker.ExecutorMemory | quote }}
+          - name: SPARK_MASTER_SERVICE_HOST
+            value: {{ template "spark.fullname" . }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "spark.fullname" . }}-worker
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
+spec:
+  ports:
+    - port: 8081
+      name: ui
+  type: NodePort
+  selector:
+    component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"

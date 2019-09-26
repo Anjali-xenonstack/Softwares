@@ -1,0 +1,9 @@
+
+The Jupyter Lab is an open-source web application that allows you to create and share documents that contain live code,
+equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation,
+statistical modeling, data visualization, machine learning, and much more.
+
+jupyterlab will be installed in our cloud labs , with 5 GB persistent storage , which will keep all your notebooks always available.
+
+Password to access Jupyter-Lab
+Password - akira
