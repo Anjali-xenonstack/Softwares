@@ -1,11 +1,11 @@
 <pre>
 
-Your Jupyter Notebook is deployed successfully.
-Persistent storage is attached.
+<p>Your Jupyter Notebook is deployed successfully.</p>
+<p>Persistent storage is attached.</p>
 
 
-Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a>
+<p>Access Jupyter Notebook at <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
 
-Password - akira
+<p>Password - <strong>akira</strong></p>
 
 </pre>
