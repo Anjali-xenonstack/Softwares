@@ -1,7 +1,7 @@
 <pre>
 
 <p>Your Zeppelin is deployed successfully.</p>
-<p>Persistent storage is attached.</p>
+<p>Persistent storage is attached, Please work under Directory <strong>/usr/zeppelin/notebook</strong> </p>
 
 <p>Access Zeppelin at <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
 

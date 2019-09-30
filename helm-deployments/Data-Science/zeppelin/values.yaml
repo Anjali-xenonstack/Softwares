@@ -1,9 +1,14 @@
 zeppelin:
   image: dylanmei/zeppelin:0.7.2
-  resources:
+
+resources:
+  limits:
+   cpu: "2000m"
+   memory: "3096Mi"
   requests:
-    memory: "512Mi"
-    cpu: "100m"
+   cpu: "2000m"
+   memory: "3096Mi"
+
   initialDelaySeconds: 20
   timeoutSeconds: 1
 hadoop:
@@ -17,13 +22,13 @@ spark:
   numExecutors: 2
 
 persistence:
-  enabled: false           #enable true if you want pvc
-  storageClass: "-"
+  enabled: true  #enable true if you want pvc
+  storageClass: block2
   accessMode: ReadWriteOnce
-  size: 5Gi
+  zeppelinDataSize: 5Gi
 
 ingress:
-   enabled: true
+   enabled: false
    annotations:
      kubernetes.io/ingress.class: traefik
      traefik.frontend.rule.type: PathPrefixStrip
