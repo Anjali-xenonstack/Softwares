@@ -1,13 +1,13 @@
 zeppelin:
-  image: dylanmei/zeppelin:0.7.2
+  image: dylanmei/zeppelin:0.7.2 #dr.xenon.team/public_utils/zeppelin:v2 #
 
 resources:
   limits:
    cpu: "2000m"
-   memory: "3096Mi"
+   memory: "4096Mi"
   requests:
    cpu: "2000m"
-   memory: "3096Mi"
+   memory: "4096Mi"
 
   initialDelaySeconds: 20
   timeoutSeconds: 1
@@ -25,7 +25,8 @@ persistence:
   enabled: true  #enable true if you want pvc
   storageClass: block2
   accessMode: ReadWriteOnce
-  zeppelinDataSize: 5Gi
+  zeppelinDataSize: 4Gi
+  zeppelinConfDataSize: 1Gi
 
 ingress:
    enabled: false
@@ -38,4 +39,5 @@ ingress:
     # - secretName: zeppelin-tls-secret
     #   hosts: zeppelin.local
 
-nodeSelector: {}
+# nodeSelector: {}
+#   kops.k8s.io/xyzgroup: nodes
