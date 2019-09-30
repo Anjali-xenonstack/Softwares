@@ -1,5 +1,5 @@
 jupyter:
-  image:  dr.xenon.team/nexahub/jupyterlab:v4 #1
+  image:  dr.xenon.team/nexahub/jupyterlab:v7 #1
   password: "akira"
   resources:
     limits:
@@ -7,6 +7,16 @@ jupyter:
       cpu: "1500m"
   initialDelaySeconds: 15
   timeoutSeconds: 1
+
+
+
+AWS_ACCESS_KEY: xxxxx
+AWS_ACCESS_SECRET: xxxx
+BUCKET_NAME: xxxx
+WORK_DIR_NAME: xxxx
+
+
+
 
 persistence:
   enabled: true
