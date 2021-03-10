@@ -51,14 +51,14 @@ commonAnnotations: {}
 ## Common labels to add to all MySQL resources (sub-charts are not considered). Evaluated as a template
 ##
 commonlabels:
-    app.kubernetes.io/name: mysql
-    app.kubernetes.io/version: 0.1
-    app.kubernetes.io/managed-by: helm
-    app.kubernetes.io/contact: nirmal
-    app.kubernetes.io/env: uat
-    app.kubernetes.io/project: neuronlabs
-    app.kubernetes.io/tier: backend
-    app.kubernetes.io/requested-by: priyanka
+  app.kubernetes.io/name: mysql
+  app.kubernetes.io/version: 0.1
+  app.kubernetes.io/managed-by: helm
+  app.kubernetes.io/contact: nirmal
+  app.kubernetes.io/env: uat
+  app.kubernetes.io/project: neuronlabs
+  app.kubernetes.io/tier: backend
+  app.kubernetes.io/requested-by: priyanka
 
 ## Use an alternate scheduler, e.g. "stork".
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/

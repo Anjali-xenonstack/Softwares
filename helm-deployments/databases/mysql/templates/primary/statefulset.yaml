@@ -5,6 +5,14 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/managed-by: helm
+    app.kubernetes.io/contact: nirmal
+    app.kubernetes.io/env: uat
+    app.kubernetes.io/project: neuronlabs
+    app.kubernetes.io/tier: backend
+    app.kubernetes.io/requested-by: priyanka
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
