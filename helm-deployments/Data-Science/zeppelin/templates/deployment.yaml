@@ -58,8 +58,8 @@ spec:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: {{ .Values.zeppelin.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.zeppelin.timeoutSeconds }}
+            #initialDelaySeconds: {{ .Values.zeppelin.initialDelaySeconds }}
+            #timeoutSeconds: {{ .Values.zeppelin.timeoutSeconds }}
       volumes:
         - name: zeppelin-conf
           persistentVolumeClaim:

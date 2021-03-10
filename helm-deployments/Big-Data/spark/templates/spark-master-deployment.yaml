@@ -42,8 +42,8 @@ spec:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: {{ .Values.Master.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.Master.timeoutSeconds }}
+            #initialDelaySeconds: {{ .Values.Master.initialDelaySeconds }}
+            #timeoutSeconds: {{ .Values.Master.timeoutSeconds }}
 
 
 ---

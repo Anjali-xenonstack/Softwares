@@ -51,8 +51,8 @@ spec:
             httpGet:
               path: /
               port: 8888
-            initialDelaySeconds: {{ .Values.jupyter.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.jupyter.timeoutSeconds }}
+            #initialDelaySeconds: {{ .Values.jupyter.initialDelaySeconds }}
+            #timeoutSeconds: {{ .Values.jupyter.timeoutSeconds }}
       # nodeSelector:
       #   kops.k8s.io/instancegroup: nodes
       volumes:

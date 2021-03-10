@@ -38,8 +38,8 @@ spec:
             httpGet:
               path: /
               port: 8081
-            initialDelaySeconds: {{ .Values.Worker.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.Worker.timeoutSeconds }}
+            #initialDelaySeconds: {{ .Values.Worker.initialDelaySeconds }}
+            #timeoutSeconds: {{ .Values.Worker.timeoutSeconds }}
 
           env:
           - name: SPARK_DAEMON_MEMORY
