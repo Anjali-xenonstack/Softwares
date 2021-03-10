@@ -50,7 +50,15 @@ commonAnnotations: {}
 
 ## Common labels to add to all MySQL resources (sub-charts are not considered). Evaluated as a template
 ##
-commonLabels: {}
+commonlabels:
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/version: 0.1
+    app.kubernetes.io/managed-by: helm
+    app.kubernetes.io/contact: nirmal
+    app.kubernetes.io/env: uat
+    app.kubernetes.io/project: neuronlabs
+    app.kubernetes.io/tier: backend
+    app.kubernetes.io/requested-by: priyanka
 
 ## Use an alternate scheduler, e.g. "stork".
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
@@ -250,12 +258,12 @@ primary:
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    limits: {}
-    #   memory: 256Mi
-    #   cpu: 250m
-    requests: {}
-    #   memory: 256Mi
-    #   cpu: 250m
+    limits:
+      memory: 256Mi
+      cpu: 250m
+    requests:
+      memory: 256Mi
+      cpu: 250m
 
   ## MySQL primary container's liveness and readiness probes
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
