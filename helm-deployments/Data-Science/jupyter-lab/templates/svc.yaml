@@ -10,8 +10,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8888
-    name: httpjn
+  - name: jupyterport
+    port: 8888
   selector:
     app: {{ template "jupyter.name" . }}
     release: {{ .Release.Name }}

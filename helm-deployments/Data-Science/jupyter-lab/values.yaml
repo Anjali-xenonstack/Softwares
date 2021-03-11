@@ -1,5 +1,5 @@
 jupyter:
-  image:  dr.xenon.team/nexahub/jupyterlab:v7 #1
+  image:  dr.xenon.team/nexahub/jupyterlab:v6 #1
   password: "akira"
   resources:
     limits:
@@ -41,6 +41,6 @@ ingress:
    annotations:
      kubernetes.io/ingress.class: traefik
      traefik.frontend.rule.type: PathPrefixStrip
-   domainName: xenon.work
+   domainName: neuron-labs.stpi.in
 
    tls: []
