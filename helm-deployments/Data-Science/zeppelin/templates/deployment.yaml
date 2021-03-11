@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-zeppelin
@@ -12,6 +12,9 @@ spec:
   strategy:
     rollingUpdate:
       maxUnavailable: 0
+    selector:
+      matchLabels:
+        app: {{ template "zeppelin.name" . }}
   replicas: 1
   template:
     metadata:
@@ -24,6 +27,7 @@ spec:
       containers:
         - name: zeppelin
           image: {{ .Values.zeppelin.image }}
+          imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 8080
               name: web
@@ -43,20 +47,30 @@ spec:
                 --num-executors {{ .Values.spark.numExecutors }}
 {{- end }}
           volumeMounts:
+            - name: zeppelin-conf
+              mountPath: /usr/zeppelin/conf
+            - mountPath: /usr/zeppelin/notebook
+              name: zeppelin-workdir
 {{- if .Values.hadoop.useConfigMap }}
             - mountPath: {{ .Values.hadoop.configPath }}
               name: hadoop-config
 {{- end }}
           resources:
-{{ toYaml .Values.zeppelin.resources | indent 12 }}
+{{ toYaml .Values.resources | indent 12 }}
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: {{ .Values.zeppelin.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.zeppelin.timeoutSeconds }}
-{{- if .Values.hadoop.useConfigMap }}
+            #initialDelaySeconds: {{ .Values.zeppelin.initialDelaySeconds }}
+            #timeoutSeconds: {{ .Values.zeppelin.timeoutSeconds }}
       volumes:
+        - name: zeppelin-conf
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-conf-zeppelin
+        - name: zeppelin-workdir
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-data-zeppelin
+{{- if .Values.hadoop.useConfigMap }}
         - name: hadoop-config
           configMap:
             name: {{ .Values.hadoop.configMapName }}

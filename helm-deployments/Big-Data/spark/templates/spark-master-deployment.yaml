@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "spark.fullname" . }}
@@ -42,8 +42,8 @@ spec:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: {{ .Values.Master.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.Master.timeoutSeconds }}
+            #initialDelaySeconds: {{ .Values.Master.initialDelaySeconds }}
+            #timeoutSeconds: {{ .Values.Master.timeoutSeconds }}
 
 
 ---

@@ -1,11 +1,11 @@
 <pre>
 
-Your Jupyter Notebook is deployed successfully.
+Your Jupyter Lab is deployed successfully.
 Persistent storage is attached.
 
 
-Access Jupyter Notebook at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a>
+Access Jupyter Lab at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a>
 
-Password - akira
+<p>Password - <strong>akira</strong></p>
 
 </pre>

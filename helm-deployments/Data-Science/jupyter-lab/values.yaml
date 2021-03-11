@@ -1,5 +1,5 @@
 jupyter:
-  image:  dr.xenon.team/nexahub/jupyterlab:v4 #1
+  image:  dr.xenon.team/nexahub/jupyterlab:v6 #1
   password: "akira"
   resources:
     limits:
@@ -7,6 +7,16 @@ jupyter:
       cpu: "1500m"
   initialDelaySeconds: 15
   timeoutSeconds: 1
+
+
+
+AWS_ACCESS_KEY: xxxxx
+AWS_ACCESS_SECRET: xxxx
+BUCKET_NAME: xxxx
+WORK_DIR_NAME: xxxx
+
+
+
 
 persistence:
   enabled: true
@@ -22,7 +32,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: block2
+  storageClass: rook-ceph-block
   accessMode: ReadWriteOnce
   size: 5Gi
 
@@ -31,6 +41,6 @@ ingress:
    annotations:
      kubernetes.io/ingress.class: traefik
      traefik.frontend.rule.type: PathPrefixStrip
-   domainName: xenon.team
+   domainName: neuron-labs.stpi.in
 
    tls: []

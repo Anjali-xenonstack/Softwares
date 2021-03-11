@@ -1,8 +1,8 @@
 
-Apache Spark is a unified analytics engine for large-scale data processing.
+<p><strong>Apache Spark</strong> is a unified analytics engine for large-scale data processing.</p>
 
-Apache Spark has become one of the key cluster-computing frameworks in the world.
+<p>Apache Spark has become one of the key cluster-computing frameworks in the world.
 Spark can be deployed in numerous ways like in Machine Learning, streaming data,
-and graph processing. Spark supports programming languages like Python, Scala, Java, and R.
+and graph processing. Spark supports programming languages like Python, Scala, Java, and R.</p>
 
-Spark will be installed in our cloud labs with 1 master and worker node.
+<p><strong>Spark will be installed in our cloud labs with 1 master and worker node.</strong></p>

@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-jupyter
@@ -12,6 +12,9 @@ spec:
   strategy:
     rollingUpdate:
       maxUnavailable: 0
+    selector:
+      matchLabels:
+        app: {{ template "jupyter.name" . }}
   replicas: 1
   template:
     metadata:
@@ -20,17 +23,28 @@ spec:
         release: {{ .Release.Name }}
         type: softwares
     spec:
-      terminationGracePeriodSeconds: 0
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
       containers:
         - name: jupyter
           image: {{ .Values.jupyter.image }}
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 8888
-              name: http
+              name: jupyterport
           env:
           - name: jupyter_password
             value: {{ .Values.jupyter.password }}
+          - name: BUCKET_NAME
+            value: {{ .Values.BUCKET_NAME }}
+          - name: WORK_DIR_NAME
+            value: {{ .Values.WORK_DIR_NAME }}
+          - name: AWS_ACCESS_KEY_ID
+            value: {{ .Values.AWS_ACCESS_KEY }}
+          - name: AWS_SECRET_ACCESS_KEY
+            value: {{ .Values.AWS_ACCESS_SECRET }}
           volumeMounts:
             - mountPath: /home/jovyan/work
               name: data-jupyter
@@ -40,8 +54,10 @@ spec:
             httpGet:
               path: /
               port: 8888
-            initialDelaySeconds: {{ .Values.jupyter.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.jupyter.timeoutSeconds }}
+            #initialDelaySeconds: {{ .Values.jupyter.initialDelaySeconds }}
+            #timeoutSeconds: {{ .Values.jupyter.timeoutSeconds }}
+      # nodeSelector:
+      #   kops.k8s.io/instancegroup: nodes
       volumes:
         - name: data-jupyter
           persistentVolumeClaim:
