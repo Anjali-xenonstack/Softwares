@@ -12,6 +12,9 @@ spec:
   strategy:
     rollingUpdate:
       maxUnavailable: 0
+    selector:
+      matchLabels:
+        app: {{ template "jupyter.name" . }}
   replicas: 1
   template:
     metadata:

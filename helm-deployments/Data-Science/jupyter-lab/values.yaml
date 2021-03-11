@@ -32,7 +32,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: block2
+  storageClass: rook-ceph-block
   accessMode: ReadWriteOnce
   size: 5Gi
 
