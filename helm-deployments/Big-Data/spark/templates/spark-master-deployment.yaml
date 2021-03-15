@@ -1,12 +1,16 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "spark.fullname" . }}
   labels:
+    app.kubernetes.io/name: {{ .Values.Master.Name }}
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
+{{- with .Values.commonlabels }}
+{{ toYaml . | indent 4 }}
+{{- end }}
     type: softwares
 spec:
   replicas: {{ default 1 .Values.Master.Replicas }}
@@ -35,9 +39,11 @@ spec:
             - containerPort: 4040
             - containerPort: 6066
           resources:
-            requests:
-              cpu: "{{ .Values.Master.Cpu }}"
-              memory: "{{ .Values.Master.Memory }}"
+            {{- toYaml .Values.Master.resources | nindent 12 }}
+          # resources:
+          #   requests:
+          #     cpu: "{{ .Values.Master.Cpu }}"
+          #     memory: "{{ .Values.Master.Memory }}"
           readinessProbe:
             httpGet:
               path: /
