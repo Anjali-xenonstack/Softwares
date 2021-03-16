@@ -1,9 +1,4 @@
 <pre>
-
 <p>Your Apache Spark has been succesfully launched with 1 Master Node & 1 Worker Node</p>
-
-<p>Open Spark Master UI : <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}-master.{{ .Domain }}">https://{{ .Name }}-master.{{ .Domain }}</a></p>
-
-<p>Open Spark Worker UI : <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}-worker.{{ .Domain }}">https://{{ .Name }}-worker.{{ .Domain }}</a></p>
-
+<p>Open Spark Master UI : <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}-master.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
 </pre>
