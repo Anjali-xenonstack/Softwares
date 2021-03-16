@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}-spark-master
@@ -13,6 +13,7 @@ metadata:
       {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
+  ingressClassName: {{ .Values.ingress.class }}
   rules:
   - host: {{ .Release.Name }}-master.{{ .Values.ingress.domainName}}
     http:

@@ -8,6 +8,9 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
     type: softwares
+{{- with .Values.commonlabels }}
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   replicas: {{ default 1 .Values.Worker.Replicas }}
   strategy:
@@ -31,9 +34,11 @@ spec:
           ports:
             - containerPort: 8081
           resources:
-            requests:
-              cpu: "{{ .Values.Worker.Cpu }}"
-              memory: "{{ .Values.Worker.Memory }}"
+            {{- toYaml .Values.Worker.resources | nindent 12 }}
+          # resources:
+          #   requests:
+          #     cpu: "{{ .Values.Worker.Cpu }}"
+          #     memory: "{{ .Values.Worker.Memory }}"
           readinessProbe:
             httpGet:
               path: /
