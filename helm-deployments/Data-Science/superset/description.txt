@@ -1,0 +1,4 @@
+<p></strong>Apache Superset</strong> is a cloud native open source tool for data exploration and visualization
+
+<p> It was initially created by AirBnB and later released to the apache community, superset is a light weight, fast and loaded with options to make it easy for a user of all skill sets to visualize their data. </p>
+<p> Superset will be installed in our cloud lab with 1 worker and 1 node along with Postgres and Redis DB.</p>

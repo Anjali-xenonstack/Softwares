@@ -1,0 +1,28 @@
+{{ if .Values.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "superset.fullname" . }}-ing
+  labels:
+    app: {{ template "superset.name" . }}
+    chart: {{ template "superset.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- with .Values.labels }}
+{{ toYaml . | indent 4 }}
+{{- end }}
+{{- with .Values.ingress.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: {{ .Release.Name }}.{{ .Values.ingress.domainName}}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ template "superset.fullname" . }}
+              servicePort: 8088
+{{- end }}
