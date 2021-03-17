@@ -8,10 +8,13 @@ metadata:
 {{- end }}
   labels:
   {{- include "common.labels.standard" . | nindent 4 }}
+  {{ .Values.workspace_id}}
   {{- with .Values.metrics.prometheusRule.additionalLabels }}
   {{- toYaml . | nindent 4 }}
   {{- end }}
   {{- if .Values.commonAnnotations }}
+    type: {{ .Values.type}}
+    workspace_id: {{ .Values.workspace_id}}
   annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
   {{- end }}
 spec:

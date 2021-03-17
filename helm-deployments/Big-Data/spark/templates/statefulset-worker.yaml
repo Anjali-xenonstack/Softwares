@@ -17,6 +17,8 @@ spec:
   template:
     metadata:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
+        type: {{ .Values.type}}
+        workspace_id: {{ .Values.workspace_id}}
         app.kubernetes.io/component: worker
         {{- if .Values.worker.extraPodLabels }}
           {{- include "common.tplvalues.render" (dict "value" .Values.worker.extraPodLabels "context" $) | nindent 8 }}

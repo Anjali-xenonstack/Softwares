@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: {{ template "common.names.fullname" . }}-headless
   labels: {{- include "common.labels.standard" . | nindent 4 }}
+    type: {{ .Values.type}}
+    workspace_id: {{ .Values.workspace_id}}
 spec:
   type: ClusterIP
   clusterIP: None
