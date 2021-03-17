@@ -74,12 +74,12 @@ auth:
   ## MongoDB root password
   ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#setting-the-root-password-on-first-run
   ##
-  rootPassword: "KoNoHa#234xEp"
+  rootPassword: ""
   ## MongoDB custom user and database
   ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#creating-a-user-and-database-on-first-run
   ##
   username: neuronlabs
-  password: LeRci#roBTo
+  password: ""
   database: neuronlabs
   ## Key used for replica set authentication
   ## Ignored when mongodb.architecture=standalone
@@ -226,17 +226,29 @@ annotations: {}
 
 ## Additional labels to be added to the MongoDB statefulset. Evaluated as a template.
 ##
+workspace_id: nl-123
+user_id: 123
+user_name: neuronlabs
 labels:
-  name: mongodb
-  instance: neuron-mongodb
-  version: 4.4.2
-  managedby: helm-charts
-  requestedby: dataops
-  contact: nikhil
-  workload: mongodb-database
-  env: dev
-  tier: database
-  project: neuronlabs
+
+  app.kubernetes.io/name: mongodb
+  app.kubernetes.io/instance: neuron-mongodb
+  app.kubernetes.io/version: 4.4.2
+  app.kubernetes.io/managed-by: helm-charts
+  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/workload: mongodb-database
+  app.kubernetes.io/env: dev
+  app.kubernetes.io/tier: database
+  app.kubernetes.io/project: neuronlabs
+  app.kubernetes.io/requested-by: dataops
+  type: softwares
+  
+selector:
+  app.kubernetes.io/name: mongodb
+  app.kubernetes.io/version: 4.4.2
+  app.kubernetes.io/env: dev
+  type: softwares
+  
 
 ## Number of MongoDB replicas to deploy.
 ## Ignored when mongodb.architecture=standalone
@@ -469,7 +481,7 @@ persistence:
 service:
   ## Service type
   ##
-  type: ClusterIP
+  type: NodePort
   ## MongoDB service port
   ##
   port: 27017
