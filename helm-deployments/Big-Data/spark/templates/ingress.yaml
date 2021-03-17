@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: {{ include "common.names.fullname" . }}-ingress
   labels: {{- include "common.labels.standard" . | nindent 4 }}
+    type: {{ .Values.type}}
+    workspace_id: {{ .Values.workspace_id}}
     app.kubernetes.io/component: ingress
   annotations:
     {{- range $key, $value := .Values.ingress.annotations }}

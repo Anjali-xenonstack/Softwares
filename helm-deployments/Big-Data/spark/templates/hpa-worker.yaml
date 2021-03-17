@@ -3,6 +3,8 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels: {{- include "common.labels.standard" . | nindent 4 }}
+    type: {{ .Values.type}}
+    workspace_id: {{ .Values.workspace_id}}
     app.kubernetes.io/component: worker-autoscaler
   name: {{ include "common.names.fullname" . }}-autoscaler
 spec:

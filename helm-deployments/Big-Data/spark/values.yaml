@@ -1,3 +1,5 @@
+type: softwares
+workspace_id: "nl123"
 ## Global Docker image parameters
 ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
 ## Current available global Docker image parameters: imageRegistry and imagePullSecrets
@@ -47,6 +49,7 @@ commonlabels:
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/tier: backend
   app.kubernetes.io/requested-by: dataops
+
 
 ## Spark master specific configuration
 ##
@@ -265,8 +268,8 @@ worker:
   ##
   autoscaling:
     ## Enable replica autoscaling depending on CPU
-    enabled: false
-    CpuTargetPercentage: 50
+    enabled: true
+    CpuTargetPercentage: 200
     ## Max number of workers when using autoscaling
     replicasMax: 5
 
