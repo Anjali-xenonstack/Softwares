@@ -45,6 +45,8 @@ image:
 ##
 type: softwares
 workspace_id: nl-123
+user_id: nlu-123
+user_name: nlu
 
 ##
 ## Init containers parameters:
