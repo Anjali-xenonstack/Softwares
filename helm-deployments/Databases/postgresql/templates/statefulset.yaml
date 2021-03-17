@@ -9,6 +9,8 @@ metadata:
 {{- end }}
     type: {{ .Values.type }}
     workspace_id: {{ .Values.workspace_id }}
+    user_id: {{ .Values.user_id }}
+    user_name: {{ .Values.user_name }}
   annotations:
   {{- if .Values.commonAnnotations }}
   {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
@@ -33,6 +35,8 @@ spec:
 {{- end }}
       type: {{ .Values.type }}
       workspace_id: {{ .Values.workspace_id }}
+      user_id: {{ .Values.user_id }}
+      user_name: {{ .Values.user_name }}
   template:
     metadata:
       name: {{ template "common.names.fullname" . }}
@@ -43,6 +47,8 @@ spec:
 {{- end }}
         type: {{ .Values.type }}
         workspace_id: {{ .Values.workspace_id }}
+        user_id: {{ .Values.user_id }}
+        user_name: {{ .Values.user_name }}
       {{- with .Values.primary.podAnnotations }}
       annotations: {{- toYaml . | nindent 8 }}
       {{- end }}
