@@ -1,3 +1,9 @@
+type: softwares
+workspace_id: nl-123
+user_id: nlu-123
+user_name: nlu
+
+
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with

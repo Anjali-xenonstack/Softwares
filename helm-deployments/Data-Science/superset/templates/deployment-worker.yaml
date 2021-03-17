@@ -23,6 +23,11 @@ metadata:
     chart: {{ template "superset.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    type: {{ .Values.type }}
+    workspace_id: {{ .Values.workspace_id }}
+    user_id: {{ .Values.user_id }}
+    user_name: {{ .Values.user_name }}
+
 {{- with .Values.labels }}
 {{ toYaml . | indent 4 }}
 {{- end }}
@@ -33,6 +38,11 @@ spec:
     matchLabels:
       app: {{ template "superset.name" . }}-worker
       release: {{ .Release.Name }}
+      type: {{ .Values.type }}
+      workspace_id: {{ .Values.workspace_id }}
+      user_id: {{ .Values.user_id }}
+      user_name: {{ .Values.user_name }}
+
   template:
     metadata:
       annotations:
@@ -48,6 +58,11 @@ spec:
       labels:
         app: {{ template "superset.name" . }}-worker
         release: {{ .Release.Name }}
+        type: {{ .Values.type }}
+        workspace_id: {{ .Values.workspace_id }}
+        user_id: {{ .Values.user_id }}
+        user_name: {{ .Values.user_name }}
+
     spec:
       securityContext:
         runAsUser: 0 # Needed in order to allow pip install to work in bootstrap
