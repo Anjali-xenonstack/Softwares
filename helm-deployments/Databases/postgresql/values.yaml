@@ -41,6 +41,11 @@ image:
 ##
 # fullnameOverride:
 
+## Custom Labels
+##
+type: softwares
+workspace_id: nl-123
+
 ##
 ## Init containers parameters:
 ## volumePermissions: Change the owner of the persist volume mountpoint to RunAsUser:fsGroup
@@ -97,7 +102,7 @@ containerSecurityContext:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 ##
 serviceAccount:
-  enabled: false
+  enabled: true
   ## Name of an already existing service account. Setting this value disables the automatic service account creation.
   # name:
 
@@ -107,24 +112,11 @@ serviceAccount:
 psp:
   create: false
 
-
-labels:
-  name: postgres
-  instance: neuron-postgres
-  version: 11.10.0
-  managedby: helm-charts
-  requestedby: dataops
-  contact: nikhil
-  workload: postgres-database
-  env: dev
-  tier: database
-  project: neuronlabs
-
 ## Creates role for ServiceAccount
 ## Required for PSP
 ##
 rbac:
-  create: false
+  create: true
 
 
 replication:
@@ -144,17 +136,17 @@ replication:
 
 ## PostgreSQL admin password (used when `postgresqlUsername` is not `postgres`)
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#creating-a-database-user-on-first-run (see note!)
-postgresqlPostgresPassword: oBkuOt#123
+postgresqlPostgresPassword: ""
 
 ## PostgreSQL user (has superuser privileges if username is `postgres`)
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
 ##
-postgresqlUsername: hive
+postgresqlUsername: nluser
 
 #PostgreSQL password
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
 ##
-postgresqlPassword: nrAUoT#123
+postgresqlPassword: ""
 
 ## PostgreSQL password using existing secret
 ## existingSecret: secret
@@ -166,7 +158,7 @@ postgresqlPassword: nrAUoT#123
 ## Create a database
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#creating-a-database-on-first-run
 ##
-postgresqlDatabase: metastore
+postgresqlDatabase: nldatabase
 
 ## PostgreSQL data dir
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md
@@ -398,7 +390,7 @@ shmVolume:
 ##   GKE, AWS & OpenStack)
 ##
 persistence:
-  enabled: false
+  enabled: true
   ## A manually managed Persistent Volume and Claim
   ## If defined, PVC must be created manually before volume will be bound
   ## The value is evaluated as a template, so, for example, the name can depend on .Release or .Chart
@@ -485,9 +477,27 @@ primary:
   ##
   tolerations: []
 
-  labels: {}
+  labels:
+    app.kubernetes.io/version: 11.11.0
+    app.kubernetes.io/contact: rajat
+    app.kubernetes.io/workload: postgres-database
+    app.kubernetes.io/env: dev
+    app.kubernetes.io/tier: database
+    app.kubernetes.io/project: neuronlabs
+    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/component: primary
+    role: primary
   annotations: {}
-  podLabels: {}
+  podLabels:
+    app.kubernetes.io/version: 11.11.0
+    app.kubernetes.io/contact: rajat
+    app.kubernetes.io/workload: postgres-database
+    app.kubernetes.io/env: dev
+    app.kubernetes.io/tier: database
+    app.kubernetes.io/project: neuronlabs
+    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/component: primary
+    role: primary
   podAnnotations: {}
   priorityClassName: ''
   ## Extra init containers
@@ -578,9 +588,27 @@ readReplicas:
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   ##
   tolerations: []
-  labels: {}
+  labels:
+    app.kubernetes.io/version: 11.11.0
+    app.kubernetes.io/contact: rajat
+    app.kubernetes.io/workload: postgres-database
+    app.kubernetes.io/env: dev
+    app.kubernetes.io/tier: database
+    app.kubernetes.io/project: neuronlabs
+    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/component: read
+    role: read
   annotations: {}
-  podLabels: {}
+  podLabels:
+    app.kubernetes.io/version: 11.11.0
+    app.kubernetes.io/contact: rajat
+    app.kubernetes.io/workload: postgres-database
+    app.kubernetes.io/env: dev
+    app.kubernetes.io/tier: database
+    app.kubernetes.io/project: neuronlabs
+    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/component: read
+    role: read
   podAnnotations: {}
   priorityClassName: ''
 
@@ -628,10 +656,13 @@ readReplicas:
     enabled: false
 
   # Override the resource configuration for read replicas
-  resources: {}
-  # requests:
-  #   memory: 256Mi
-  #   cpu: 250m
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 250m
+    limits:
+      memory: 1000Mi
+      cpu: 500m
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
@@ -642,7 +673,7 @@ resources:
     cpu: 250m
   limits:
     memory: 2000Mi
-    cpu: 2000m
+    cpu: 1000m
 
 ## Add annotations to all the deployed resources
 ##

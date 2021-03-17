@@ -1,0 +1,7 @@
+<p><strong>Postgres</strong> has been deployed. </p><br/>
+
+<p><strong>Admin</strong> User: postgres</p>
+<p><strong>Normal User</strong: nluser</p>
+
+<p><strong>Admin</strong>Password: Random-Generated-Password </p>
+<p><strong>Normal User</strong>Password: Random-Generated-Password </p>

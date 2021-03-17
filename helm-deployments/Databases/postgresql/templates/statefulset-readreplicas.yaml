@@ -4,21 +4,13 @@ apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
   name: "{{ template "common.names.fullname" . }}-read"
-  labels: {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: read
-    app.kubernetes.io/name: {{ .Values.labels.name }}
-    app.kubernetes.io/instance: {{ .Values.labels.instance }}
-    app.kubernetes.io/version: {{ .Values.labels.version }}
-    app.kubernetes.io/managed-by: {{ .Values.labels.managedby }}
-    app.kubernetes.io/contact: {{ .Values.labels.contact }}
-    app.kubernetes.io/workload: {{ .Values.labels.workload }}
-    app.kubernetes.io/env: {{ .Values.labels.env }}
-    app.kubernetes.io/tier: {{ .Values.labels.tier }}
-    app.kubernetes.io/project: {{ .Values.labels.project }}
-    app.kubernetes.io/requested-by: {{ .Values.labels.requestedby }}
+  labels:
+{{- include "common.labels.standard" . | nindent 4 }}
 {{- with .Values.readReplicas.labels }}
 {{ toYaml . | indent 4 }}
 {{- end }}
+    type: {{ .Values.type }}
+    workspace_id: {{ .Values.workspace_id }}
   annotations:
   {{- if .Values.commonAnnotations }}
   {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
@@ -32,18 +24,22 @@ spec:
   replicas: {{ .Values.replication.readReplicas }}
   selector:
     matchLabels:
-    {{- include "common.labels.matchLabels" . | nindent 6 }}
-      role: read
+{{- include "common.labels.matchLabels" . | nindent 6 }}
+{{- with .Values.readReplicas.labels }}
+{{ toYaml . | indent 6 }}
+{{- end }}
+      type: {{ .Values.type }}
+      workspace_id: {{ .Values.workspace_id }}
   template:
     metadata:
       name: {{ template "common.names.fullname" . }}
       labels:
-      {{- include "common.labels.standard" . | nindent 8 }}
-        app.kubernetes.io/component: read
-        role: read
+{{- include "common.labels.standard" . | nindent 8 }}
 {{- with .Values.readReplicas.podLabels }}
 {{ toYaml . | indent 8 }}
 {{- end }}
+        type: {{ .Values.type }}
+        workspace_id: {{ .Values.workspace_id }}
 {{- with .Values.readReplicas.podAnnotations }}
       annotations:
 {{ toYaml . | indent 8 }}
