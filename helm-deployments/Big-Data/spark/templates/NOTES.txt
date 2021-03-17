@@ -1,4 +1,3 @@
 <pre>
-<p>Your Apache Spark has been succesfully launched with 1 Master Node & 1 Worker Node</p>
-<p>Open Spark UI : <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
+<p>Your Apache Spark has been succesfully launched </p>
 </pre>
