@@ -2,21 +2,13 @@ apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
   name: {{ template "postgresql.primary.fullname" . }}
-  labels: {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: primary
-    app.kubernetes.io/name: {{ .Values.labels.name }}
-    app.kubernetes.io/instance: {{ .Values.labels.instance }}
-    app.kubernetes.io/version: {{ .Values.labels.version }}
-    app.kubernetes.io/managed-by: {{ .Values.labels.managedby }}
-    app.kubernetes.io/contact: {{ .Values.labels.contact }}
-    app.kubernetes.io/workload: {{ .Values.labels.workload }}
-    app.kubernetes.io/env: {{ .Values.labels.env }}
-    app.kubernetes.io/tier: {{ .Values.labels.tier }}
-    app.kubernetes.io/project: {{ .Values.labels.project }}
-    app.kubernetes.io/requested-by: {{ .Values.labels.requestedby }}
-  {{- with .Values.primary.labels }}
-  {{- toYaml . | nindent 4 }}
-  {{- end }}
+  labels:
+{{- include "common.labels.standard" . | nindent 4 }}
+{{- with .Values.primary.labels }}
+{{- toYaml . | nindent 4 }}
+{{- end }}
+    type: {{ .Values.type }}
+    workspace_id: {{ .Values.workspace_id }}
   annotations:
   {{- if .Values.commonAnnotations }}
   {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
@@ -35,18 +27,22 @@ spec:
     {{- end }}
   selector:
     matchLabels:
-    {{- include "common.labels.matchLabels" . | nindent 6 }}
-      role: primary
+{{- include "common.labels.matchLabels" . | nindent 6 }}
+{{- with .Values.primary.labels }}
+{{- toYaml . | nindent 6 }}
+{{- end }}
+      type: {{ .Values.type }}
+      workspace_id: {{ .Values.workspace_id }}
   template:
     metadata:
       name: {{ template "common.names.fullname" . }}
       labels:
-      {{- include "common.labels.standard" . | nindent 8 }}
-        role: primary
-        app.kubernetes.io/component: primary
-      {{- with .Values.primary.podLabels }}
-      {{- toYaml . | nindent 8 }}
-      {{- end }}
+{{- include "common.labels.standard" . | nindent 8 }}
+{{- with .Values.primary.podLabels }}
+{{- toYaml . | nindent 8 }}
+{{- end }}
+        type: {{ .Values.type }}
+        workspace_id: {{ .Values.workspace_id }}
       {{- with .Values.primary.podAnnotations }}
       annotations: {{- toYaml . | nindent 8 }}
       {{- end }}
