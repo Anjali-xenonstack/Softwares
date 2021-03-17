@@ -1,5 +1,8 @@
 type: softwares
-workspace_id: "nl123"
+workspace_id: "nl-123"
+user_id: "nlu-123"
+user_name: "nlu"
+
 ## Global Docker image parameters
 ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
 ## Current available global Docker image parameters: imageRegistry and imagePullSecrets
