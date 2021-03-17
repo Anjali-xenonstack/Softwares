@@ -6,17 +6,8 @@ metadata:
   namespace: {{ include "mongodb.namespace" . }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: mongodb
-    app.kubernetes.io/name: {{ .Values.labels.name }}
-    app.kubernetes.io/instance: {{ .Values.labels.instance }}
-    app.kubernetes.io/version: {{ .Values.labels.version }}
-    app.kubernetes.io/managed-by: {{ .Values.labels.managedby }}
-    app.kubernetes.io/contact: {{ .Values.labels.contact }}
-    app.kubernetes.io/workload: {{ .Values.labels.workload }}
-    app.kubernetes.io/env: {{ .Values.labels.env }}
-    app.kubernetes.io/tier: {{ .Values.labels.tier }}
-    app.kubernetes.io/project: {{ .Values.labels.project }}
-    app.kubernetes.io/requested-by: {{ .Values.labels.requestedby }}
-    {{- if .Values.labels }}
+    workspace_id: {{ .Values.workspace_id}}
+    {{- if .Values.labels }} 
     {{- include "common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 4 }}
     {{- end }}
   {{- if .Values.annotations }}
@@ -36,12 +27,17 @@ spec:
   selector:
     matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
       app.kubernetes.io/component: mongodb
+      workspace_id: {{ .Values.workspace_id}}
+      {{- if .Values.selector }}
+      {{- include "common.tplvalues.render" (dict "value" .Values.selector "context" $) | nindent 6 }}
+      {{- end }}
   template:
     metadata:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: mongodb
-        {{- if .Values.podLabels }}
-        {{- include "common.tplvalues.render" (dict "value" .Values.podLabels "context" $) | nindent 8 }}
+        workspace_id: {{ .Values.workspace_id}}
+        {{- if .Values.selector }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.selector "context" $) | nindent 8 }}
         {{- end }}
       {{- if or (include "mongodb.createConfigmap" .) .Values.podAnnotations }}
       annotations:
