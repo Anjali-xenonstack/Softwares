@@ -8,6 +8,8 @@ metadata:
     role: zookeeper
     type: {{ .Values.type }}
     workspace_id: {{ .Values.workspace_id }}
+    user_name: {{ .Values.user_name }}
+    user_id: {{ .Values.user_id }}
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
@@ -31,6 +33,8 @@ spec:
       app.kubernetes.io/component: zookeeper
       type: {{ .Values.type }}
       workspace_id: {{ .Values.workspace_id }}
+      user_name: {{ .Values.user_name }}
+      user_id: {{ .Values.user_id }}
   template:
     metadata:
       name: {{ template "common.names.fullname" . }}
@@ -38,6 +42,8 @@ spec:
         app.kubernetes.io/component: zookeeper
         type: {{ .Values.type }}
         workspace_id: {{ .Values.workspace_id }}
+        user_name: {{ .Values.user_name }}
+        user_id: {{ .Values.user_id }}
         {{- if .Values.podLabels }}
         {{- include "common.tplvalues.render" (dict "value" .Values.podLabels "context" $) | nindent 8 }}
         {{- end }}

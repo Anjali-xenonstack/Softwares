@@ -26,3 +26,5 @@ spec:
     app.kubernetes.io/component: kafka
     type: {{ .Values.type }}
     workspace_id: {{ .Values.workspace_id }}
+    user_name: {{ .Values.user_name }}
+    user_id: {{ .Values.user_id }}
