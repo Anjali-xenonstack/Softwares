@@ -24,3 +24,5 @@ spec:
       targetPort: kafka-internal
   selector: {{- include "common.labels.matchLabels" . | nindent 4 }}
     app.kubernetes.io/component: kafka
+    type: {{ .Values.type }}
+    workspace_id: {{ .Values.workspace_id }}

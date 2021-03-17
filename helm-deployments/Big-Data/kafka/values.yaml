@@ -1,3 +1,7 @@
+# LABELS REQUIRED BY DEVELOPER
+type: softwares
+workspace_id: nl123
+
 ## Global Docker image parameters
 ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
 ## Current available global Docker image parameters: imageRegistry and imagePullSecrets
@@ -60,7 +64,6 @@ commonLabels:
   app.kubernetes.io/tier: data-streaming
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/requested-by: dataops
-
 ## Add annotations to all the deployed resources
 ##
 commonAnnotations: {}
@@ -461,8 +464,8 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 250m
-    memory: 1Gi
+    cpu: 500m
+    memory: 2Gi
   requests:
     cpu: 250m
     memory: 256Mi
