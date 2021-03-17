@@ -14,6 +14,8 @@ metadata:
   name: {{ include "kafka.fullname" . }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: kafka
+    type: {{ .Values.type }}
+    workspace_id: {{ .Values.workspace_id }}
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
@@ -26,6 +28,8 @@ spec:
   selector:
     matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
       app.kubernetes.io/component: kafka
+      type: {{ .Values.type }}
+      workspace_id: {{ .Values.workspace_id }}
   serviceName: {{ template "kafka.fullname" . }}-headless
   updateStrategy:
     type: {{ .Values.updateStrategy | quote }}
@@ -39,6 +43,8 @@ spec:
     metadata:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: kafka
+        type: {{ .Values.type }}
+        workspace_id: {{ .Values.workspace_id }}
         {{- if .Values.podLabels }}
         {{- include "common.tplvalues.render" (dict "value" .Values.podLabels "context" $) | nindent 8 }}
         {{- end }}
