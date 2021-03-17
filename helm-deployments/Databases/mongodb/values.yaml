@@ -227,7 +227,8 @@ annotations: {}
 ## Additional labels to be added to the MongoDB statefulset. Evaluated as a template.
 ##
 workspace_id: nl-123
-
+user_id: 123
+user_name: neuronlabs
 labels:
 
   app.kubernetes.io/name: mongodb

@@ -6,7 +6,8 @@ metadata:
   namespace: {{ include "mongodb.namespace" . }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: mongodb
-    workspace_id: {{ .Values.workspace_id}}
+    user_id: {{ .Values.user_id}}
+    user_name: {{ .Values.user_name}}
     {{- if .Values.labels }} 
     {{- include "common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 4 }}
     {{- end }}
@@ -28,6 +29,8 @@ spec:
     matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
       app.kubernetes.io/component: mongodb
       workspace_id: {{ .Values.workspace_id}}
+      user_id: {{ .Values.user_id}}
+      user_name: {{ .Values.user_name}}
       {{- if .Values.selector }}
       {{- include "common.tplvalues.render" (dict "value" .Values.selector "context" $) | nindent 6 }}
       {{- end }}
@@ -36,6 +39,8 @@ spec:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: mongodb
         workspace_id: {{ .Values.workspace_id}}
+        user_id: {{ .Values.user_id}}
+        user_name: {{ .Values.user_name}}
         {{- if .Values.selector }}
         {{- include "common.tplvalues.render" (dict "value" .Values.selector "context" $) | nindent 8 }}
         {{- end }}
