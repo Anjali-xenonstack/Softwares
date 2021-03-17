@@ -36,6 +36,11 @@ spec:
       name: http
   selector:
     app: {{ template "superset.name" . }}
+    type: {{ .Values.type }}
+    workspace_id: {{ .Values.workspace_id }}
+    user_id: {{ .Values.user_id }}
+    user_name: {{ .Values.user_name }}
+
     release: {{ .Release.Name }}
   {{- if .Values.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.loadBalancerIP }}
