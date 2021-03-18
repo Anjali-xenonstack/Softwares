@@ -1,10 +1,9 @@
 <pre>
-<p> Apache Superset has been launched with Postgres and Redis </p>
+<p> Apache Superset has been launched. </p>
 <p> <strong>Superset UI:</strong> <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a> </P>
-<p><strong>Username:</strong> admin </p>
-<p><strong>Password:</strong> NrAuoT#123 </p>
+<p><strong>Username:</strong> superset </p>
+<p><strong>Password:</strong> KaGyUaSaMa#32 </p>
 
-<p><strong> Postgres username:<strong> superset </p>
-<p><strong> Postgres password:<strong> sEcAnOR#123 </p>
+<p>Make sure to change the default password, go to setting/user/info and chnage the password </p>
 
 </pre>
