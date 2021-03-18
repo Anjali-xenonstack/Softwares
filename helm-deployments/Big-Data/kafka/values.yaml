@@ -525,7 +525,7 @@ sidecars: {}
 service:
   ## Service type
   ##
-  type: ClusterIP
+  type: NodePort
   ## Kafka port for client connections
   ##
   port: 9092
@@ -898,7 +898,7 @@ metrics:
     service:
       ## JMX Exporter Service type
       ##
-      type: ClusterIP
+      type: NodePort
       ## JMX Exporter Prometheus port
       ##
       port: 5556
