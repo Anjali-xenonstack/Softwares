@@ -233,11 +233,11 @@ init:
     superset init
     echo "Creating admin user..."
     superset fab create-admin \
-                    --username admin \
+                    --username superset \
                       --firstname Superset \
                       --lastname Admin \
                       --email admin@superset.com \
-                      --password NrAuoT#123 || true
+                      --password KaGyUaSaMa#32 || true
     {{ if .Values.init.loadExamples }}
     echo "Loading examples..."
     superset load_examples
