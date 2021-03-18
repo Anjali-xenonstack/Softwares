@@ -483,7 +483,7 @@ primary:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: dev
+    app.kubernetes.io/env: uat
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
     app.kubernetes.io/requested-by: dataops
@@ -494,7 +494,7 @@ primary:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: dev
+    app.kubernetes.io/env: uat
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
     app.kubernetes.io/requested-by: dataops
@@ -594,7 +594,7 @@ readReplicas:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: dev
+    app.kubernetes.io/env: uat
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
     app.kubernetes.io/requested-by: dataops
@@ -605,7 +605,7 @@ readReplicas:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: dev
+    app.kubernetes.io/env: uat
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
     app.kubernetes.io/requested-by: dataops
