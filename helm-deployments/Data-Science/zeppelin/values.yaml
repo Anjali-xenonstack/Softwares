@@ -50,9 +50,9 @@ serviceAccount:
 
 ## secret
 authentication:
-  enabled: false
+  enabled: true
   userCredentialSecretName: ""
-  username: "admin"
+  username: "zeppelin"
   password: ""
 
 podAnnotations: {}
