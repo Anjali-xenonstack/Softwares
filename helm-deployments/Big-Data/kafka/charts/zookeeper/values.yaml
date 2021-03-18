@@ -66,7 +66,7 @@ commonLabels:
   app.kubernetes.io/managed-by: helm-charts
   app.kubernetes.io/contact: nikhil
   app.kubernetes.io/workload: apache-zookeeper
-  app.kubernetes.io/env: dev
+  app.kubernetes.io/env: uat
   app.kubernetes.io/tier: data-streaming
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/requested-by: dataops
