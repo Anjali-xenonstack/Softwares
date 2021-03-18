@@ -48,7 +48,7 @@ commonlabels:
   app.kubernetes.io/version: "3.0.1"
   app.kubernetes.io/managed-by: helm
   app.kubernetes.io/contact: nikhil
-  app.kubernetes.io/env: dev
+  app.kubernetes.io/env: uat
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/tier: backend
   app.kubernetes.io/requested-by: dataops

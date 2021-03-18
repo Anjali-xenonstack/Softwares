@@ -5,4 +5,4 @@ Spark can be deployed in numerous ways like in Machine Learning, streaming data,
 and graph processing. Spark supports programming languages like Python, Scala, Java, and R.</p>
 
 <p><strong>Spark will be installed in our cloud labs with 1 master and worker node.</strong></p>
-<p>The official documentation of Apache Spark could be found here: <href>https://spark.apache.org/docs/latest/</href></p>
+<p>The official documentation of Apache Spark could be found here: <a href="https://spark.apache.org/docs/latest/"> </a> </p>
