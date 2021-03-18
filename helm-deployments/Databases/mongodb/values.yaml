@@ -237,7 +237,7 @@ labels:
   app.kubernetes.io/managed-by: helm-charts
   app.kubernetes.io/contact: nikhil
   app.kubernetes.io/workload: mongodb-database
-  app.kubernetes.io/env: dev
+  app.kubernetes.io/env: uat
   app.kubernetes.io/tier: database
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/requested-by: dataops
@@ -246,7 +246,7 @@ labels:
 selector:
   app.kubernetes.io/name: mongodb
   app.kubernetes.io/version: 4.4.2
-  app.kubernetes.io/env: dev
+  app.kubernetes.io/env: uat
   type: softwares
   
 
@@ -471,7 +471,7 @@ persistence:
   ## MongoDB images.
   ##
   mountPath: /bitnami/mongodb
-  ## The subdirectory of the volume to mount to, useful in dev environments
+  ## The subdirectory of the volume to mount to, useful in uat environments
   ## and one PV for multiple services.
   ##
   subPath: ""
@@ -745,8 +745,8 @@ arbiter:
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 500m
+      memory: 512Mi
     requests:
       cpu: 100m
       memory: 128Mi
@@ -881,8 +881,8 @@ volumePermissions:
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 500m
+      memory: 512Mi
     requests:
       cpu: 100m
       memory: 128Mi
@@ -936,8 +936,8 @@ metrics:
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 500m
+      memory: 512Mi
     requests:
       cpu: 100m
       memory: 128Mi
@@ -1002,7 +1002,7 @@ metrics:
       app.kubernetes.io/managed-by: helm-charts
       app.kubernetes.io/contact: nikhil
       app.kubernetes.io/workload: mongodb
-      app.kubernetes.io/env: dev
+      app.kubernetes.io/env: uat
       app.kubernetes.io/tier: metrics-exporter
       app.kubernetes.io/project: neuronlabs
       app.kubernetes.io/requested-by: dataops
