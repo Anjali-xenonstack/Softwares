@@ -1,9 +1,4 @@
-<pre>
-
-<p>Your Zeppelin is deployed successfully.</p>
-<p>Persistent storage is attached, Please work under Directory <strong>/usr/zeppelin/notebook</strong> </p>
-
-<p>Access Zeppelin at <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
-
-
-</pre>
+<p><strong>Apache Zepplin </strong> has been deployed </p>
+<p><strong><Zepplin UI: </strong>  <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
+<p><strong>Username:zeppelin </p>
+<p></strong>Password: random-generated </p>

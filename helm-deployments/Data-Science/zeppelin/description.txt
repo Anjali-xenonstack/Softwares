@@ -1,8 +1,1 @@
-
-<p>Zeppelin is a web based notebook for interactive data analytics with Spark, SQL and Scala.</p>
-
-<p>Apache Zeppelin interpreter concept allows any language/data-processing-backend to be plugged
-into Zeppelin. Currently Apache Zeppelin supports many interpreters such as Apache Spark,
-Python, JDBC, Markdown and Shell.</p>
-
-<p>Zeppelin will be installed in our cloud labs , with <strong>5 GB persistent storage</strong>, which will keep all your notebooks always available.</p>
+<p><strong>Apache Zepplin</strong> is a web-based notebook that enables data-driven,interactive data analytics and collaborative documents with SQL, Scala and more .</p>

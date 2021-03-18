@@ -1,0 +1,1 @@
+<p><strong>Kafka along with Zookeeper is deployed.</strong></p>

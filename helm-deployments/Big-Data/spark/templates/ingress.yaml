@@ -1,0 +1,25 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "common.names.fullname" . }}-ingress
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    type: {{ .Values.type}}
+    workspace_id: {{ .Values.workspace_id}}
+    app.kubernetes.io/component: ingress
+  annotations:
+    {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.class }}
+  rules:
+    - host:  {{ .Release.Name }}.{{ .Values.ingress.domainName}}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ include "spark.master.service.name" . }}
+              servicePort: 80
+
+{{- end }}

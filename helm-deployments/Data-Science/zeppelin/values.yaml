@@ -1,43 +1,106 @@
-zeppelin:
-  image: dylanmei/zeppelin:0.7.2 #dr.xenon.team/public_utils/zeppelin:v2 #
+# Default values for zeppelin.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 
-resources:
-  limits:
-   cpu: "2000m"
-   memory: "4096Mi"
-  requests:
-   cpu: "2000m"
-   memory: "4096Mi"
+# Labels that will be overwrited
+workspace_id: nl123
+user_name: nlu
+user_id: nlu-123
 
-  initialDelaySeconds: 20
-  timeoutSeconds: 1
-hadoop:
-  useConfigMap: false
-  configMapName: hadoop-hadoop  #name of hadoop configMap
-  configPath: /usr/hadoop-2.7.3/etc/hadoop  #path where hadoop config is mounted
 
-spark:
-  driverMemory: 1g
-  executorMemory: 1g
-  numExecutors: 2
 
+labels:
+  app.kubernetes.io/name: zeppelin
+  app.kubernetes.io/instance: apache-zeppelin
+  app.kubernetes.io/version: 1.0.1
+  app.kubernetes.io/managed-by: helm-charts
+  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/workload: apache-zeppelin
+  app.kubernetes.io/env: uat
+  app.kubernetes.io/tier: data-visualization
+  app.kubernetes.io/project: neuronlabs
+  app.kubernetes.io/requested-by: dataops
+  types: softwares
+
+image:
+  repository: docker.io/apache/zeppelin
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "0.9.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
 persistence:
-  enabled: true  #enable true if you want pvc
-  storageClass: block2
+  enabled: true
+  size: 8Gi
+  storageClass: ""
   accessMode: ReadWriteOnce
-  zeppelinDataSize: 4Gi
-  zeppelinConfDataSize: 1Gi
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+## secret
+authentication:
+  enabled: true
+  userCredentialSecretName: ""
+  username: "zeppelin"
+  password: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
 
 ingress:
-   enabled: false
-   annotations:
-     kubernetes.io/ingress.class: traefik
-     traefik.frontend.rule.type: PathPrefixStrip
-   domainName: neuron-labs.stpi.in
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  class: traefik
+  domainName: neuralcompany.team
 
-   tls: []
-    # - secretName: zeppelin-tls-secret
-    #   hosts: zeppelin.local
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 1000m
+    memory: 1000Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
-# nodeSelector: {}
-#   kops.k8s.io/xyzgroup: nodes
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 100
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
