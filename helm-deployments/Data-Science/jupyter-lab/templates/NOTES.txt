@@ -6,6 +6,6 @@ Persistent storage is attached.
 
 Access Jupyter Lab at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a>
 
-<p>Password - <strong>akira</strong></p>
+<p>Password - <strong>Random generated password</strong></p>
 
 </pre>

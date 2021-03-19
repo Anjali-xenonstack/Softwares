@@ -3,15 +3,16 @@ kind: Service
 metadata:
   name: {{ .Release.Name }}-jupyter
   labels:
-    app: {{ template "jupyter.name" . }}
+    name: {{ template "jupyter.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
-  - name: jupyterport
-    port: 8888
+  - name: http
+    port: {{ .Values.service.port }}
+    protocol: TCP
   selector:
     app: {{ template "jupyter.name" . }}
     release: {{ .Release.Name }}
