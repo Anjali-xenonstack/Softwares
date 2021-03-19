@@ -1,4 +1,4 @@
 <p><strong>MongoDB</strong> has been deployed in standalone mode</p>
-<p><strong>Username<strong>: neuronlabs<br /></strong></strong><strong>Password</strong>: LeRci#roBTo<br /><strong>Admin-password<strong>: "Random generated password" /></strong></strong><strong>Database</strong>: neuronlabs<br /><strong>Connect to database using admin credentials:</strong> mongo admin --authenticationDatabase admin -u root -p "Random generated password"</p>
-<p><br />Check its working by using MongoDB query: <strong>show dbs<strong>;<br /></strong></strong>when you run <strong>show dbs;</strong> a list of databases will appear</p>
-<p>you can also test the connection by logging in through user "neuronlabs": <strong> mongo --authenticationDatabase "neuronlabs" -u neuronlabs -p "Random generated password"</strong></p>
+<p><strong>Username<strong>: neuronlabs<br /></strong></strong><strong>Password</strong>: "random-generated"</p>
+<p><strong>Admin-user</strong>: root<br /><strong>Admin-password<strong>: "</strong></strong>Random generated password<strong><strong>"</strong></strong><br /><br /></p>
+<p>&nbsp;</p>
