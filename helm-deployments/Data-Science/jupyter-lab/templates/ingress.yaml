@@ -1,24 +1,21 @@
 {{- if .Values.ingress.enabled -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-jupyter
+  name: {{ .Release.Name }}-jupyter-ing
   labels:
-    app: {{ template "jupyter.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+   {{- with .Values.ingress.annotations }}
   annotations:
-    {{- range $key, $value := .Values.ingress.annotations }}
-      {{ $key }}: {{ $value | quote }}
-    {{- end }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
+  ingressClassName: {{ .Values.ingress.class }}
   rules:
   - host: {{ .Release.Name }}.{{ .Values.ingress.domainName}}
     http:
       paths:
-      - path: /
+      - path: {{ .Values.ingress.path }}
         backend:
           serviceName: {{ .Release.Name }}-jupyter
-          servicePort: 8888
-{{- end -}}
+          servicePort: {{ .Values.service.port }}
+{{- end }}

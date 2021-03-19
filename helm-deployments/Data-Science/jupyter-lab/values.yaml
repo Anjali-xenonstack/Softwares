@@ -1,21 +1,40 @@
 jupyter:
-  image:  dr.xenon.team/nexahub/jupyterlab:v6 #1
+  image:  docker.io/jupyter/datascience-notebook
+  tag: python-3.8.8 #1
   password: "akira"
   resources:
     limits:
       memory: "2000Mi"
       cpu: "1500m"
+    requests:
+      memory: "300Mi"
+      cpu: "300m"
   initialDelaySeconds: 15
   timeoutSeconds: 1
 
+workspace_id: nl-123
+user_id: 123
+user_name: neuronlabs
 
+labels:
+  app.kubernetes.io/name: jupyter-lab
+  app.kubernetes.io/version: "0.1"
+  app.kubernetes.io/managed-by: helm
+  app.kubernetes.io/contact: Rajat-Raghuvanshi
+  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/env: uat
+  app.kubernetes.io/tier: "null"
+  app.kubernetes.io/project: "null"
 
-AWS_ACCESS_KEY: xxxxx
-AWS_ACCESS_SECRET: xxxx
-BUCKET_NAME: xxxx
-WORK_DIR_NAME: xxxx
+# AWS_ACCESS_KEY: ""
+# AWS_ACCESS_SECRET: ""
+# BUCKET_NAME: ""
+# WORK_DIR_NAME: ""
 
-
+selector:
+  app.kubernetes.io/name: jupyter-lab
+  app.kubernetes.io/version: "0.1"
+  app.kubernetes.io/env: uat
 
 
 persistence:
@@ -34,13 +53,22 @@ persistence:
   ##
   storageClass: rook-ceph-block
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 10Gi
 
 ingress:
    enabled: true
-   annotations:
-     kubernetes.io/ingress.class: traefik
-     traefik.frontend.rule.type: PathPrefixStrip
-   domainName: neuron-labs.stpi.in
+   class: traefik
+   annotations: {}
+     # kubernetes.io/ingress.class: traefik
+     # traefik.frontend.rule.type: PathPrefixStrip
+   domainName: neuralcompany.team
+   path: /
 
-   tls: []
+service:
+  port: 8888
+
+auth:
+  token: ""
+
+env:
+  jupyterEnableLab: yes
