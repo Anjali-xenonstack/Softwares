@@ -8,9 +8,9 @@ metadata:
 {{- toYaml . | nindent 4 }}
 {{- end }}
     type: {{ .Values.type }}
-    workspace_id: {{ .Values.workspace_id }}
-    user_id: {{ .Values.user_id }}
-    user_name: {{ .Values.user_name }}
+    workspace_id: {{ .Values.workspace_id | quote }}
+    user_id: {{ .Values.user_id | quote }}
+    user_name: {{ .Values.user_name | quote }}
   annotations:
   {{- if .Values.commonAnnotations }}
   {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
@@ -34,9 +34,9 @@ spec:
 {{- toYaml . | nindent 6 }}
 {{- end }}
       type: {{ .Values.type }}
-      workspace_id: {{ .Values.workspace_id }}
-      user_id: {{ .Values.user_id }}
-      user_name: {{ .Values.user_name }}
+      workspace_id: {{ .Values.workspace_id | quote }}
+      user_id: {{ .Values.user_id | quote }}
+      user_name: {{ .Values.user_name | quote }}
   template:
     metadata:
       name: {{ template "common.names.fullname" . }}
@@ -46,9 +46,9 @@ spec:
 {{- toYaml . | nindent 8 }}
 {{- end }}
         type: {{ .Values.type }}
-        workspace_id: {{ .Values.workspace_id }}
-        user_id: {{ .Values.user_id }}
-        user_name: {{ .Values.user_name }}
+        workspace_id: {{ .Values.workspace_id | quote }}
+        user_id: {{ .Values.user_id | quote }}
+        user_name: {{ .Values.user_name | quote }}
       {{- with .Values.primary.podAnnotations }}
       annotations: {{- toYaml . | nindent 8 }}
       {{- end }}
