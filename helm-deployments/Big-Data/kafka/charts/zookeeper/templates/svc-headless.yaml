@@ -41,6 +41,6 @@ spec:
   selector: {{- include "common.labels.matchLabels" . | nindent 4 }}
     app.kubernetes.io/component: zookeeper
     type: {{ .Values.type }}
-    workspace_id: {{ .Values.workspace_id }}
-    user_name: {{ .Values.user_name }}
-    user_id: {{ .Values.user_id }}
+    workspace_id: {{ .Values.workspace_id | quote }}
+    user_name: {{ .Values.user_name | quote }}
+    user_id: {{ .Values.user_id | quote }}

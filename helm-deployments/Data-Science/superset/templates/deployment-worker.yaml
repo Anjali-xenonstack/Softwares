@@ -24,9 +24,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     type: {{ .Values.type }}
-    workspace_id: {{ .Values.workspace_id }}
-    user_id: {{ .Values.user_id }}
-    user_name: {{ .Values.user_name }}
+    workspace_id: {{ .Values.workspace_id | quote }}
+    user_id: {{ .Values.user_id | quote }}
+    user_name: {{ .Values.user_name | quote }}
 
 {{- with .Values.labels }}
 {{ toYaml . | indent 4 }}
@@ -39,9 +39,9 @@ spec:
       app: {{ template "superset.name" . }}-worker
       release: {{ .Release.Name }}
       type: {{ .Values.type }}
-      workspace_id: {{ .Values.workspace_id }}
-      user_id: {{ .Values.user_id }}
-      user_name: {{ .Values.user_name }}
+      workspace_id: {{ .Values.workspace_id | quote }}
+      user_id: {{ .Values.user_id | quote }}
+      user_name: {{ .Values.user_name | quote }}
 
   template:
     metadata:
@@ -59,9 +59,9 @@ spec:
         app: {{ template "superset.name" . }}-worker
         release: {{ .Release.Name }}
         type: {{ .Values.type }}
-        workspace_id: {{ .Values.workspace_id }}
-        user_id: {{ .Values.user_id }}
-        user_name: {{ .Values.user_name }}
+        workspace_id: {{ .Values.workspace_id | quote }}
+        user_id: {{ .Values.user_id | quote }}
+        user_name: {{ .Values.user_name | quote }}
 
     spec:
       securityContext:

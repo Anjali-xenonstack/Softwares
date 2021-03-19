@@ -37,9 +37,9 @@ spec:
   selector:
     app: {{ template "superset.name" . }}
     type: {{ .Values.type }}
-    workspace_id: {{ .Values.workspace_id }}
-    user_id: {{ .Values.user_id }}
-    user_name: {{ .Values.user_name }}
+    workspace_id: {{ .Values.workspace_id | quote }}
+    user_id: {{ .Values.user_id | quote }}
+    user_name: {{ .Values.user_name | quote }}
 
     release: {{ .Release.Name }}
   {{- if .Values.service.loadBalancerIP }}

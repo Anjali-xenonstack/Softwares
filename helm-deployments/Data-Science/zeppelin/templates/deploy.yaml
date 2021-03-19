@@ -11,9 +11,9 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      workspace_id: {{ .Values.workspace_id }}
-      user_id: {{ .Values.user_id }}
-      user_name: {{ .Values.user_name }}
+      workspace_id: {{ .Values.workspace_id | quote }}
+      user_id: {{ .Values.user_id | quote }}
+      user_name: {{ .Values.user_name | quote }}
 
 {{- include "zeppelin.selectorLabels" . | nindent 6 }}
   strategy:
@@ -21,9 +21,9 @@ spec:
   template:
     metadata:
       labels:
-        workspace_id: {{ .Values.workspace_id }}
-        user_id: {{ .Values.user_id }}
-        user_name: {{ .Values.user_name }}
+        workspace_id: {{ .Values.workspace_id | quote }}
+        user_id: {{ .Values.user_id | quote }}
+        user_name: {{ .Values.user_name | quote }}
 {{- include "zeppelin.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "zeppelin.serviceAccountName" . }}
