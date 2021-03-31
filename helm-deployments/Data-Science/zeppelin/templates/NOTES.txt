@@ -1,4 +1,4 @@
-<p><strong>Apache Zepplin </strong> has been deployed </p>
-<p><strong><Zepplin UI: </strong>  <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
-<p><strong>Username:zeppelin </p>
-<p></strong>Password: random-generated </p>
+<p><strong>Apache Zepplin has been deployed.</strong></p>
+<p><strong>Zepplin UI</strong>:  <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a></p>
+<p><strong>Username</strong>: {{ .Values.authentication.username }}</br>
+<strong>Password</strong>: {{ .Values.authentication.password }}</p>
