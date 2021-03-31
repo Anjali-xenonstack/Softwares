@@ -69,6 +69,11 @@ cp-kafka:
   #  - name: "regcred"
   heapOptions: "-Xms512M -Xmx512M"
 
+  nodeport:
+    enabled: true
+    servicePort: 19092
+    #firstListenerPort: 31090
+
   type: softwares
   workspace_id: nl123
   user_name: nlu
