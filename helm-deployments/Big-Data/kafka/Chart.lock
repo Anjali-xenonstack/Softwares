@@ -1,9 +1,0 @@
-dependencies:
-- name: common
-  repository: https://charts.bitnami.com/bitnami
-  version: 1.4.1
-- name: zookeeper
-  repository: https://charts.bitnami.com/bitnami
-  version: 6.5.2
-digest: sha256:bc75cdcf096745c58c48aef529802d4828c6e00d74a8f07368ecc2bece821bf8
-generated: "2021-03-15T15:22:55.770972616+05:30"
