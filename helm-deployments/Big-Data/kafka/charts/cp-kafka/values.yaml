@@ -14,7 +14,7 @@ commonLabels:
   app.kubernetes.io/tier: data-streaming
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/requested-by: dataops
-  
+
 # Default values for cp-kafka.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -140,7 +140,7 @@ prometheus:
   ## JMX Exporter Configuration
   ## ref: https://github.com/prometheus/jmx_exporter
   jmx:
-    enabled: true
+    enabled: false
     image: solsson/kafka-prometheus-jmx-exporter@sha256
     imageTag: 6f82e2b0464f50da8104acd7363fb9b995001ddff77d248379f8788e78946143
     imagePullPolicy: IfNotPresent

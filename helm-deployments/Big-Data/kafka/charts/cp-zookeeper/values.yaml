@@ -42,7 +42,7 @@ imagePullPolicy: IfNotPresent
 ## Secrets must be manually created in the namespace.
 ## ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
 imagePullSecrets:
-  
+
 
 ## StatefulSet Config
 ## Start and stop pods in Parallel or OrderedReady (one-by-one.)
@@ -137,7 +137,7 @@ prometheus:
   ## JMX Exporter Configuration
   ## ref: https://github.com/prometheus/jmx_exporter
   jmx:
-    enabled: true
+    enabled: false
     image: solsson/kafka-prometheus-jmx-exporter@sha256
     imageTag: 6f82e2b0464f50da8104acd7363fb9b995001ddff77d248379f8788e78946143
     imagePullPolicy: IfNotPresent
@@ -145,4 +145,10 @@ prometheus:
 
     ## Resources configuration for the JMX exporter container.
     ## See the `resources` documentation above for details.
-    resources: {}
+    resources:
+      limits:
+        cpu: 2
+        memory: 4Gi
+      requests:
+        cpu: 250m
+        memory: 256Mi
