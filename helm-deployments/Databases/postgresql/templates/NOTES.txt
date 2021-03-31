@@ -1,7 +1,7 @@
-<p><strong>Postgres</strong> has been deployed. </p><br/>
+<p><strong>Postgres has been deployed.</strong></p>
 
-<p><strong>Admin</strong> User: postgres</p>
-<p><strong>Normal User</strong> : nluser</p>
+<p><strong>Admin User</strong>: postgres </br>
+<strong>Admin Password</strong>: {{ .Values.postgresqlPostgresPassword }} </p>
 
-<p><strong>Admin</strong> Password: Random-Generated-Password </p>
-<p><strong>Normal User</strong> Password: Random-Generated-Password </p>
+<p><strong>Normal User</strong> : {{ .Values.postgresqlUsername }}</br>
+<strong>Normal User Password</strong>: {{ .Values.postgresqlPassword }} </p>
