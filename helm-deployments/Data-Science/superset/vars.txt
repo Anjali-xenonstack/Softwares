@@ -1,0 +1,4 @@
+[
+{"var":"auth.username", "name": "username", "type": "text", "desc": "Please enter username"},
+{"var":"auth.password", "name": "password", "type": "password", "desc": "Please enter password"}
+]
