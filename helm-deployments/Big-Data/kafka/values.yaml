@@ -4,7 +4,7 @@
 cp-zookeeper:
   enabled: true
   servers: 3
-  image: confluentinc/cp-zookeeper
+  image: docker.io/confluentinc/cp-zookeeper
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -61,7 +61,7 @@ cp-zookeeper:
 cp-kafka:
   enabled: true
   brokers: 3
-  image: confluentinc/cp-enterprise-kafka
+  image: docker.io/confluentinc/cp-enterprise-kafka
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -112,7 +112,7 @@ cp-kafka:
 ## ------------------------------------------------------
 cp-schema-registry:
   enabled: false
-  image: confluentinc/cp-schema-registry
+  image: docker.io/confluentinc/cp-schema-registry
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -134,7 +134,7 @@ cp-schema-registry:
 ## ------------------------------------------------------
 cp-kafka-rest:
   enabled: false
-  image: confluentinc/cp-kafka-rest
+  image: docker.io/confluentinc/cp-kafka-rest
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
