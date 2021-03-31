@@ -1,11 +1,7 @@
-<pre>
+<p><strong>Your Jupyter Lab is deployed successfully.</strong></p>
 
-Your Jupyter Lab is deployed successfully.
-Persistent storage is attached.
-
-
-Access Jupyter Lab at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a>
-
-<p>Password - <strong>Random generated password</strong></p>
-
-</pre>
+<p>
+Persistent storage is attached.</br>
+Access Jupyter Lab at <a style="text-decoration:none;" target="blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a> </br>
+<strong>Password</strong> - {{ .Values.auth.token }}
+</p>

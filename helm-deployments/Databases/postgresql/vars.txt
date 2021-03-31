@@ -1,0 +1,6 @@
+[
+{"var":"postgresqlPostgresPassword", "name": "admin_password", "type": "password", "desc": "Please enter admin user password"},
+{"var":"postgresqlUsername", "name": "username", "type": "text", "desc": "Please enter username"},
+{"var":"postgresqlPassword", "name": "password", "type": "password", "desc": "Please enter user password"},
+{"var":"postgresqlDatabase", "name": "database_name", "type": "text", "desc": "Please enter database name"}
+]
