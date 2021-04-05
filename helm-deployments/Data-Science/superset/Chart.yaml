@@ -22,4 +22,5 @@ maintainers:
   - name: Chuan-Yen Chiang
     email: cychiang0823@gmail.com
     url: https://github.com/cychiang
+icon: https://superset.apache.org/static/superset-logo-horiz-apache-ac1a91de27eed9f5c53944c555a39c6f.svg
 version: 0.1.0
