@@ -18,7 +18,7 @@ spec:
   selector:
     app: {{ template "cp-kafka.name" . }}
     release: {{ .Release.Name }}
-    type: {{ .Values.type }}
-    workspace_id: {{ .Values.workspace_id | quote }}
-    user_id: {{ .Values.user_id | quote }}
-    user_name: {{ .Values.user_name | quote }}
+    type: {{ .Values.global.type }}
+    workspace_id: {{ .Values.global.workspace_id | quote }}
+    user_id: {{ .Values.global.user_id | quote }}
+    user_name: {{ .Values.global.user_name | quote }}

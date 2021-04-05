@@ -89,11 +89,11 @@ persistence:
   ##
   ## Size for Data dir, where ZooKeeper will store the in-memory database snapshots.
   dataDirSize: 5Gi
-  dataDirStorageClass: rook-ceph-block
+  dataDirStorageClass: ""
 
   ## Size for data log dir, which is a dedicated log device to be used, and helps avoid competition between logging and snaphots.
   dataLogDirSize: 5Gi
-  dataLogDirStorageClass: rook-ceph-block
+  dataLogDirStorageClass: ""
 
 
 ## Pod Compute Resources
