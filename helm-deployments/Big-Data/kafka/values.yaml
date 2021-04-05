@@ -1,3 +1,11 @@
+# global Values
+## Add run-time labels
+global:
+  type: softwares
+  workspace_id: nl123
+  user_name: nlu
+  user_id: nlu-123
+
 ## ------------------------------------------------------
 ## Zookeeper
 ## ------------------------------------------------------
@@ -12,10 +20,7 @@ cp-zookeeper:
   #  - name: "regcred"
   heapOptions: "-Xms512M -Xmx512M"
 
-  type: softwares
-  workspace_id: nl123
-  user_name: nlu
-  user_id: nlu-123
+
 
   commonLabels:
     app.kubernetes.io/name: kafka
@@ -36,10 +41,10 @@ cp-zookeeper:
     ##
     ## Size for Data dir, where ZooKeeper will store the in-memory database snapshots.
     dataDirSize: 10Gi
-    # dataDirStorageClass: ""
+    dataDirStorageClass: ""
     ## Size for data log dir, which is a dedicated log device to be used, and helps avoid competition between logging and snaphots.
     dataLogDirSize: 10Gi
-    # dataLogDirStorageClass: ""
+    dataLogDirStorageClass: ""
 
   # TODO: find correct security context for user in this zk-image
   securityContext:
@@ -74,10 +79,6 @@ cp-kafka:
     servicePort: 19092
     #firstListenerPort: 31090
 
-  type: softwares
-  workspace_id: nl123
-  user_name: nlu
-  user_id: nlu-123
 
   commonLabels:
     app.kubernetes.io/name: kafka
@@ -92,7 +93,7 @@ cp-kafka:
 
   persistence:
     enabled: true
-    # storageClass: ""
+    storageClass: ""
     size: 5Gi
     disksPerBroker: 1
   resources:
@@ -119,7 +120,7 @@ cp-schema-registry:
   imagePullSecrets:
   #  - name: "regcred"
   heapOptions: "-Xms512M -Xmx512M"
-  resources: 
+  resources:
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
    limits:
