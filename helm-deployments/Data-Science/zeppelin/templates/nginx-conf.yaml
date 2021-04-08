@@ -14,7 +14,6 @@ data:
         default upgrade;
         '' close;
       }
-
       # first server block will be default. Proxy zeppelin server.
       server {
         listen 80;
@@ -27,7 +26,6 @@ data:
           proxy_redirect http://localhost $scheme://SERVICE_DOMAIN;
         }
       }
-
       # match request domain [port]-[service].[serviceDomain]
       # proxy extra service such as spark-ui
       server {
@@ -41,7 +39,6 @@ data:
           proxy_set_header Upgrade $http_upgrade;
           proxy_set_header Connection $connection_upgrade;
           proxy_redirect http://localhost $scheme://SERVICE_DOMAIN;
-
           # redirect rule for spark ui. 302 redirect response misses port number of service domain
           proxy_redirect ~(http:[/]+[0-9]+[-][^-]+[-][^.]+)[^/]+(\/jobs.*) $1.SERVICE_DOMAIN$2;
         }
