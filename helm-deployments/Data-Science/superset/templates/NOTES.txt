@@ -1,9 +1,4 @@
+<p><strong> Apache Superset</strong> has been launched.</p>
+<p><strong>Superset UI:</strong> <a style="text-decoration: none;" href="https://{{ .Name }}.{{ .Domain }}" target="_blank">https://{{ .Name }}.{{ .Domain }}</a> <br /><strong>Username</strong>: {{ .Values.auth.username }} <br /><strong>Password</strong>: {{ .Values.auth.password }}</p>
 <pre>
-<p> Apache Superset has been launched. </p>
-<p> <strong>Superset UI:</strong> <a style="text-decoration:none;" target="_blank" href="https://{{ .Name }}.{{ .Domain }}">https://{{ .Name }}.{{ .Domain }}</a> </P>
-<p><strong>Username</strong>: {{ .Values.auth.username }}</br>
-<strong>Password</strong>: {{ .Values.auth.password }}</p>
-
-<p>Make sure to change the default password, go to setting/user/info and chnage the password </p>
-
 </pre>
