@@ -15,5 +15,5 @@ spec:
   selector:
     workspace_id: {{ .Values.workspace_id | quote }}
     user_id: {{ .Values.user_id | quote }}
-    user_name: {{ .Values.user_name | quote }}
+    user_name: {{ .Values.user_name | quote}}
     {{- include "zeppelin.selectorLabels" . | nindent 4 }}
