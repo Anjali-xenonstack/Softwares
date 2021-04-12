@@ -48,7 +48,7 @@ commonlabels:
   app.kubernetes.io/version: "3.0.1"
   app.kubernetes.io/managed-by: helm
   app.kubernetes.io/contact: nikhil
-  app.kubernetes.io/env: uat
+  app.kubernetes.io/env: prod
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/tier: backend
   app.kubernetes.io/requested-by: dataops
@@ -124,8 +124,8 @@ master:
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     limits:
-      cpu: 1000m
-      memory: 1000Mi
+      cpu: 3000m
+      memory: 3000Mi
     requests:
       cpu: 250m
       memory: 256Mi
@@ -237,8 +237,8 @@ worker:
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     limits:
-      cpu: 1000m
-      memory: 1000Mi
+      cpu: 2000m
+      memory: 2000Mi
     requests:
       cpu: 250m
       memory: 256Mi
@@ -344,7 +344,7 @@ ingress:
   ## Set to true to enable ingress record generation
   ##
   enabled: false
-  domainName: neuralcompany.work
+  domainName:
 
   ## Set this to true in order to add the corresponding annotations for cert-manager
   ##
@@ -398,7 +398,7 @@ metrics:
     additionalLabels: {}
 
   ## Custom PrometheusRule to be defined
-  ## The value is evaluated as a template, so, for example, the value can depend on .Release or .Chart
+  ## The value is evalproded as a template, so, for example, the value can depend on .Release or .Chart
   ## ref: https://github.com/coreos/prometheus-operator#customresourcedefinitions
   ##
   prometheusRule:

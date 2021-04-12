@@ -5,3 +5,5 @@
 
 <p><strong>Normal User</strong> : {{ .Values.postgresqlUsername }}</br>
 <strong>Normal User Password</strong>: {{ .Values.postgresqlPassword }} </p>
+<p><strong>Postgres Host:</strong>{{.IP}}</p>
+<p><strong>Postgres Port:</strong>{{.NodePort}}</p>

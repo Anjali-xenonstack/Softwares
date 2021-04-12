@@ -12,14 +12,14 @@ user_id: nlu-123
 labels:
   app.kubernetes.io/name: zeppelin
   app.kubernetes.io/instance: apache-zeppelin
-  app.kubernetes.io/version: 1.0.1
+  app.kubernetes.io/version: 0.9.0
   app.kubernetes.io/managed-by: helm-charts
   app.kubernetes.io/contact: nikhil
   app.kubernetes.io/workload: apache-zeppelin
-  app.kubernetes.io/env: uat
+  app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-visualization
   app.kubernetes.io/project: neuronlabs
-  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/requested-by: na
   types: softwares
 
 image:
@@ -35,7 +35,7 @@ fullnameOverride: ""
 replicaCount: 1
 persistence:
   enabled: true
-  size: 8Gi
+  size: 10Gi
   storageClass: ""
   accessMode: ReadWriteOnce
 
@@ -77,8 +77,8 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  class: traefik
-  domainName: neuralcompany.team
+  class: nginx
+  domainName:
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious

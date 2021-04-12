@@ -113,10 +113,11 @@ service:
 
 ingress:
   enabled: true
+  class: nginx
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  domainName: neuralcompany.team
+  domainName:
   # path: /
   # hosts:
   #   - superset.neuralcompany.work
@@ -187,10 +188,10 @@ labels:
   app.kubernetes.io/managed-by: helm-charts
   app.kubernetes.io/contact: nikhil
   app.kubernetes.io/workload: apache-superset
-  app.kubernetes.io/env: uat
+  app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-visualization
   app.kubernetes.io/project: neuronlabs
-  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/requested-by: na
 
 
 ##

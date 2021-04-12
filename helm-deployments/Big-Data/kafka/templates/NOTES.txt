@@ -1,1 +1,3 @@
 <p><strong>Kafka along with Zookeeper is deployed.</strong></p>
+<p><strong>Kafka Host:</strong> {{.IP}} </p>
+<p><strong>Kafka Port:</strong> {{.external-brokerNodePort}} </p>

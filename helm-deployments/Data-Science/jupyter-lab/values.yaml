@@ -18,13 +18,13 @@ user_name: neuronlabs
 
 labels:
   app.kubernetes.io/name: jupyter-lab
-  app.kubernetes.io/version: "0.1"
+  app.kubernetes.io/version: "3.8.8"
   app.kubernetes.io/managed-by: helm
-  app.kubernetes.io/contact: Rajat-Raghuvanshi
-  app.kubernetes.io/requested-by: dataops
-  app.kubernetes.io/env: uat
-  app.kubernetes.io/tier: "null"
-  app.kubernetes.io/project: "null"
+  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/requested-by: na
+  app.kubernetes.io/env: prod
+  app.kubernetes.io/tier: notebook
+  app.kubernetes.io/project: neuronlabs
 
 # AWS_ACCESS_KEY: ""
 # AWS_ACCESS_SECRET: ""
@@ -33,8 +33,8 @@ labels:
 
 selector:
   app.kubernetes.io/name: jupyter-lab
-  app.kubernetes.io/version: "0.1"
-  app.kubernetes.io/env: uat
+  app.kubernetes.io/version: "3.8.8"
+  app.kubernetes.io/env: prod
 
 
 persistence:
@@ -51,17 +51,17 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: rook-ceph-block
+  storageClass:
   accessMode: ReadWriteOnce
-  size: 10Gi
+  size: 20Gi
 
 ingress:
    enabled: true
-   class: traefik
+   class: nginx
    annotations: {}
      # kubernetes.io/ingress.class: traefik
      # traefik.frontend.rule.type: PathPrefixStrip
-   domainName: neuralcompany.team
+   domainName:
    path: /
 
 service:
