@@ -1,3 +1,5 @@
 <p><strong>Kafka along with Zookeeper is deployed.</strong></p>
-<p><strong>Kafka Host:</strong> {{.IP}} </p>
-<p><strong>Kafka Port:</strong> {{.external-brokerNodePort}} </p>
+<p><strong>Kafka Host:</strong> {{.IP}}</p>
+<p><strong>Kafka Port:</strong> {{ .NodePort}}</p>
+<p><strong>Test Kafka's working using kafkacat utility:</strong></p>
+<p>kafkacat -b {{.IP}}:{{ .NodePort}} -L</p>

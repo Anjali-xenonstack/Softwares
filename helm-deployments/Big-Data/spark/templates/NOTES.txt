@@ -1,7 +1,5 @@
-<pre>
-<p>Your Apache Spark has been succesfully launched </p>
-<p>Connect to spark master using the following host port.
+<p>Your Apache Spark has been successfully launched</p>
+<p>Connect to spark master using the following host port.</p>
 <p><strong>Host:</strong>{{.IP}}</p>
 <p><strong>Port:</strong>{{.clusterNodePort}}</p>
-<p><strong>Open Spark master UI:</strong> {{.http}}</p>
-</pre>
+<p><strong>Access Spark master by clicking here: </strong><a href="http://{{.IP}}:{{.http}}">Spark UI&nbsp;</a></p>
