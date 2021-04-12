@@ -1,4 +1,9 @@
 <p><strong>MongoDB has been deployed in standalone mode.</strong></p>
 <p><strong>Username: </strong> {{ .Values.auth.username }} <br /><strong>Password</strong>: {{ .Values.auth.password }}<br /><strong>Admin-password</strong>: {{ .Values.auth.rootPassword }}<br /><strong>Database</strong>: {{ .Values.auth.database }}</p>
-<p><strong> Login with root user:<br /></strong>Connect to database using admin credentials:<br /><strong>"mongo admin --authenticationDatabase admin -u root -p {{ .Values.auth.rootPassword }}"</strong><em><br /></em></p>
+<p><strong>Host:</strong>{{.IP}}</p>
+<p><strong>Port:</strong>{{.NodePort}}</p>
+<p><strong> Login in with root user:<br /></strong>Connect to database using admin credentials:<br /><strong>"mongo admin --authenticationDatabase admin -u root -p {{ .Values.auth.rootPassword }}"</strong><em><br /></em></p>
 <p><strong> Login with normal user:&nbsp;</strong><br />You can also test the connection by logging in through user {{ .Values.auth.username }}.<br /><strong>"mongo &mdash;authenticationDatabase {{ .Values.auth.database }} -u {{ .Values.auth.username }} -p {{ .Values.auth.password }}"</strong></p>
+<p><strong>
+  Login using Host and Port:</strong> mongo -u {{ .Values.auth.username }}  -p {{ .Values.auth.password }}  {{.IP}}:{{.mongodbNodePort}} --authenticationDatabase {{ .Values.auth.database }}
+</p>
