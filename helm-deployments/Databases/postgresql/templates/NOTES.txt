@@ -1,7 +1,6 @@
 <p><strong>Postgres has been deployed.</strong></p>
-
-<p><strong>Admin User</strong>: postgres </br>
-<strong>Admin Password</strong>: {{ .Values.postgresqlPostgresPassword }} </p>
-
-<p><strong>Normal User</strong> : {{ .Values.postgresqlUsername }}</br>
-<strong>Normal User Password</strong>: {{ .Values.postgresqlPassword }} </p>
+<p><strong>Admin User</strong>: postgres <strong>Admin Password</strong>: {{ .Values.postgresqlPostgresPassword }}</p>
+<p><strong>Normal User</strong> : {{ .Values.postgresqlUsername }} <strong>Normal User Password</strong>: {{ .Values.postgresqlPassword }}</p>
+<p><strong>Postgres Host:</strong>{{.IP}}</p>
+<p><strong>Postgres Port:</strong>{{.NodePort}}</p>
+<p><strong>Coonect to postgres:<br /><br /></strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h {{.IP}} -p {{.NodePort}}<strong><br /><br /></strong></p>
