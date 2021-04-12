@@ -58,8 +58,8 @@ persistence:
 ingress:
    enabled: true
    class: nginx
-   annotations: {}
-     # kubernetes.io/ingress.class: traefik
+   annotations: 
+     kubernetes.io/ingress.class: traefik
      # traefik.frontend.rule.type: PathPrefixStrip
    domainName:
    path: /
