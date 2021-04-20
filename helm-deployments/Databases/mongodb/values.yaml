@@ -15,10 +15,10 @@
 image:
   ## Bitnami MongoDB registry
   ##
-  registry: docker.io
+  registry: dr.xenon.team
   ## Bitnami MongoDB image name
   ##
-  repository: bitnami/mongodb
+  repository: public_utils/nl-mongodb
   ## Bitnami MongoDB image tag
   ## ref: https://hub.docker.com/r/bitnami/mongodb/tags/
   ##
@@ -230,25 +230,24 @@ workspace_id: nl-123
 user_id: 123
 user_name: neuronlabs
 labels:
-
   app.kubernetes.io/name: mongodb
   app.kubernetes.io/instance: neuron-mongodb
   app.kubernetes.io/version: 4.4.2
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: mongodb-database
-  app.kubernetes.io/env: uat
+  app.kubernetes.io/env: prod
   app.kubernetes.io/tier: database
   app.kubernetes.io/project: neuronlabs
-  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/requested-by: na
   type: softwares
-  
+
 selector:
   app.kubernetes.io/name: mongodb
   app.kubernetes.io/version: 4.4.2
-  app.kubernetes.io/env: uat
+  app.kubernetes.io/env: prod
   type: softwares
-  
+
 
 ## Number of MongoDB replicas to deploy.
 ## Ignored when mongodb.architecture=standalone
@@ -1000,12 +999,12 @@ metrics:
       app.kubernetes.io/instance: mongodb-metrics-exporter
       app.kubernetes.io/version: 0.11.0
       app.kubernetes.io/managed-by: helm-charts
-      app.kubernetes.io/contact: nikhil
+      app.kubernetes.io/contact: rajat
       app.kubernetes.io/workload: mongodb
-      app.kubernetes.io/env: uat
+      app.kubernetes.io/env: prod
       app.kubernetes.io/tier: metrics-exporter
       app.kubernetes.io/project: neuronlabs
-      app.kubernetes.io/requested-by: dataops
+      app.kubernetes.io/requested-by: na
 
   ## Custom PrometheusRule to be defined
   ## ref: https://github.com/coreos/prometheus-operator#customresourcedefinitions

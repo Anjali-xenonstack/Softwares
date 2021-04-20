@@ -14,7 +14,7 @@ labels:
   app.kubernetes.io/instance: apache-zeppelin
   app.kubernetes.io/version: 0.9.0
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: apache-zeppelin
   app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-visualization
@@ -23,7 +23,7 @@ labels:
   types: softwares
 
 image:
-  repository: docker.io/apache/zeppelin
+  repository: dr.xenon.team/public_utils/nl-zeppelin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.9.0"
@@ -75,10 +75,11 @@ service:
 ingress:
   enabled: true
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  class: nginx
-  domainName:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  domainName: neuronlabs.stpi.in
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious

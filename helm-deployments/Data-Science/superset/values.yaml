@@ -100,7 +100,7 @@ configMountPath: "/app/pythonpath"
 extraConfigMountPath: "/app/configs"
 
 image:
-  repository: docker.io/apache/superset
+  repository: dr.xenon.team/public_utils/nl-superset
   tag: 1.0.1
   pullPolicy: IfNotPresent
 
@@ -113,11 +113,12 @@ service:
 
 ingress:
   enabled: true
-  class: nginx
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  domainName:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  domainName: neuronlabs.stpi.in
   # path: /
   # hosts:
   #   - superset.neuralcompany.work
@@ -186,7 +187,7 @@ labels:
   app.kubernetes.io/instance: apache-superset
   app.kubernetes.io/version: 1.0.1
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: apache-superset
   app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-visualization

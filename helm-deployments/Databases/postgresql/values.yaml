@@ -13,8 +13,8 @@ global:
 ## ref: https://hub.docker.com/r/bitnami/postgresql/tags/
 ##
 image:
-  registry: docker.io
-  repository: bitnami/postgresql
+  registry: dr.xenon.team
+  repository: public_utils/nl-postgres
   tag: 11.11.0-debian-10-r24
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -483,10 +483,10 @@ primary:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: uat
+    app.kubernetes.io/env: prod
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
-    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/requested-by: na
     app.kubernetes.io/component: primary
     role: primary
   annotations: {}
@@ -494,10 +494,10 @@ primary:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: uat
+    app.kubernetes.io/env: prod
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
-    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/requested-by: na
     app.kubernetes.io/component: primary
     role: primary
   podAnnotations: {}
@@ -594,10 +594,10 @@ readReplicas:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: uat
+    app.kubernetes.io/env: prod
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
-    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/requested-by: na
     app.kubernetes.io/component: read
     role: read
   annotations: {}
@@ -605,10 +605,10 @@ readReplicas:
     app.kubernetes.io/version: 11.11.0
     app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: postgres-database
-    app.kubernetes.io/env: uat
+    app.kubernetes.io/env: prod
     app.kubernetes.io/tier: database
     app.kubernetes.io/project: neuronlabs
-    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/requested-by: na
     app.kubernetes.io/component: read
     role: read
   podAnnotations: {}

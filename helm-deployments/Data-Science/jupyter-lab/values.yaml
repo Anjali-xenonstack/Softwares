@@ -1,5 +1,5 @@
 jupyter:
-  image:  docker.io/jupyter/datascience-notebook
+  image: dr.xenon.team/public_utils/nl-jupyter-notebook
   tag: python-3.8.8 #1
   password: "akira"
   resources:
@@ -20,7 +20,7 @@ labels:
   app.kubernetes.io/name: jupyter-lab
   app.kubernetes.io/version: "3.8.8"
   app.kubernetes.io/managed-by: helm
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/requested-by: na
   app.kubernetes.io/env: prod
   app.kubernetes.io/tier: notebook
@@ -57,11 +57,12 @@ persistence:
 
 ingress:
    enabled: true
-   class: nginx
-   annotations: 
-     kubernetes.io/ingress.class: traefik
-     # traefik.frontend.rule.type: PathPrefixStrip
-   domainName:
+   annotations:
+     cert-manager.io/cluster-issuer: letsencrypt-prod
+     kubernetes.io/ingress.class: nginx
+     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+   domainName: neuronlabs.stpi.in
    path: /
 
 service:

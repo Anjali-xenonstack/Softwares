@@ -16,8 +16,8 @@ user_name: "nlu"
 ## ref: https://hub.docker.com/r/bitnami/spark/tags/
 ##
 image:
-  registry: docker.io
-  repository: bitnami/spark
+  registry: dr.xenon.team
+  repository: public_utils/nl-spark
   tag: 3.0.1-debian-10-r87
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -47,11 +47,11 @@ image:
 commonlabels:
   app.kubernetes.io/version: "3.0.1"
   app.kubernetes.io/managed-by: helm
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/env: prod
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/tier: backend
-  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/requested-by: na
 
 
 ## Spark master specific configuration

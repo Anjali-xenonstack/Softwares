@@ -17,15 +17,15 @@ labels:
   app.kubernetes.io/instance: postgres
   app.kubernetes.io/version: 11.10.0
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: neuronlabs-superset-postgres
-  app.kubernetes.io/env: dev
+  app.kubernetes.io/env: prod
   app.kubernetes.io/tier: database
   app.kubernetes.io/project: neuronlabs
-  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/requested-by: na
 image:
-  registry: docker.io
-  repository: bitnami/postgresql
+  registry: dr.xenon.team
+  repository: public_utils/nl-postgres
   tag: 11.10.0-debian-10-r24
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'

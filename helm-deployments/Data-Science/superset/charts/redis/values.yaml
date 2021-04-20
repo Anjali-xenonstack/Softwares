@@ -13,8 +13,8 @@ global:
 ## ref: https://hub.docker.com/r/bitnami/redis/tags/
 ##
 image:
-  registry: docker.io
-  repository: bitnami/redis
+  registry: dr.xenon.team
+  repository: public_utils/nl-redis
   ## Bitnami Redis image tag
   ## ref: https://github.com/bitnami/bitnami-docker-redis#supported-tags-and-respective-dockerfile-links
   ##
@@ -45,13 +45,13 @@ labels:
   app.kubernetes.io/instance: redis-worker
   app.kubernetes.io/version: 6.0.9
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: neuronlabs-superset-redis
-  app.kubernetes.io/env: dev
+  app.kubernetes.io/env: prod
   app.kubernetes.io/tier: database
   app.kubernetes.io/project: neuronlabs
-  app.kubernetes.io/requested-by: dataops
-  
+  app.kubernetes.io/requested-by: na
+
 ## Cluster settings
 cluster:
   enabled: true

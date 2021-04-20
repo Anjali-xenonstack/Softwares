@@ -16,9 +16,13 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  
+  tls:
+    - hosts:
+      - www.{{ .Release.Name }}.{{ .Values.ingress.domainName}}
+      - {{ .Release.Name }}.{{ .Values.ingress.domainName}}
+      secretName: {{ .Release.Name }}-secret
   rules:
-    - host: {{ .Release.Name }}.{{ .Values.ingress.domainName}}
+    - host: www.{{ .Release.Name }}.{{ .Values.ingress.domainName}}
       http:
         paths:
           - path: /
