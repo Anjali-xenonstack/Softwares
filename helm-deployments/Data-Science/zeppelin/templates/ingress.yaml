@@ -12,11 +12,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - www.{{ .Release.Name }}.{{ .Values.ingress.domainName}}
       - {{ .Release.Name }}.{{ .Values.ingress.domainName}}
       secretName: {{ .Release.Name }}-secret
   rules:
-    - host: www.{{ .Release.Name }}.{{ .Values.ingress.domainName}}
+    - host: {{ .Release.Name }}.{{ .Values.ingress.domainName}}
       http:
         paths:
           - path: /
