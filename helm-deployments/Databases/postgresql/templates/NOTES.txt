@@ -3,4 +3,4 @@
 <p><strong>Normal User</strong> : {{ .Values.postgresqlUsername }} <strong>Normal User Password</strong>: {{ .Values.postgresqlPassword }}</p>
 <p><strong>Postgres Host:</strong>{{.IP}}</p>
 <p><strong>Postgres Port:</strong>{{.NodePort}}</p>
-<p><strong>Coonect to postgres:<br /><br /></strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h {{.IP}} -p {{.NodePort}}<strong><br /><br /></strong></p>
+<p><strong>Connect to postgres:<br /><br /></strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h {{.IP}} -p {{.NodePort}}<strong><br /><br /></strong></p>
