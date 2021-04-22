@@ -4,8 +4,8 @@ jupyter:
   password: "akira"
   resources:
     limits:
-      memory: "2000Mi"
-      cpu: "1500m"
+      memory: "2048Mi"
+      cpu: "2000m"
     requests:
       memory: "300Mi"
       cpu: "300m"
