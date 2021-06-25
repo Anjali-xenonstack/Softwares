@@ -95,10 +95,17 @@ persistence:
   ##
   # storageClass: "-"
 
-  ## Superset data Persistent Volume existing claim name
-  ## Requires server.persistence.enabled: true
-  ## If defined, PVC must be created manually before volume will be bound
-  existingClaim: ""
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 5000m
+    memory: 5000Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
 
 ## Expose the superset service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.

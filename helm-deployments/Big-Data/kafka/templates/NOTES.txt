@@ -1,5 +1,9 @@
-<p><strong>Kafka along with Zookeeper is deployed.</strong></p>
-<p><strong>Kafka Host:</strong> {{.IP}}</p>
-<p><strong>Kafka Port:</strong> {{ .NodePort}}</p>
-<p><strong>Test Kafka's working using kafkacat utility:</strong></p>
-<p>kafkacat -b {{.IP}}:{{ .NodePort}} -L</p>
+<p><strong>Kafka along with Zookeeper is deployed. You can access Kafka and Zookeeper through the following Host IP and Port details:</strong></p>
+<p><strong>Host IP:</strong> {{.IP}}</p>
+<p><strong>Kafka Broker-1 Port:</strong> {{ .CpKafka0Nodeport }}</p>
+<p><strong>Kafka Broker-2 Port:</strong> {{ .CpKafka1Nodeport }}</p>
+<p><strong>Kafka Broker-3 Port:</strong> {{ .CpKafka2Nodeport }}</p>
+<p><strong>Zookeeper Port:</strong> {{ .CpZookeeper}}</p>
+<p><strong>You can list the current state of the Kafka cluster and its topics, partitions, replicas and in-sync replicas using kafkacat utility:</strong></p>
+<p>kafkacat -b {{.IP}}:{{ .CpKafka0Nodeport }},{{.IP}}:{{ .CpKafka1Nodeport }},{{.IP}}:{{ .CpKafka2Nodeport }} -L</p>
+
