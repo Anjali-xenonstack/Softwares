@@ -12,18 +12,18 @@ user_id: nlu-123
 labels:
   app.kubernetes.io/name: zeppelin
   app.kubernetes.io/instance: apache-zeppelin
-  app.kubernetes.io/version: 1.0.1
+  app.kubernetes.io/version: 0.9.0
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: apache-zeppelin
-  app.kubernetes.io/env: uat
+  app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-visualization
   app.kubernetes.io/project: neuronlabs
-  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/requested-by: na
   types: softwares
 
 image:
-  repository: docker.io/apache/zeppelin
+  repository: dr.xenon.team/public_utils/nl-zeppelin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.9.0"
@@ -35,7 +35,7 @@ fullnameOverride: ""
 replicaCount: 1
 persistence:
   enabled: true
-  size: 8Gi
+  size: 10Gi
   storageClass: ""
   accessMode: ReadWriteOnce
 
@@ -74,11 +74,12 @@ service:
 
 ingress:
   enabled: true
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  class: traefik
-  domainName: neuralcompany.team
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  domainName: neuronlabs.stpi.in
+  secretName: neurallabs-stpi-in
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -86,8 +87,8 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 1000m
-    memory: 1000Mi
+    cpu: 2000m
+    memory: 2048Mi
   requests:
     cpu: 100m
     memory: 128Mi

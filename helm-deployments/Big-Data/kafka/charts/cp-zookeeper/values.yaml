@@ -8,12 +8,12 @@ commonLabels:
   app.kubernetes.io/instance: neuronlabs-kafka
   app.kubernetes.io/version: 2.6.0
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nirmal
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: apache-kafka
-  app.kubernetes.io/env: dev
+  app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-streaming
   app.kubernetes.io/project: neuronlabs
-  app.kubernetes.io/requested-by: dataops
+  app.kubernetes.io/requested-by: na
 
 ## Default values for cp-zookeeper.
 ## This is a YAML-formatted file.

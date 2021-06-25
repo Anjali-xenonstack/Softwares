@@ -12,7 +12,7 @@ global:
 cp-zookeeper:
   enabled: true
   servers: 3
-  image: docker.io/confluentinc/cp-zookeeper
+  image: dr.xenon.team/public_utils/nl-cp-zookeeper
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -27,12 +27,12 @@ cp-zookeeper:
     app.kubernetes.io/instance: neuronlabs-kafka
     app.kubernetes.io/version: 2.6.0
     app.kubernetes.io/managed-by: helm-charts
-    app.kubernetes.io/contact: nikhil
+    app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: apache-kafka
-    app.kubernetes.io/env: uat
+    app.kubernetes.io/env: prod
     app.kubernetes.io/tier: data-streaming
     app.kubernetes.io/project: neuronlabs
-    app.kubernetes.io/requested-by: dataops
+    app.kubernetes.io/requested-by: na
 
   persistence:
     enabled: true
@@ -40,10 +40,10 @@ cp-zookeeper:
     ## production servers this number should likely be much larger.
     ##
     ## Size for Data dir, where ZooKeeper will store the in-memory database snapshots.
-    dataDirSize: 10Gi
+    dataDirSize: 30Gi
     dataDirStorageClass: ""
     ## Size for data log dir, which is a dedicated log device to be used, and helps avoid competition between logging and snaphots.
-    dataLogDirSize: 10Gi
+    dataLogDirSize: 30Gi
     dataLogDirStorageClass: ""
 
   # TODO: find correct security context for user in this zk-image
@@ -66,7 +66,7 @@ cp-zookeeper:
 cp-kafka:
   enabled: true
   brokers: 3
-  image: docker.io/confluentinc/cp-enterprise-kafka
+  image: dr.xenon.team/public_utils/nl-cp-kafka
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -84,7 +84,7 @@ cp-kafka:
     # "default.replication.factor": 3
     # "min.insync.replicas": 2
     # "auto.create.topics.enable": false
-    "log.retention.hours": 24
+    "log.retention.hours": 1
     ## Options required for external access via NodePort
     ## ref:
     ## - http://kafka.apache.org/documentation/#security_configbroker
@@ -99,9 +99,9 @@ cp-kafka:
     app.kubernetes.io/instance: neuronlabs-kafka
     app.kubernetes.io/version: 2.6.0
     app.kubernetes.io/managed-by: helm-charts
-    app.kubernetes.io/contact: nikhil
+    app.kubernetes.io/contact: rajat
     app.kubernetes.io/workload: apache-kafka
-    app.kubernetes.io/env: uat
+    app.kubernetes.io/env: prod
     app.kubernetes.io/tier: data-streaming
     app.kubernetes.io/project: neuronlabs
 
@@ -127,7 +127,7 @@ cp-kafka:
 ## ------------------------------------------------------
 cp-schema-registry:
   enabled: false
-  image: docker.io/confluentinc/cp-schema-registry
+  image: dr.xenon.team/public_utils/nl-cp-schema-registry
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -138,8 +138,8 @@ cp-schema-registry:
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
    limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 500m
+    memory: 512Mi
    requests:
     cpu: 100m
     memory: 128Mi
@@ -149,7 +149,7 @@ cp-schema-registry:
 ## ------------------------------------------------------
 cp-kafka-rest:
   enabled: false
-  image: docker.io/confluentinc/cp-kafka-rest
+  image: dr.xenon.team/public_utils/nl-cp-kafka-rest
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -160,8 +160,8 @@ cp-kafka-rest:
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
    limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 500m
+    memory: 512Mi
    requests:
     cpu: 100m
     memory: 128Mi
@@ -171,7 +171,7 @@ cp-kafka-rest:
 ## ------------------------------------------------------
 cp-kafka-connect:
   enabled: false
-  image: confluentinc/cp-kafka-connect
+  image: dr.xenon.team/public_utils/nl-cp-kafka-connect
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -182,8 +182,8 @@ cp-kafka-connect:
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
    limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 500m
+    memory: 512Mi
    requests:
     cpu: 100m
     memory: 128Mi
@@ -193,7 +193,7 @@ cp-kafka-connect:
 ## ------------------------------------------------------
 cp-ksql-server:
   enabled: false
-  image: confluentinc/cp-ksqldb-server
+  image: dr.xenon.team/public_utils/nl-cp-ksqldb-server
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -208,7 +208,7 @@ cp-ksql-server:
 ## ------------------------------------------------------
 cp-control-center:
   enabled: false
-  image: confluentinc/cp-enterprise-control-center
+  image: dr.xenon.team/public_utils/nl-cp-control-center
   imageTag: 6.0.1
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -219,8 +219,8 @@ cp-control-center:
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
    limits:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 500m
+    memory: 512Mi
    requests:
     cpu: 100m
     memory: 128Mi
