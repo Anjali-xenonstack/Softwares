@@ -79,7 +79,7 @@ ingress:
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
   domainName: neuronlabs.stpi.in
-  secretName: neurallabs-stpi-in
+  secretName: neuronlabs-stpi-in
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
