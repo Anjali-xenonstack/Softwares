@@ -62,7 +62,7 @@ ingress:
      nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
      nginx.ingress.kubernetes.io/ssl-redirect: "true"
    domainName: neuronlabs.stpi.in
-   secretName: neurallabs-stpi-in
+   secretName: neuronlabs-stpi-in
    path: /
 
 service:
