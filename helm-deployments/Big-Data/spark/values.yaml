@@ -135,14 +135,14 @@ master:
   ##
   livenessProbe:
     enabled: true
-    initialDelaySeconds: 180
+    initialDelaySeconds: 300
     periodSeconds: 20
     timeoutSeconds: 5
     failureThreshold: 6
     successThreshold: 1
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 30
+    initialDelaySeconds: 300
     periodSeconds: 10
     timeoutSeconds: 5
     failureThreshold: 6
@@ -248,14 +248,14 @@ worker:
   ##
   livenessProbe:
     enabled: true
-    initialDelaySeconds: 180
+    initialDelaySeconds: 300
     periodSeconds: 20
     timeoutSeconds: 5
     failureThreshold: 6
     successThreshold: 1
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 30
+    initialDelaySeconds: 300
     periodSeconds: 10
     timeoutSeconds: 5
     failureThreshold: 6
