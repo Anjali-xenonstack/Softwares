@@ -248,16 +248,16 @@ worker:
   ##
   livenessProbe:
     enabled: true
-    initialDelaySeconds: 300
-    periodSeconds: 300
-    timeoutSeconds: 300
+    initialDelaySeconds: 420
+    periodSeconds: 420
+    timeoutSeconds: 420
     failureThreshold: 6
     successThreshold: 1
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 300
-    periodSeconds: 300
-    timeoutSeconds: 300
+    initialDelaySeconds: 420
+    periodSeconds: 420
+    timeoutSeconds: 420
     failureThreshold: 6
     successThreshold: 1
 
