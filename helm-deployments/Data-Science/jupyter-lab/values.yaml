@@ -73,3 +73,6 @@ auth:
 
 env:
   jupyterEnableLab: yes
+
+nodeSelector:
+  magnum.openstack.org/nodegroup: nl-software

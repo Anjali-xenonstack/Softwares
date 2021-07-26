@@ -21,7 +21,7 @@ imagePullSecrets:
 serviceHttpPort: 9021
 
 ## Control Center properties
-## ref: 
+## ref:
 configurationOverrides:
   "replication.factor": "3"
   # "internal.topics.replication": "1"
@@ -55,7 +55,8 @@ podAnnotations: {}
 
 ## Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-nodeSelector: {}
+nodeSelector:
+  magnum.openstack.org/nodegroup: nl-software
 
 ## Taints to tolerate on node assignment:
 ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -104,4 +105,4 @@ cp-ksql-server:
 
 cp-zookeeper:
   ## If the Zookeeper Chart is disabled a URL and port are required to connect
-  url: ""  
+  url: ""

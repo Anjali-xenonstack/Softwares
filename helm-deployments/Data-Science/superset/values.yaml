@@ -152,8 +152,9 @@ labels:
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
 ##
 
-nodeSelector: []
-
+nodeSelector:
+  magnum.openstack.org/nodegroup: nl-software
+  
 ## Tolerations
 ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
 tolerations: []

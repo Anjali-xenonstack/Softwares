@@ -100,7 +100,8 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector:
+  magnum.openstack.org/nodegroup: nl-software
 
 tolerations: []
 
