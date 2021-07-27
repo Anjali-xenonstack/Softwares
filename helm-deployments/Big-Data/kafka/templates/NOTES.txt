@@ -5,4 +5,4 @@
 <p><strong>Kafka Broker-3 Port:</strong> {{ .CpKafka2Nodeport }}</p>
 <p><strong>Zookeeper Port:</strong> {{ .CpZookeeper}}</p>
 <p><strong>You can list the current state of the Kafka cluster and its topics, partitions, replicas and in-sync replicas using kafkacat utility:</strong></p>
-<p>kafkacat -b {{.IP}}:{{ .CpKafka0Nodeport }},{{.IP}}:{{ .CpKafka1Nodeport }},{{.IP}}:{{ .CpKafka2Nodeport }} -L</p>
+<p>kafkacat -b 172.16.100.107:{{ .CpKafka0Nodeport }},172.16.100.107:{{ .CpKafka1Nodeport }},172.16.100.107:{{ .CpKafka2Nodeport }} -L</p>
