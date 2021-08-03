@@ -16,7 +16,7 @@ user_name: "nlu"
 ## ref: https://hub.docker.com/r/bitnami/spark/tags/
 ##
 image:
-  registry: dr.xenon.team
+  registry: $harbor_url
   repository: public_utils/nl-spark
   tag: 3.0.1-debian-10-r87
   ## Specify a imagePullPolicy
