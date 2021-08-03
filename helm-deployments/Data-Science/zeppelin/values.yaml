@@ -23,7 +23,7 @@ labels:
   types: softwares
 
 image:
-  repository: dr.xenon.team/public_utils/nl-zeppelin
+  repository: $harbor_url/public_utils/nl-zeppelin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.9.0"
@@ -78,8 +78,8 @@ ingress:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-  domainName: neuronlabs.stpi.in
-  secretName: neuronlabs-stpi-in
+  domainName: lab.neuron.stpi.in
+  secretName: lab-neuron-stpi-in
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
