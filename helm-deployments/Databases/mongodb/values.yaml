@@ -15,7 +15,7 @@
 image:
   ## Bitnami MongoDB registry
   ##
-  registry: dr.xenon.team
+  registry: $harbor_url
   ## Bitnami MongoDB image name
   ##
   repository: public_utils/nl-mongodb
