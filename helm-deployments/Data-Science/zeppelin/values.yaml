@@ -23,7 +23,7 @@ labels:
   types: softwares
 
 image:
-  repository: $harbor_url/public_utils/nl-zeppelin
+  repository: dr.neuralcompany.team/public_utils/nl-zeppelin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.9.0"
