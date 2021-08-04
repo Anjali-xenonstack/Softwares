@@ -1,5 +1,5 @@
 jupyter:
-  image: $harbor_url/public_utils/nl-jupyter-notebook
+  image: dr.neuralcompany.team/public_utils/nl-jupyter-notebook
   tag: python-3.8.8 #1
   password: "akira"
   resources:
