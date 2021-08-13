@@ -1,0 +1,14 @@
+<strong>Kafka</strong>
+<p>It is an open source software which provides a framework for storing, reading and analysing streaming data.</p>
+<p>Kafka is often used in real-time streaming data architectures to provide real-time analytics.</p>
+<strong>Few Use Cases</strong>
+    <ul>
+          <li>Stream Processing</li>
+          <li>Website activity tracking</li>
+          <li>Metrics collection and monitoring</li>
+          <li>Log aggregation</li>
+          <li>Real-time analytics</li>
+          <li>Replay messages</li>
+          <li>Error recovery</li>
+    </ul>
+
