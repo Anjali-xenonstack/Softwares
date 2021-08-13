@@ -32,7 +32,15 @@ clusterDomain: cluster.local
 extraDeploy: []
 ## @param commonLabels Add labels to all the deployed resources
 ##
-commonLabels: {}
+commonLabels:
+  app.kubernetes.io/name: zookeeper
+  app.kubernetes.io/instance: neuronlabs-zookeeper
+  app.kubernetes.io/managed-by: helm
+  app.kubernetes.io/contact: rajat
+  app.kubernetes.io/workload: apache-kafka
+  app.kubernetes.io/env: prod
+  app.kubernetes.io/tier: data-streaming
+  app.kubernetes.io/project: neuronlabs
 ## @param commonAnnotations Add annotations to all the deployed resources
 ##
 commonAnnotations: {}
@@ -213,7 +221,7 @@ rollingUpdatePartition: ""
 podManagementPolicy: Parallel
 ## @param replicaCount Number of ZooKeeper nodes
 ##
-replicaCount: 2
+replicaCount: 3
 ## @param minServerId Minimal SERVER_ID value, nodes increment their IDs respectively
 ## Servers increment their ID starting at this minimal value.
 ## E.g., with `minServerId=10` and 3 replicas, server IDs will be 10, 11, 12 for z-0, z-1 and z-2 respectively.
@@ -301,6 +309,9 @@ schedulerName: ""
 ## @param resources.requests [object] The requested resources for the container
 ##
 resources:
+  limits:
+    memory: 4Gi
+    cpu: 2
   requests:
     memory: 256Mi
     cpu: 250m
@@ -315,7 +326,7 @@ resources:
 ## @param livenessProbe.probeCommandTimeout Probe command timeout for livenessProbe
 ##
 livenessProbe:
-  enabled: true
+  enabled: false
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5
@@ -333,7 +344,7 @@ livenessProbe:
 ## @param readinessProbe.probeCommandTimeout Probe command timeout for readinessProbe
 ##
 readinessProbe:
-  enabled: true
+  enabled: false
   initialDelaySeconds: 5
   periodSeconds: 10
   timeoutSeconds: 5
@@ -355,7 +366,7 @@ customReadinessProbe: {}
 service:
   ## @param service.type Kubernetes Service type
   ##
-  type: ClusterIP
+  type: NodePort
   ## @param service.loadBalancerIP Load balancer IP for the Zookeper Service (optional, cloud specific)
   ## ref: http://kubernetes.io/docs/user-guide/services/#type-loadbalancer
   ##
@@ -412,7 +423,7 @@ serviceAccount:
 networkPolicy:
   ## @param networkPolicy.enabled Specifies whether a NetworkPolicy should be created
   ##
-  enabled: false
+  enabled: true
   ## @param networkPolicy.allowExternal Don't require client label for connections
   ## When set to false, only pods with the correct client label will have network access to the port Redis&trade; is
   ## listening on. When true, zookeeper accept connections from any source (with the correct destination port).

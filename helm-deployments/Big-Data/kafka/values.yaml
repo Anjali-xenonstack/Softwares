@@ -29,7 +29,16 @@ fullnameOverride: ""
 clusterDomain: cluster.local
 ## @param commonLabels Labels to add to all deployed objects
 ##
-commonLabels: {}
+commonLabels:
+  app.kubernetes.io/name: kafka
+  app.kubernetes.io/instance: neuronlabs-kafka
+  app.kubernetes.io/managed-by: helm
+  app.kubernetes.io/contact: rajat
+  app.kubernetes.io/workload: apache-kafka
+  app.kubernetes.io/env: prod
+  app.kubernetes.io/tier: data-streaming
+  app.kubernetes.io/project: neuronlabs
+
 ## @param commonAnnotations Annotations to add to all deployed objects
 ##
 commonAnnotations: {}
@@ -134,7 +143,7 @@ existingLog4jConfigMap: ""
 heapOpts: -Xmx1024m -Xms1024m
 ## @param deleteTopicEnable Switch to enable topic deletion or not
 ##
-deleteTopicEnable: false
+deleteTopicEnable: true
 ## @param autoCreateTopicsEnable Switch to enable auto creation of topics. Enabling auto creation of topics not recommended for production or similar environments
 ##
 autoCreateTopicsEnable: true
@@ -407,7 +416,7 @@ interBrokerListenerName: INTERNAL
 
 ## @param replicaCount Number of Kafka nodes
 ##
-replicaCount: 2
+replicaCount: 3
 ## @param minBrokerId Minimal broker.id value, nodes increment their `broker.id` respectively
 ## Brokers increment their ID starting at this minimal value.
 ## E.g., with `minBrokerId=100` and 3 nodes, IDs will be 100, 101, 102 for brokers 0, 1, and 2, respectively.
@@ -525,7 +534,7 @@ resources:
   ##    memory: 1Gi
   limits:
     cpu: 1
-    memory: 1Gi
+    memory: 2Gi
   requests:
     cpu: 250m
     memory: 256Mi
@@ -540,10 +549,10 @@ resources:
 ##
 livenessProbe:
   enabled: false
-  initialDelaySeconds: 300
-  timeoutSeconds: 5
+  initialDelaySeconds: 1200
+  timeoutSeconds: 600
   failureThreshold: 3
-  periodSeconds: 10
+  periodSeconds: 1200
   successThreshold: 1
 ## Kafka containers' readiness probe. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
@@ -556,10 +565,10 @@ livenessProbe:
 ##
 readinessProbe:
   enabled: false
-  initialDelaySeconds: 300
+  initialDelaySeconds: 600
   failureThreshold: 6
-  timeoutSeconds: 5
-  periodSeconds: 10
+  timeoutSeconds: 600
+  periodSeconds: 1200
   successThreshold: 1
 ## @param customLivenessProbe Custom Liveness probe configuration for Kafka
 ##
