@@ -3,128 +3,97 @@ workspace_id: nl-123
 user_id: nlu-123
 user_name: nlu
 
-
-#
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 # Default values for superset.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+
 replicaCount: 1
 
-## These requirements are used to build a requirements file which is then applied on init
-## of superset containers
-additionalRequirements:
-  - "psycopg2==2.8.5"
-  - "redis==3.2.1"
+## Set default image, imageTag, and imagePullPolicy.
+image:
+  repository: "amancevice/superset"
+  tag: "0.24.0"
+  pullPolicy: "IfNotPresent"
 
-## The name of the secret which we will use to generate a superset_config.py file
-## Note: this secret must have the key superset_config.py in it and can include other files as well
-##
-configFromSecret: '{{ template "superset.fullname" . }}-config'
+initFile: |-
+  /usr/local/bin/superset-init --username $USERNAME --firstname admin --lastname user --email admin@superset.com --password $USER_PASSWORD
+  superset runserver
 
-## The name of the secret which we will use to populate env vars in deployed pods
-## This can be useful for secret keys, etc.
-##
-envFromSecret: '{{ template "superset.fullname" . }}-env'
+configFile: |-
+  #---------------------------------------------------------
+  # Superset specific config
+  #---------------------------------------------------------
+  ROW_LIMIT = 5000
+  SUPERSET_WORKERS = 2
 
-## Extra environment variables that will be passed into pods
+  SUPERSET_WEBSERVER_PORT = 8088
+  #---------------------------------------------------------
+
+  #---------------------------------------------------------
+  # Flask App Builder configuration
+  #---------------------------------------------------------
+  # Your App secret key
+  SECRET_KEY = '\2\1thisismyscretkey\1\2\e\y\y\h'
+
+  # The SQLAlchemy connection string to your database backend
+  # This connection defines the path to the database that stores your
+  # superset metadata (slices, connections, tables, dashboards, ...).
+  # Note that the connection information to connect to the datasources
+  # you want to explore are managed directly in the web UI
+  SQLALCHEMY_DATABASE_URI = 'sqlite:////var/lib/superset/superset.db'
+
+
+  # Flask-WTF flag for CSRF
+  WTF_CSRF_ENABLED = True
+  # Add endpoints that need to be exempt from CSRF protection
+  WTF_CSRF_EXEMPT_LIST = []
+
+  # Set this API key to enable Mapbox visualizations
+  MAPBOX_API_KEY = ''
+
+## Extra environment variables that will be passed onto deployment pod
 ##
 extraEnv: {}
 
-## Extra environment variables to pass as secrets
+## The name of a secret in the same kubernetes namespace which contain values to be added to the environment
+## This can be useful for secret keys, etc
 ##
-extraSecretEnv: {}
-  # MAPBOX_API_KEY: ...
-  # GOOGLE_KEY: ...
-  # GOOGLE_SECRET: ...
+extraEnvFromSecret: ""
 
-extraConfigs: {}
-  # datasources-init.yaml: |
-  #     databases:
-  #     - allow_csv_upload: true
-  #       allow_ctas: true
-  #       allow_cvas: true
-  #       database_name: super-db
-  #       extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {},\r\n    \"\
-  #         metadata_cache_timeout\": {},\r\n    \"schemas_allowed_for_csv_upload\": []\r\n\
-  #         }"
-  #       sqlalchemy_uri: example://example-db.local
-  #       tables: []
-
-# A dictionary of overrides to append at the end of superset_config.py - the name does not matter
-# WARNING: the order is not guaranteed
-configOverrides: {}
-  # enable_oauth: |
-  #   from flask_appbuilder.security.manager import AUTH_DB
-  #   AUTH_TYPE = AUTH_OAUTH
-
-  #   OAUTH_PROVIDERS = [
-  #       {
-  #           "name": "google",
-  #           "icon": "fa-google",
-  #           "token_key": "access_token",
-  #           "remote_app": {
-  #               "client_id": os.environ.get("GOOGLE_KEY"),
-  #               "client_secret": os.environ.get("GOOGLE_SECRET"),
-  #               "api_base_url": "https://www.googleapis.com/oauth2/v2/",
-  #               "client_kwargs": {"scope": "email profile"},
-  #               "request_token_url": None,
-  #               "access_token_url": "https://accounts.google.com/o/oauth2/token",
-  #               "authorize_url": "https://accounts.google.com/o/oauth2/auth",
-  #           },
-  #       }
-  #   ]
-## user authentication
 auth:
   username: superset
-  password: superset#123
+  password: superset#
+  email: admin@superset.com
+  firstname: admin
+  lastname: user
 
-configMountPath: "/app/pythonpath"
+persistence:
 
-extraConfigMountPath: "/app/configs"
-
-image:
-  repository: docker.io/apache/superset
-  tag: 1.0.1
-  pullPolicy: IfNotPresent
-
-service:
-  type: NodePort
-  port: 8088
-  annotations: {}
-    # cloud.google.com/load-balancer-type: "Internal"
-  loadBalancerIP: null
-
-ingress:
+  ## If true, superset server will create/use a Persistent Volume Claim
+    ## If false, use emptyDir
+    ##
   enabled: true
-  class: nginx
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  domainName:
-  # path: /
-  # hosts:
-  #   - superset.neuralcompany.work
-  # tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+
+  ## superset data Persistent Volume access modes
+  ## Must match those of existing PV or dynamic provisioner
+  ## Ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  accessModes:
+    - ReadWriteOnce
+
+  ## superset data Persistent Volume size
+  ##
+  size: 8Gi
+
+  ## superset server data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -138,216 +107,89 @@ resources:
     cpu: 100m
     memory: 100Mi
 
+## Expose the superset service to be accessed from outside the cluster (LoadBalancer service).
+## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
+## ref: http://kubernetes.io/docs/user-guide/services/
 ##
-## Superset node configuration
-supersetNode:
-  command:
-    - "/bin/sh"
-    - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; /usr/bin/docker-entrypoint.sh"
-  connections:
-    redis_host: '{{ template "superset.fullname" . }}-redis-headless'
-    redis_port: "6379"
-    db_host: '{{ template "superset.fullname" . }}-postgresql'
-    db_port: "5432"
-    db_user: superset
-    db_pass: sEcAnOR#123
-    db_name: superset
-  forceReload: true # If true, forces deployment to reload on each upgrade
-  initContainers:
-    - name: wait-for-postgres
-      image: docker.io/busybox:latest
-      imagePullPolicy: IfNotPresent
-      envFrom:
-        - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
-      command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
+service:
+  type: ClusterIP
+  port: 9000
 
-##
-## Superset worker configuration
-supersetWorker:
-  command:
-    - "/bin/sh"
-    - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; celery --app=superset.tasks.celery_app:app worker"
-  forceReload: false # If true, forces deployment to reload on each upgrade
-  initContainers:
-    - name: wait-for-postgres
-      image: docker.io/busybox:latest
-      imagePullPolicy: IfNotPresent
-      envFrom:
-        - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
-      command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
 
+ingress:
+  ## If true, superset Ingress will be created
+  ##
+  enabled: true
+  domainName: lab.neuron.stpi.in
+  secretName: lab-neuron-stpi-in
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  ## superset Ingress hostnames
+  ## Must be provided if Ingress is enabled
+  ##
+
+  ## superset Ingress path
+  ## Optional, allows specifying paths for more flexibility
+  ## E.g. Traefik ingress likes paths
+  ##
+  path: /
 
 labels:
   app.kubernetes.io/name: superset
   app.kubernetes.io/instance: apache-superset
-  app.kubernetes.io/version: 1.0.1
+  app.kubernetes.io/version: 0.24.0
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: apache-superset
   app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-visualization
   app.kubernetes.io/project: neuronlabs
   app.kubernetes.io/requested-by: na
 
-
+## Node labels for pod assignment
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
 ##
-## Superset beat configuration (to trigger scheduled jobs like reports)
-supersetCeleryBeat:
-  # This is only required if you intend to use alerts and reports
-  enabled: false
-  command:
-    - "/bin/sh"
-    - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; celery beat --app=superset.tasks.celery_app:app --pidfile /tmp/celerybeat.pid --schedule /tmp/celerybeat-schedule"
-  forceReload: false # If true, forces deployment to reload on each upgrade
-  initContainers:
-    - name: wait-for-postgres
-      image: docker.io/busybox:latest
-      imagePullPolicy: IfNotPresent
-      envFrom:
-        - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
-      command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
 
-##
-## Init job configuration
-init:
-  command:
-    - "/bin/sh"
-    - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; . {{ .Values.configMountPath }}/superset_init.sh"
-  enabled: true
-  loadExamples: false
-  initContainers:
-    - name: wait-for-postgres
-      image: docker.io/busybox:latest
-      imagePullPolicy: IfNotPresent
-      envFrom:
-        - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
-      command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
-  initscript: |-
-    #!/bin/sh
-    echo "Upgrading DB schema..."
-    superset db upgrade
-    echo "Initializing roles..."
-    superset init
-    echo "Creating admin user..."
-    superset fab create-admin \
-                    --username {{.Values.auth.username}} \
-                      --firstname Superset \
-                      --lastname Admin \
-                      --email admin@superset.com \
-                      --password {{.Values.auth.password}} || true
-    {{ if .Values.init.loadExamples }}
-    echo "Loading examples..."
-    superset load_examples
-    {{- end }}
-##
-## Configuration values for the postgresql dependency.
-## ref: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
-postgresql:
-  ##
-  ## Use the PostgreSQL chart dependency.
-  ## Set to false if bringing your own PostgreSQL.
-  enabled: true
+nodeSelector:
+  magnum.openstack.org/nodegroup: nl-software
 
-  ##
-  ## The name of an existing secret that contains the postgres password.
-  existingSecret:
-
-  ## Name of the key containing the secret.
-  existingSecretKey: postgresql-password
-
-  ##
-  ## If you are bringing your own PostgreSQL, you should set postgresHost and
-  ## also probably service.port, postgresqlUsername, postgresqlPassword, and postgresqlDatabase
-  ## postgresHost:
-  ##
-  ## PostgreSQL port
-  service:
-    port: 5432
-  ## PostgreSQL User to create.
-  postgresqlUsername: superset
-  ##
-  ## PostgreSQL Password for the new user.
-  ## If not set, a random 10 characters password will be used.
-  postgresqlPassword: sEcAnOR#123
-  ##
-  ## PostgreSQL Database to create.
-  postgresqlDatabase: superset
-  ##
-  ## Persistent Volume Storage configuration.
-  ## ref: https://kubernetes.io/docs/user-guide/persistent-volumes
-  persistence:
-    ##
-    ## Enable PostgreSQL persistence using Persistent Volume Claims.
-    enabled: true
-    ##
-    ## Persistant class
-    # storageClass: classname
-    ##
-    ## Access modes:
-    accessModes:
-      - ReadWriteOnce
-
-## Configuration values for the Redis dependency.
-## ref: https://github.com/kubernetes/charts/blob/master/stable/redis/README.md
-redis:
-  ##
-  ## Use the redis chart dependency.
-  ## Set to false if bringing your own redis.
-  enabled: true
-
-  usePassword: false
-
-  ##
-  ## The name of an existing secret that contains the redis password.
-  existingSecret:
-
-  ## Name of the key containing the secret.
-  existingSecretKey: redis-password
-
-  ##
-  ## If you are bringing your own redis, you can set the host in redisHost.
-  ## redisHost:
-  ##
-  ## Redis password
-  ##
-  password: KaOiWa#21
-  ##
-  ## Master configuration
-  master:
-    ##
-    ## Image configuration
-    # image:
-      ##
-      ## docker registry secret names (list)
-      # pullSecrets: nil
-    ##
-    ## Configure persistance
-    persistence:
-      ##
-      ## Use a PVC to persist data.
-      enabled: false
-      ##
-      ## Persistant class
-      # storageClass: classname
-      ##
-      ## Access mode:
-      accessModes:
-      - ReadWriteOnce
-  ##
-  ## Disable cluster management by default.
-  cluster:
-    enabled: false
-
-nodeSelector: {}
-
+## Tolerations
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
 tolerations: []
 
+## Affinity and anti-affinity
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 affinity: {}
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+ limits:
+   cpu: 3000m
+   memory: 3000Mi
+ requests:
+   cpu: 300m
+   memory: 256Mi
+
+## Configure liveness/readiness params
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+##
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 600
+  timeoutSeconds: 120
+  periodSeconds: 10
+  failureThreshold: 3
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 600
+  timeoutSeconds: 120
+  periodSeconds: 10
+  failureThreshold: 3

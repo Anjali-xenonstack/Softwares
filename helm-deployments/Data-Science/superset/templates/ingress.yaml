@@ -1,28 +1,31 @@
-{{ if .Values.ingress.enabled -}}
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "superset.fullname" . -}}
+{{- $servicePort := .Values.service.port -}}
+{{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "superset.fullname" . }}-ing
+  name: {{ $fullName }}
   labels:
     app: {{ template "superset.name" . }}
     chart: {{ template "superset.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-{{- with .Values.labels }}
-{{ toYaml . | indent 4 }}
-{{- end }}
 {{- with .Values.ingress.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  
+  tls:
+    - hosts:
+      - {{ .Release.Name }}.{{ .Values.ingress.domainName}}
+      secretName: {{ .Values.ingress.secretName }}
   rules:
     - host: {{ .Release.Name }}.{{ .Values.ingress.domainName}}
       http:
         paths:
           - path: /
             backend:
-              serviceName: {{ template "superset.fullname" . }}
-              servicePort: 8088
+              serviceName: {{ $fullName }}
+              servicePort: http
 {{- end }}

@@ -1,6 +1,10 @@
 <p><strong>Postgres has been deployed.</strong></p>
 <p><strong>Admin User</strong>: postgres <strong>Admin Password</strong>: {{ .Values.postgresqlPostgresPassword }}</p>
 <p><strong>Normal User</strong> : {{ .Values.postgresqlUsername }} <strong>Normal User Password</strong>: {{ .Values.postgresqlPassword }}</p>
-<p><strong>Postgres Host:</strong>{{.IP}}</p>
+<p><strong>Normal User Database</strong> : {{ .Values.postgresqlDatabase }}
+<p><strong>Postgres Host:</strong>172.16.100.107</p>
 <p><strong>Postgres Port:</strong>{{.NodePort}}</p>
-<p><strong>Coonect to postgres:<br /><br /></strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h {{.IP}} -p {{.NodePort}}<strong><br /><br /></strong></p>
+<p><strong>Connect to postgres with external access(Admin User):  </strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h 172.16.100.107 -p {{.NodePort}}<strong><br /></strong></p>
+<p><strong>Connect to postgres with internal access(Admin User): </strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} <strong><br /></strong></p>
+<p><strong>Connect to postgres with external access(Normal User): </strong>psql -d {{ .Values.postgresqlDatabase }} -U {{ .Values.postgresqlUsername }}&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h 172.16.100.107 -p {{.NodePort}} <strong><br /></strong></p>
+<p><strong>Connect to postgres with internal access(Normal User): </strong>psql -d {{ .Values.postgresqlDatabase }} -U {{ .Values.postgresqlUsername }}&nbsp; -W {{ .Values.postgresqlPostgresPassword }} <strong><br /></strong></p>

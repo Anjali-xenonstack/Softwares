@@ -14,7 +14,7 @@ labels:
   app.kubernetes.io/instance: apache-zeppelin
   app.kubernetes.io/version: 0.9.0
   app.kubernetes.io/managed-by: helm-charts
-  app.kubernetes.io/contact: nikhil
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/workload: apache-zeppelin
   app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-visualization
@@ -23,7 +23,7 @@ labels:
   types: softwares
 
 image:
-  repository: docker.io/apache/zeppelin
+  repository: dr.neuralcompany.team/public_utils/nl-zeppelin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.9.0"
@@ -76,9 +76,10 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  class: nginx
-  domainName:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  domainName: lab.neuron.stpi.in
+  secretName: lab-neuron-stpi-in
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -86,8 +87,8 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 1000m
-    memory: 1000Mi
+    cpu: 2000m
+    memory: 2048Mi
   requests:
     cpu: 100m
     memory: 128Mi
@@ -99,7 +100,8 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
+nodeSelector:
+  magnum.openstack.org/nodegroup: nl-software
 
 tolerations: []
 
