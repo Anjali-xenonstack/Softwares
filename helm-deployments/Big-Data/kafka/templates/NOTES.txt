@@ -1,7 +1,8 @@
 <p><strong>Kafka along with Zookeeper is deployed. You can access Kafka and Zookeeper through the following Host IP and Port details:</strong></p>
 <p><strong>Host IP:</strong> 172.16.100.107</p>
-<p><strong>Kafka Broker-1 Port:</strong> {{ .External }}</p>
-<p><strong>Kafka Broker-2 Port:</strong> {{ .External }}</p>
-<p><strong>Kafka Broker-3 Port:</strong> {{ .External }}</p>
+<p><strong>Kafka Broker-1 Port:</strong> {{ .kafka0External }}</p>
+<p><strong>Kafka Broker-2 Port:</strong> {{ .kafka1External }}</p>
+<p><strong>Kafka Broker-3 Port:</strong> {{ .kafka2External }}</p>
+<p><strong>Zookeeper Port:</strong> {{ .Zookeeper2181 }}</p>
 <p><strong>You can list the current state of the Kafka cluster and its topics, partitions, replicas and in-sync replicas using kafkacat utility:</strong></p>
-<p>kafkacat -b 172.16.100.107:{{ .External }},172.16.100.107:{{ .External }},172.16.100.107:{{ .External }} -L</p>
+<p>kafkacat -b 172.16.100.107:{{ .kafka0External }},172.16.100.107:{{ .kafka1External }},172.16.100.107:{{ .kafka2External }} -L</p>
