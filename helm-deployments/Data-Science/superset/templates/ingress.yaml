@@ -16,10 +16,13 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  tls:
-    - hosts:
-      - {{ .Release.Name }}.{{ .Values.ingress.domainName}}
-      secretName: {{ .Values.ingress.secretName }}
+# {{- if .Values.ingress.className }}
+#   ingressClassName: {{ .Values.ingress.className }}
+# {{- end }}
+  # tls:
+  #   - hosts:
+  #     - {{ .Release.Name }}.{{ .Values.ingress.domainName}}
+  #     secretName: {{ .Values.ingress.secretName }}
   rules:
     - host: {{ .Release.Name }}.{{ .Values.ingress.domainName}}
       http:

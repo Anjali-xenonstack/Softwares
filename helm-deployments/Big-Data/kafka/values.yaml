@@ -17,7 +17,7 @@ global:
   storageClass: ""
 
 ## @section Common parameters
-HOST_IP: 172.16.100.107
+HOST_IP: 172.16.0.201
 ## @param nameOverride String to partially override kafka.fullname
 ##
 nameOverride: ""
@@ -33,7 +33,7 @@ commonLabels:
   app.kubernetes.io/name: kafka
   app.kubernetes.io/instance: neuronlabs-kafka
   app.kubernetes.io/managed-by: helm
-  app.kubernetes.io/contact: rajat
+  app.kubernetes.io/contact: nikhil
   app.kubernetes.io/workload: apache-kafka
   app.kubernetes.io/env: prod
   app.kubernetes.io/tier: data-streaming
@@ -489,8 +489,8 @@ affinity: {}
 ## @param nodeSelector Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
 ##
-nodeSelector:
-  magnum.openstack.org/nodegroup: nl-software
+# nodeSelector:
+#   magnum.openstack.org/nodegroup: nl-software
 ## @param tolerations Tolerations for pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 ##
@@ -706,7 +706,7 @@ externalAccess:
   service:
     ## @param externalAccess.service.type Kubernetes Service type for external access. It can be NodePort or LoadBalancer
     ##
-    type: NodePort
+    type: LoadBalancer
     ## @param externalAccess.service.port Kafka port used for external access when service type is LoadBalancer
     ##
     port: 9094
@@ -991,8 +991,8 @@ metrics:
     ## @param metrics.kafka.nodeSelector Node labels for Kafka Exporter pod assignment
     ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
     ##
-    nodeSelector:
-      magnum.openstack.org/nodegroup: nl-software
+    # nodeSelector:
+    #   magnum.openstack.org/nodegroup: nl-software
     ## @param metrics.kafka.tolerations Tolerations for Kafka Exporter pod assignment
     ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
     ##
@@ -1013,7 +1013,7 @@ metrics:
     service:
       ## @param metrics.kafka.service.type Kubernetes service type (`ClusterIP`, `NodePort` or `LoadBalancer`) for Kafka Exporter
       ##
-      type: NodePort
+      type: LoadBalancer
       ## @param metrics.kafka.service.port Kafka Exporter Prometheus port
       ##
       port: 9308
