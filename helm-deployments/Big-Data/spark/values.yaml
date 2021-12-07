@@ -103,8 +103,8 @@ master:
   ## Node labels for pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-    magnum.openstack.org/nodegroup: nl-software
+  # nodeSelector:
+  #   magnum.openstack.org/nodegroup: nl-software
 
   ## Tolerations for pod assignment
   ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -217,8 +217,8 @@ worker:
   ## Node labels for pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-    magnum.openstack.org/nodegroup: nl-software
+  # nodeSelector:
+  #   magnum.openstack.org/nodegroup: nl-software
 
   ## Tolerations for pod assignment
   ## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -312,7 +312,7 @@ security:
 service:
   ## Kubernetes service type
   ##
-  type: NodePort
+  type: LoadBalancer
 
   ## Cluster Service port
   ##

@@ -305,8 +305,8 @@ affinity: {}
 ## Node labels for pod assignment. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/user-guide/node-selection/
 ##
-nodeSelector:
-  magnum.openstack.org/nodegroup: nl-software
+# nodeSelector:
+#   magnum.openstack.org/nodegroup: nl-software
 ## Tolerations for pod assignment. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 ##
@@ -480,7 +480,8 @@ persistence:
 service:
   ## Service type
   ##
-  type: NodePort
+  type: LoadBalancer
+
   ## MongoDB service port
   ##
   port: 27017
@@ -563,7 +564,7 @@ externalAccess:
   service:
     ## Service type. Allowed values: LoadBalancer or NodePort
     ##
-    type: NodePort
+    type: LoadBalancer
     ## Port used when service type is LoadBalancer
     ##
     port: 27017
@@ -692,8 +693,8 @@ arbiter:
   ## Node labels for pod assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-    magnum.openstack.org/nodegroup: nl-software
+  # nodeSelector:
+  #   magnum.openstack.org/nodegroup: nl-software
 
   ## Tolerations for pod assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/

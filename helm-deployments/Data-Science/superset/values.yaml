@@ -120,6 +120,7 @@ ingress:
   ## If true, superset Ingress will be created
   ##
   enabled: true
+  className: nginx
   domainName: lab.neuron.stpi.in
   secretName: lab-neuron-stpi-in
   annotations:

@@ -344,7 +344,7 @@ ldap:
 service:
   ## PosgresSQL service type
   ##
-  type: NodePort
+  type: LoadBalancer
   # clusterIP: None
   port: 5432
 
@@ -585,8 +585,8 @@ readReplicas:
   ## Node labels for PostgreSQL read only  pods assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-    magnum.openstack.org/nodegroup: nl-software
+  # nodeSelector:
+  #   magnum.openstack.org/nodegroup: nl-software
 
   ## Tolerations for PostgreSQL read only  pods assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/

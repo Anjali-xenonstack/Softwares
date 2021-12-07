@@ -57,6 +57,7 @@ persistence:
 
 ingress:
    enabled: true
+   className: nginx
    annotations:
      kubernetes.io/ingress.class: nginx
      nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
@@ -74,5 +75,5 @@ auth:
 env:
   jupyterEnableLab: yes
 
-nodeSelector:
-  magnum.openstack.org/nodegroup: nl-software
+# nodeSelector:
+#   magnum.openstack.org/nodegroup: nl-software
