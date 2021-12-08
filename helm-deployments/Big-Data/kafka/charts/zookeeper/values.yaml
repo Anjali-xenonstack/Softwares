@@ -153,7 +153,7 @@ heapSize: 1024
 ## @param logLevel Log level for the Zookeeper server. ERROR by default
 ## Have in mind if you set it to INFO or WARN the ReadinessProve will produce a lot of logs
 ##
-logLevel: ERROR
+logLevel: DEBUG
 ## @param dataLogDir Data log directory. Specifying this option will direct zookeeper to write the transaction log to the dataLogDir rather than the dataDir.
 ## This allows a dedicated log device to be used, and helps avoid competition between logging and snaphots.
 ## Example:
@@ -221,7 +221,7 @@ rollingUpdatePartition: ""
 podManagementPolicy: Parallel
 ## @param replicaCount Number of ZooKeeper nodes
 ##
-replicaCount: 3
+replicaCount: 1
 ## @param minServerId Minimal SERVER_ID value, nodes increment their IDs respectively
 ## Servers increment their ID starting at this minimal value.
 ## E.g., with `minServerId=10` and 3 replicas, server IDs will be 10, 11, 12 for z-0, z-1 and z-2 respectively.
