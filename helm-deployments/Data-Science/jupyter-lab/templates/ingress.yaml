@@ -4,10 +4,10 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-jupyter-ing
   labels:
-   {{- with .Values.ingress.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+  #  {{- with .Values.ingress.annotations }}
+  # annotations:
+  #   {{- toYaml . | nindent 4 }}
+  # {{- end }}
 spec:
 {{- if .Values.ingress.className }}
   ingressClassName: {{ .Values.ingress.className }}

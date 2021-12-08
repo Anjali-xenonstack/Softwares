@@ -7,10 +7,10 @@ metadata:
     type: {{ .Values.type}}
     workspace_id: {{ .Values.workspace_id}}
     app.kubernetes.io/component: ingress
-  annotations:
-    {{- range $key, $value := .Values.ingress.annotations }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
+#   annotations:
+#     {{- range $key, $value := .Values.ingress.annotations }}
+#     {{ $key }}: {{ $value | quote }}
+# {{- end }}
 spec:
   ingressClassName: {{ .Values.ingress.class }}
   rules:
