@@ -15,7 +15,7 @@
 image:
   ## Bitnami MongoDB registry
   ##
-  registry: $harbor_url
+  registry: dr.neuralcompany.team
   ## Bitnami MongoDB image name
   ##
   repository: public_utils/nl-mongodb
