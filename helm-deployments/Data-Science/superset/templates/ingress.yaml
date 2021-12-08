@@ -11,10 +11,10 @@ metadata:
     chart: {{ template "superset.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-{{- with .Values.ingress.annotations }}
-  annotations:
-{{ toYaml . | indent 4 }}
-{{- end }}
+# {{- with .Values.ingress.annotations }}
+#   annotations:
+# {{ toYaml . | indent 4 }}
+# {{- end }}
 spec:
 # {{- if .Values.ingress.className }}
 #   ingressClassName: {{ .Values.ingress.className }}

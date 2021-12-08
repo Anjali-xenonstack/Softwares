@@ -472,8 +472,8 @@ primary:
   ## Node labels for PostgreSQL primary pods assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector:
-    magnum.openstack.org/nodegroup: nl-software
+  # nodeSelector:
+  #   magnum.openstack.org/nodegroup: nl-software
 
   ## Tolerations for PostgreSQL primary pods assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
