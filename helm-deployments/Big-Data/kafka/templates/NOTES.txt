@@ -5,4 +5,4 @@
 <p><strong>Kafka Broker-3 Socket:</strong> {{ .kafka2External }}:9094</p>
 <p><strong>Zookeeper Port:</strong> {{ .Zookeeper2181 }}</p>
 <p><strong>You can list the current state of the Kafka cluster and its topics, partitions, replicas and in-sync replicas using kafkacat utility:</strong></p>
-<p>kafkacat -b {{ .kafka0External }},{{ .kafka1External }},{{ .kafka2External }} -L</p>
+<p>kafkacat -b {{ .kafka0External }}:9094,{{ .kafka1External }}:9094,{{ .kafka2External }}:9094 -L</p>
