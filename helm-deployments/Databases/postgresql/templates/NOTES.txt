@@ -3,7 +3,7 @@
 <p><strong>Normal User</strong> : {{ .Values.postgresqlUsername }} <strong>Normal User Password</strong>: {{ .Values.postgresqlPassword }}</p>
 <p><strong>Normal User Database</strong> : {{ .Values.postgresqlDatabase }}
 <p><strong>Postgres Host:</strong>{{ .LOADBALANCER }}</p>
-<p><strong>Postgres Port:</strong>{{ .Values.postgresqlDatabase }}</p>
+<p><strong>Postgres Port:</strong>{{ .NodePort }}</p>
 <p><strong>Connect to postgres with external access(Admin User):  </strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h {{ .LOADBALANCER }} -p {{.NodePort}}<strong><br /></strong></p>
 <p><strong>Connect to postgres with internal access(Admin User): </strong>psql -d postgres -U postgres&nbsp; -W {{ .Values.postgresqlPostgresPassword }} <strong><br /></strong></p>
 <p><strong>Connect to postgres with external access(Normal User): </strong>psql -d {{ .Values.postgresqlDatabase }} -U {{ .Values.postgresqlUsername }}&nbsp; -W {{ .Values.postgresqlPostgresPassword }} -h {{ .LOADBALANCER }} -p {{.NodePort}} <strong><br /></strong></p>
