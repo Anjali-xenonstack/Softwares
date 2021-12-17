@@ -1,5 +1,5 @@
 <p>Your Apache Spark has been successfully launched</p>
 <p>Connect to spark master using the following host port.</p>
-<p><strong>Host:</strong>{{.LOADBALANCER}}</p>
+<p><strong>Host:</strong>{{ .LOADBALANCER }}</p>
 <p><strong>Port:</strong>{{.clusterNodePort}}</p>
-<p><strong>Access Spark master by clicking here: </strong><a href="http://{{.LOADBALANCER}}:{{.http}}">Spark UI&nbsp;</a></p>
+<p><strong>Access Spark master by clicking here: </strong><a href="http://{{ .LOADBALANCER }}:{{.http}}">Spark UI&nbsp;</a></p>
