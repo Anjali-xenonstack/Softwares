@@ -12,7 +12,7 @@ jupyter:
   initialDelaySeconds: 15
   timeoutSeconds: 1
 
-workspace_id: sl-123
+workspace_id: nl-123
 user_id: 123
 user_name: stacklabs
 
