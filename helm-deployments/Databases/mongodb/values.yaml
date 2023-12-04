@@ -78,9 +78,9 @@ auth:
   ## MongoDB custom user and database
   ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#creating-a-user-and-database-on-first-run
   ##
-  username: neuronlabs
+  username: stacklabs
   password: ""
-  database: neuronlabs
+  database: stacklabs
   ## Key used for replica set authentication
   ## Ignored when mongodb.architecture=standalone
   ##
