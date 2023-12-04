@@ -62,8 +62,8 @@ extraEnv: {}
 extraEnvFromSecret: ""
 
 auth:
-  username: stacklabs
-  password: stacklabs
+  username: superset
+  password: superset#
   email: admin@superset.com
   firstname: admin
   lastname: user
@@ -167,39 +167,23 @@ affinity: {}
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-# resources:
-#   limits:
-#     cpu: 3000m
-#     memory: 3000Mi
-#   requests:
-#     cpu: 300m
-#     memory: 256Mi
 
 ## Configure liveness/readiness params
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 ##
-# livenessProbe:
-#   httpGet:
-#     path: /
-#     port: http
-#   initialDelaySeconds: 600
-#   timeoutSeconds: 120
-#   periodSeconds: 10
-#   failureThreshold: 3
-# readinessProbe:
-#   httpGet:
-#     path: /
-#     port: http
-#   initialDelaySeconds: 600
-#   timeoutSeconds: 120
-#   periodSeconds: 10
-#   failureThreshold: 3
-
 livenessProbe:
   httpGet:
     path: /
     port: http
+  initialDelaySeconds: 600
+  timeoutSeconds: 120
+  periodSeconds: 10
+  failureThreshold: 3
 readinessProbe:
   httpGet:
     path: /
     port: http
+  initialDelaySeconds: 600
+  timeoutSeconds: 120
+  periodSeconds: 10
+  failureThreshold: 3
