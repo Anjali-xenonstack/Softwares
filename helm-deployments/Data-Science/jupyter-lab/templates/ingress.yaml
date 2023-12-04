@@ -3,11 +3,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}-jupyter-ing
-  labels:
-  #  {{- with .Values.ingress.annotations }}
-  # annotations:
-  #   {{- toYaml . | nindent 4 }}
-  # {{- end }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
 {{- if .Values.ingress.className }}
   ingressClassName: {{ .Values.ingress.className }}
@@ -21,6 +19,7 @@ spec:
     http:
       paths:
       - path: {{ .Values.ingress.path }}
+        pathType: ImplementationSpecific        
         backend:
           service:
             name: {{ .Release.Name }}-jupyter
