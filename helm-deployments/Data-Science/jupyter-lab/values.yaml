@@ -14,16 +14,17 @@ jupyter:
 
 workspace_id: nl-123
 user_id: 123
-user_name: stacklabs
+user_name: neuronlabs
 
 labels:
   app.kubernetes.io/name: jupyter-lab
   app.kubernetes.io/version: "3.8.8"
   app.kubernetes.io/managed-by: helm
+  app.kubernetes.io/contact: rajat
   app.kubernetes.io/requested-by: na
   app.kubernetes.io/env: prod
   app.kubernetes.io/tier: notebook
-  app.kubernetes.io/project: stacklabs
+  app.kubernetes.io/project: neuronlabs
 
 # AWS_ACCESS_KEY: ""
 # AWS_ACCESS_SECRET: ""
@@ -56,20 +57,20 @@ persistence:
 
 ingress:
    enabled: true
-   className: traefik
+   className: nginx
    # annotations:
    #   kubernetes.io/ingress.class: nginx
    #   nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
    #   nginx.ingress.kubernetes.io/ssl-redirect: "true"
    domainName: neuralcompany.team
-  #  secretName: lab-neuron-stpi-in
+   secretName: neuralcompany.team
    path: /
 
 service:
   port: 8888
 
 auth:
-  token: "stacklabs"
+  token: ""
 
 env:
   jupyterEnableLab: yes
