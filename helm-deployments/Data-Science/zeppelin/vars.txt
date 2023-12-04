@@ -1,4 +1,0 @@
-[
-{"var":"authentication.username", "name": "username", "type": "text", "desc": "Please enter username"},
-{"var":"authentication.password", "name": "password", "type": "password", "desc": "Please enter password"}
-]

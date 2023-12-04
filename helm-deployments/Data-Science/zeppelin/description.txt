@@ -1,1 +1,0 @@
-<p><strong>Apache Zepplin</strong> is a web-based notebook that enables data-driven,interactive data analytics and collaborative documents with SQL, Scala and more .</p>
