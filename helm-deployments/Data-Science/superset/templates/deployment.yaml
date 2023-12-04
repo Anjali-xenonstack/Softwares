@@ -67,7 +67,7 @@ spec:
               mountPath: /var/lib/superset
           ports:
             - name: http
-              containerPort: 9000
+              containerPort: 8088
               protocol: TCP
           env:
             - name: USERNAME

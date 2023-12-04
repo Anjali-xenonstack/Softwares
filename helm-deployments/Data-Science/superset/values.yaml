@@ -113,7 +113,7 @@ resources:
 ##
 service:
   type: ClusterIP
-  port: 9000
+  port: 8088
 
 
 ingress:
