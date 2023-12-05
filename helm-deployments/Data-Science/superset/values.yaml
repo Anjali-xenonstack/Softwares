@@ -12,8 +12,8 @@ replicaCount: 1
 
 ## Set default image, imageTag, and imagePullPolicy.
 image:
-  repository: "apache/superset"
-  tag: "b7a9c220e14c6e85840568da4bf87be84b246749"
+  repository: "amancevice/superset"
+  tag: "0.24.0"
   pullPolicy: "IfNotPresent"
 
 initFile: |-
