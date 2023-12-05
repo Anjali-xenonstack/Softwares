@@ -14,24 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Patterns to ignore when building packages.
-# This supports shell glob matching, relative path matching, and
-# negation (prefixed with !). Only one pattern per line.
-.DS_Store
-# Common VCS dirs
-.git/
-.gitignore
-.bzr/
-.bzrignore
-.hg/
-.hgignore
-.svn/
-# Common backup files
-*.swp
-*.bak
-*.tmp
-*~
-# Various IDEs
-.project
-.idea/
-*.tmproj
+{{- if .Values.extraConfigs }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "superset.fullname" . }}-extra-config
+  labels:
+    app: {{ template "superset.name" . }}
+    chart: {{ template "superset.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+{{- range $path, $config := .Values.extraConfigs }}
+  {{ $path }}: |
+{{ tpl $config . | indent 4 -}}
+{{- end -}}
+{{- end -}}

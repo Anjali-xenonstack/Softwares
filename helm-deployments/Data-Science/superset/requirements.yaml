@@ -14,24 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Patterns to ignore when building packages.
-# This supports shell glob matching, relative path matching, and
-# negation (prefixed with !). Only one pattern per line.
-.DS_Store
-# Common VCS dirs
-.git/
-.gitignore
-.bzr/
-.bzrignore
-.hg/
-.hgignore
-.svn/
-# Common backup files
-*.swp
-*.bak
-*.tmp
-*~
-# Various IDEs
-.project
-.idea/
-*.tmproj
+dependencies:
+- name: postgresql
+  version: 10.2.0
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
+- name: redis
+  version: 12.3.0
+  repository: https://charts.bitnami.com/bitnami
+  condition: redis.enabled

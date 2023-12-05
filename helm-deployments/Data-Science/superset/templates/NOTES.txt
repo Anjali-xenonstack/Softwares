@@ -1,11 +1,4 @@
-<pre>
-
-Hi there,
-
-Your superset 0.24.0 has been succesfully launched.
-
-All your data will be persisted in 8 GB of dedicated storage
-
+<p><strong> Apache Superset</strong> has been launched.</p>
 <p><strong>Superset UI:</strong> <a style="text-decoration: none;" href="https://{{ .Name }}.{{ .Domain }}" target="_blank">https://{{ .Name }}.{{ .Domain }}</a> <br /><strong>Username</strong>: {{ .Values.auth.username }} <br /><strong>Password</strong>: {{ .Values.auth.password }}</p>
-
+<pre>
 </pre>
