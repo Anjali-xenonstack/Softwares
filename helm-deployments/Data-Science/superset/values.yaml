@@ -101,11 +101,11 @@ resources:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
-    cpu: 5000m
-    memory: 7000Mi
+    cpu: "5000m"
+    memory: "7000Mi"
   requests:
-    cpu: 2000m
-    memory: 500Mi
+    cpu: "2000m"
+    memory: "5000Mi"
 
 ## Expose the superset service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
@@ -114,7 +114,6 @@ resources:
 service:
   type: ClusterIP
   port: 8088
-
 
 ingress:
   ## If true, superset Ingress will be created
@@ -175,7 +174,7 @@ livenessProbe:
   httpGet:
     path: /
     port: http
-  initialDelaySeconds: 10
+  initialDelaySeconds: 600
   timeoutSeconds: 120
   periodSeconds: 10
   failureThreshold: 3
