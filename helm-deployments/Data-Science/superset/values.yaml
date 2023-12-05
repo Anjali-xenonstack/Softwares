@@ -102,10 +102,10 @@ resources:
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
     cpu: 5000m
-    memory: 5000Mi
+    memory: 7000Mi
   requests:
-    cpu: 100m
-    memory: 100Mi
+    cpu: 2000m
+    memory: 500Mi
 
 ## Expose the superset service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
