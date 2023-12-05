@@ -10,7 +10,7 @@ maintainers:
 - email: alitari67@gmail.com
   name: alitari
 name: superset
-icon: https://cdn-images-1.medium.com/max/1088/1*YkOxj_MGKBsYZ-BXLJ5Erg.png
+icon: https://www.sakurasky.com/images/blog/superset-logo-stacked-apache.png
 sources:
 - https://github.com/apache/incubator-superset
 version: 0.1.2
