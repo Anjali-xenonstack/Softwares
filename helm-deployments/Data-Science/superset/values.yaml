@@ -12,8 +12,8 @@ replicaCount: 1
 
 ## Set default image, imageTag, and imagePullPolicy.
 image:
-  repository: "apachesuperset.docker.scarf.sh/apache/superset"
-  tag: ""
+  repository: "amancevice/superset"
+  tag: "0.24.0"
   pullPolicy: "IfNotPresent"
 
 initFile: |-
