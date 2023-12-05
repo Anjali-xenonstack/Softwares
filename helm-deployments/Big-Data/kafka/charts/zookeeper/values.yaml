@@ -326,7 +326,7 @@ resources:
 ## @param livenessProbe.probeCommandTimeout Probe command timeout for livenessProbe
 ##
 livenessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5
@@ -344,7 +344,7 @@ livenessProbe:
 ## @param readinessProbe.probeCommandTimeout Probe command timeout for readinessProbe
 ##
 readinessProbe:
-  enabled: false
+  enabled: true
   initialDelaySeconds: 5
   periodSeconds: 10
   timeoutSeconds: 5
