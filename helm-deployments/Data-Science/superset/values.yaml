@@ -12,8 +12,8 @@ replicaCount: 1
 
 ## Set default image, imageTag, and imagePullPolicy.
 image:
-  repository: "amancevice/superset"
-  tag: "0.24.0"
+  repository: "apachesuperset.docker.scarf.sh/apache/superset"
+  tag: ""
   pullPolicy: "IfNotPresent"
 
 initFile: |-
@@ -171,19 +171,19 @@ affinity: {}
 ## Configure liveness/readiness params
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 ##
-# livenessProbe:
-#   httpGet:
-#     path: /
-#     port: http
-#   initialDelaySeconds: 600
-#   timeoutSeconds: 120
-#   periodSeconds: 10
-#   failureThreshold: 3
-# readinessProbe:
-#   httpGet:
-#     path: /
-#     port: http
-#   initialDelaySeconds: 600
-#   timeoutSeconds: 120
-#   periodSeconds: 10
-#   failureThreshold: 3
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 600
+  timeoutSeconds: 120
+  periodSeconds: 10
+  failureThreshold: 3
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 600
+  timeoutSeconds: 120
+  periodSeconds: 10
+  failureThreshold: 3
