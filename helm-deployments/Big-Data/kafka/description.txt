@@ -11,4 +11,3 @@
           <li>Replay messages</li>
           <li>Error recovery</li>
     </ul>
-

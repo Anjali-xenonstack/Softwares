@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "cp-zookeeper.fullname" . }}
+  labels:
+    app: {{ template "cp-zookeeper.name" . }}
+    chart: {{ template "cp-zookeeper.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.serviceType }}
+  ports:
+    - port: {{ .Values.clientPort }}
+      name: client
+    {{- if .Values.prometheus.jmx.enabled }}
+    - name: metrics
+      port: {{ .Values.prometheus.jmx.port }}
+    {{- end }}
+  selector:
+    app: {{ template "cp-zookeeper.name" . }}
+    release: {{ .Release.Name }}
+    type: {{ .Values.global.type }}
+    workspace_id: {{ .Values.global.workspace_id | quote}}
+    user_id: {{ .Values.global.user_id | quote }}
+    user_name: {{ .Values.global.user_name | quote }}
