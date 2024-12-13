@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJkci5uZXVyYWxjb21wYW55LnRlYW0iOiB7CgkJCSJhdXRoIjogImVITTBPRGN0WkdsMlkyaGhPa1JwZG5saGJtdEFJVEF3Tmc9PSIKCQl9Cgl9Cn0=
+kind: Secret
+metadata:
+  creationTimestamp: "2024-12-13T09:16:07Z"
+  name: test
+  namespace: te
+  resourceVersion: "58610"
+  uid: 98d333c5-1190-4b17-84b9-bbacc266af93
+type: kubernetes.io/dockeronfigjson

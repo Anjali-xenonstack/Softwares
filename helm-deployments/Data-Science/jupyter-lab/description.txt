@@ -1,6 +1,0 @@
-
-<p><strong>JupyterLab</strong> is an open-source web application that allows you to create and share documents that contain live code,
-equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation,
-statistical modeling, data visualization, machine learning, and much more.</p>
-
-<p>JupyterLab will be installed in our cloud labs , with <strong>5 GB persistent storage</strong> , which will keep all your notebooks always available.</p>

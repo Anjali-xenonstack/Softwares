@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: vimagick/openrefine
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+
+javaOpts: "-Xmx1G -Xms512M"
+ingress:
+  enabled: false
+  host: openrefine.local
+# ServiceAccount configuration
+serviceAccount:
+  create: true  # Specifies whether a ServiceAccount should be created
+  name: ""      # Name of the ServiceAccount to use. If empty, a default name is used.
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
