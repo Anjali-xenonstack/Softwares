@@ -25,7 +25,7 @@ ingress:
     domainName: lab.akirastack.com
     path: /
     annotations: 
-      cert-manager.io/cluster-issuer: letsencrypt-production 
+      cert-manager.io/cluster-issuer: letsencrypt-prod
     tls:
      enabled: true  
 # ServiceAccount configuration
