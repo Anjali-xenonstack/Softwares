@@ -57,7 +57,7 @@ spec:
     {{- if and .Values.proxy.ingress.tls (or (include "common.ingress.certManagerRequest" ( dict "annotations" .Values.proxy.ingress.annotations )) .Values.proxy.ingress.selfSigned) }}
     - hosts:
         - {{ .Release.Name }}.{{ .Values.ingress.domainName }}
-      secretName: {{ printf "%s-tls" .Values.ingress.domainName }}
+      secretName: {{ printf "%s-tls" .Release.Name .Values.ingress.domainName }}
     {{- end }}
     {{- if .Values.proxy.ingress.extraTls }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.proxy.ingress.extraTls "context" $ ) | nindent 4 }}

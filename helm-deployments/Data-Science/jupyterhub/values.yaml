@@ -255,7 +255,7 @@ hub:
       {{- else }}
       cmd: jupyterhub-singleuser
       {{- end }}
-      defaultUrl:
+      defaultUrl: /lab/tree{{ .Values.singleuser.notebookDir}}
       {{- if .Values.singleuser.profileList }}
       profileList: {{- include "common.tplvalues.render" ( dict "value" .Values.singleuser.profileList "context" $) | nindent 4 }}
       {{- end }}
