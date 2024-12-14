@@ -1,0 +1,21 @@
+---
+# Source: jupyterhub/templates/hub/pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: release-name-jupyterhub-hub
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: jupyterhub
+    app.kubernetes.io/version: 4.1.6
+    helm.sh/chart: jupyterhub-8.0.1
+    app.kubernetes.io/component: hub
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/name: jupyterhub
+      app.kubernetes.io/component: hub

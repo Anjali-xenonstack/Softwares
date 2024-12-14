@@ -1,0 +1,33 @@
+---
+# Source: jupyterhub/templates/proxy/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: release-name-jupyterhub
+  labels:
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: jupyterhub
+    app.kubernetes.io/version: 4.6.2
+    helm.sh/chart: jupyterhub-8.0.1
+    app.kubernetes.io/component: proxy
+  namespace: "default"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: "jyupeter.lab.neuralcompany.team"
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: release-name-jupyterhub-proxy-public
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - "jyupeter.lab.neuralcompany.team"
+      secretName: jyupeter.lab.neuralcompany.team-tls

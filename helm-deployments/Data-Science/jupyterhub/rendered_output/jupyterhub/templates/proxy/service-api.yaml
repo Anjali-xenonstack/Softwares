@@ -1,0 +1,27 @@
+---
+# Source: jupyterhub/templates/proxy/service-api.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-jupyterhub-proxy-api
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: jupyterhub
+    app.kubernetes.io/version: 4.6.2
+    helm.sh/chart: jupyterhub-8.0.1
+    app.kubernetes.io/component: proxy
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  ports:
+    - name: http
+      port: 8001
+      targetPort: api
+      protocol: TCP
+      nodePort: null
+  selector:
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/name: jupyterhub
+    app.kubernetes.io/component: proxy

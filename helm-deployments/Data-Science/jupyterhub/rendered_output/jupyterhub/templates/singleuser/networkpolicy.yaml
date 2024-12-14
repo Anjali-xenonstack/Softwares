@@ -1,0 +1,28 @@
+---
+# Source: jupyterhub/templates/singleuser/networkpolicy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: jupyterhub
+    app.kubernetes.io/version: 4.1.6
+    helm.sh/chart: jupyterhub-8.0.1
+    app.kubernetes.io/component: singleuser
+  name: release-name-jupyterhub-singleuser
+  namespace: "default"
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/name: jupyterhub
+      app.kubernetes.io/component: singleuser
+  policyTypes:
+    - Ingress
+    - Egress
+  egress:
+    - {}
+  ingress:
+    - ports:
+        - port: 8888

@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  defaultStorageClass: "rook-ceph-block "
+  defaultStorageClass: "rook-ceph-block"
   storageClass: ""
   ## Compatibility adaptations for Kubernetes platforms
   ##
@@ -1196,7 +1196,7 @@ proxy:
     apiVersion: ""
     ingressClassName: "nginx"
     pathType: ImplementationSpecific
-    hostname: lab.neuralcompany.team
+    # hostname: jyupeter.lab.neuralcompany.team
     domainName: lab.neuralcompany.team
     secretName: lab.neuralcompany.team
     path: /
