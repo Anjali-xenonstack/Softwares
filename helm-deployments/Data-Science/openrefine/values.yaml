@@ -17,9 +17,17 @@ resources:
     cpu: "250m"
 
 javaOpts: "-Xmx1G -Xms512M"
-ingress:
-  enabled: false
-  host: openrefine.local
+ ingress:
+    enabled: true
+    apiVersion: ""
+    ingressClassName: "nginx"
+    pathType: ImplementationSpecific
+    hostname: lab.neuralcompany.team
+    domainName: lab.neuralcompany.team
+    secretName: lab.neuralcompany.team
+    path: /
+    annotations: 
+      cert-manager.io/cluster-issuer: letsencrypt-production 
 # ServiceAccount configuration
 serviceAccount:
   create: true  # Specifies whether a ServiceAccount should be created

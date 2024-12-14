@@ -1,0 +1,3 @@
+[
+{"var":"auth.token", "name": "token", "type": "password", "desc": "Please enter token."}
+]
