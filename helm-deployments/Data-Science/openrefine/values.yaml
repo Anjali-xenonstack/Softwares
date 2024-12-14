@@ -23,6 +23,7 @@ javaOpts: "-Xmx1G -Xms512M"
     ingressClassName: "nginx"
     pathType: ImplementationSpecific
     hostname: lab.neuralcompany.team
+    domainName: lab.neuralcompany.team
     secretName: lab.neuralcompany.team
     path: /
     annotations: 
