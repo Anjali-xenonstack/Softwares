@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  defaultStorageClass: "disk.csi.azure.com"
+  defaultStorageClass: " azure-disk"
   storageClass: ""
   ## Compatibility adaptations for Kubernetes platforms
   ##
