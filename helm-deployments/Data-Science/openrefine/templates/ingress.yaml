@@ -21,10 +21,9 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-openrefine
   annotations:
-    {{- if .Values.ingress.certManager }}
-    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer | default "letsencrypt-prod" }}
-    {{- end }}
+    cert-manager.io/cluster-issuer: letsencrypt-production  
 spec:
+  ingressClassName: "nginx"
   rules:
   - host: {{ .Release.Name }}.{{ .Values.ingress.domainName }}
     http:
@@ -40,5 +39,5 @@ spec:
   tls:
   - hosts:
       - {{ .Release.Name }}.{{ .Values.ingress.domainName }}
-    secretName: {{ printf "%s-%s-tls" .Release.Name .Values.ingress.domainName }}
+    secretName: {{ .Release.Name }}-{{ printf "%s-tls" .Values.ingress.domainName }}
   {{- end }}

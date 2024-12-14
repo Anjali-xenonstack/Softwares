@@ -1,6 +1,4 @@
 
-<p><strong>JupyterLab</strong> is an open-source web application that allows you to create and share documents that contain live code,
-equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation,
-statistical modeling, data visualization, machine learning, and much more.</p>
+<p><strong>OpenRefine</strong>  is a powerful free, open source tool for working with messy data: cleaning it; transforming it from one format into another; and extending it with web services and external data..</p>
 
-<p>JupyterLab will be installed in our cloud labs , with <strong>5 GB persistent storage</strong> , which will keep all your notebooks always available.</p>
+<p>OpenRefine will be installed in our cloud labs</p>
