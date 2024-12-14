@@ -26,6 +26,8 @@ ingress:
     path: /
     annotations: 
       cert-manager.io/cluster-issuer: letsencrypt-production 
+    tls:
+     enabled: true  
 # ServiceAccount configuration
 serviceAccount:
   create: true  # Specifies whether a ServiceAccount should be created
