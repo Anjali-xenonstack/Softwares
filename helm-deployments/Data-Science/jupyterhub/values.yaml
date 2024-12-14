@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  defaultStorageClass: ""
+  defaultStorageClass: "rook-ceph-block "
   storageClass: ""
   ## Compatibility adaptations for Kubernetes platforms
   ##
