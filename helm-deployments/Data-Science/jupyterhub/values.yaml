@@ -692,13 +692,6 @@ hub:
       ##
       jobLabel: ""
 ## @section Proxy deployment parameters
-ingress:
-  enabled: true
-  apiVersion: ""
-  ingressClassName: "nginx"
-  pathType: ImplementationSpecific
-  domainName: lab.neuralcompany.team
-
 proxy:
   ## @param proxy.image.registry [default: REGISTRY_NAME] Proxy image registry
   ## @param proxy.image.repository [default: REPOSITORY_NAME/configurable-http-proxy] Proxy image repository
@@ -1198,7 +1191,12 @@ proxy:
       extraPorts: []
   ## Configure the ingress resource that allows you to access to your JupyterHub instance
   ##
-
+  ingress:
+    enabled: true
+    apiVersion: ""
+    ingressClassName: "nginx"
+    pathType: ImplementationSpecific
+    domainName: lab.neuralcompany.team
 
     path: /
     ## @param proxy.ingress.annotations [object] Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
@@ -1861,3 +1859,6 @@ externalDatabase:
   password: ""
   existingSecret: ""
   existingSecretPasswordKey: ""
+
+ingress:
+  domainName: lab.neuralcompany.team
