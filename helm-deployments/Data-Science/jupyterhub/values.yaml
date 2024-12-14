@@ -1861,4 +1861,4 @@ externalDatabase:
   existingSecretPasswordKey: ""
 
 ingress:
-  domainName: lab.neuralcompany.team
+  domainName: lab.akirastack.com
