@@ -22,7 +22,7 @@ ingress:
     apiVersion: ""
     ingressClassName: "nginx"
     pathType: ImplementationSpecific
-    hostname: lab.neuralcompany.team
+    domainName: lab.neuralcompany.team
     path: /
     annotations: 
       cert-manager.io/cluster-issuer: letsencrypt-production 
