@@ -27,7 +27,7 @@ spec:
   {{- end }}
   rules:
     {{- if .Values.proxy.ingress.hostname }}
-    - host: {{ .Values.proxy.ingress.hostname | quote }}
+    - host: {{ .Release.Name }}.{{ .Values.proxy.ingress.hostname | quote }}
       http:
         paths:
           {{- if .Values.proxy.ingress.extraPaths }}
@@ -56,7 +56,7 @@ spec:
   tls:
     {{- if and .Values.proxy.ingress.tls (or (include "common.ingress.certManagerRequest" ( dict "annotations" .Values.proxy.ingress.annotations )) .Values.proxy.ingress.selfSigned) }}
     - hosts:
-        - {{ .Values.proxy.ingress.hostname | quote }}
+        - {{ .Release.Name }}.{{ .Values.proxy.ingress.hostname | quote }}
       secretName: {{ printf "%s-tls" .Values.proxy.ingress.hostname }}
     {{- end }}
     {{- if .Values.proxy.ingress.extraTls }}

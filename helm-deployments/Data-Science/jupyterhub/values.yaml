@@ -1196,9 +1196,8 @@ proxy:
     apiVersion: ""
     ingressClassName: "nginx"
     pathType: ImplementationSpecific
-    # hostname: jyupeter.lab.neuralcompany.team
-    domainName: lab.neuralcompany.team
-    secretName: lab.neuralcompany.team
+    hostname: lab.neuralcompany.team
+
     path: /
     ## @param proxy.ingress.annotations [object] Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
     ## Use this parameter to set the required annotations for cert-manager, see

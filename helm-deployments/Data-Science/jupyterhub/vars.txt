@@ -1,3 +1,4 @@
 [
-{"var":"auth.token", "name": "token", "type": "password", "desc": "Please enter token."}
+{"var":"hub.username", "name": "username", "type": "password", "desc": "Please enter username."},
+{"var":"hub.password", "name": "password", "type": "password", "desc": "Please enter password."}
 ]
