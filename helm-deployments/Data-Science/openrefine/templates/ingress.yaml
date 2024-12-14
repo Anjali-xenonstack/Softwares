@@ -1,27 +1,9 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: {{ .Release.Name }}-openrefine
-#   annotations:
-#     kubernetes.io/ingress.class: "nginx"
-# spec:
-#   rules:
-#   - host: {{ .Release.Name }}.{{ .Values.ingress.domainName }}
-#     http:
-#       paths:
-#       - path: /
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: {{ .Release.Name }}-openrefine
-#             port:
-#               number: 3333
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}-openrefine
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production  
+    cert-manager.io/cluster-issuer: letsencrypt-prod 
 spec:
   ingressClassName: "nginx"
   rules:
