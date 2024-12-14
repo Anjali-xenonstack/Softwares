@@ -1,4 +1,0 @@
-<p><strong> Apache Superset</strong> has been launched.</p>
-<p><strong>Superset UI:</strong> <a style="text-decoration: none;" href="https://{{ .Name }}.{{ .Domain }}" target="_blank">https://{{ .Name }}.{{ .Domain }}</a> <br /><strong>Username</strong>: {{ .Values.auth.username }} <br /><strong>Password</strong>: {{ .Values.auth.password }}</p>
-<pre>
-</pre>

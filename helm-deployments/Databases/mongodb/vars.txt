@@ -1,6 +1,0 @@
-[
-{"var":"auth.rootPassword", "name": "root_password", "type": "password", "desc": "Please enter root password"},
-{"var":"auth.username", "name": "user_name", "type": "text", "desc": "Please enter username"},
-{"var":"auth.password", "name": "user_password", "type": "password", "desc": "Please enter user password"},
-{"var":"auth.database", "name": "database_name", "type": "text", "desc": "Enter desired database name"}
-]

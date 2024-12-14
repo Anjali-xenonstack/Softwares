@@ -1,5 +1,5 @@
 <p><strong> Jupyterhub</strong> has been launched.</p>
-<p><strong>URL link:</strong> <a style="text-decoration: none;" href="https://{{ .Name }}.{{ .Values.proxy.ingress.hostname }}" target="_blank">https://{{ .Name }}.{{ .Values.proxy.ingress.hostname }}</a> <br /><strong>Username</strong>: {{ .Values.hub.username }} <br /><strong>Password</strong>: {{ .Values.hub.password }}</p>
+<p><strong>URL link:</strong> <a style="text-decoration: none;" href="https://{{ .Name }}.{{.Domain }}" target="_blank">https://{{ .Name }}.{{ .Domain }}</a> <br /><strong>Username</strong>: {{ .Values.hub.username }} <br /><strong>Password</strong>: {{ .Values.hub.password }}</p>
 <pre>
 </pre>
 
